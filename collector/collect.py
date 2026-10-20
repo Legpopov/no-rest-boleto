@@ -140,12 +140,13 @@ def main() -> None:
 
     out_path = Path(args.out)
     # Предыдущий снимок: если источник сегодня упал, оставляем прошлые данные с их датой
-    previous = {}
+    previous, prev_doc = {}, {}
     if out_path.exists():
         try:
-            previous = {c["id"]: c for c in json.loads(out_path.read_text(encoding="utf-8")).get("cities", [])}
+            prev_doc = json.loads(out_path.read_text(encoding="utf-8"))
+            previous = {c["id"]: c for c in prev_doc.get("cities", [])}
         except (ValueError, KeyError):
-            previous = {}
+            previous, prev_doc = {}, {}
 
     months = aviasales.months_ahead(args.months)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -154,7 +155,12 @@ def main() -> None:
 
     result = {"generated_at": now, "months": months, "origin": {"city": "Москва", "iata": "MOW", "express": tutu.MOSCOW}}
     if "fx" in sources:
-        result["fx"] = cbr.fetch_rates()
+        try:
+            result["fx"] = cbr.fetch_rates()
+        except Exception as e:  # noqa: BLE001
+            log.warning("fx: %s", e)
+    if "fx" not in result and prev_doc.get("fx"):
+        result["fx"] = prev_doc["fx"]  # курсы из прошлого снимка, их дата — в fx.date
 
     rows = []
     for n, c in enumerate(cities, 1):
