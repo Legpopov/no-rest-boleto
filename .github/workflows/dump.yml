@@ -1,0 +1,29 @@
+name: dump-page
+
+# Отладка: скачать страницы с серверов GitHub и сохранить как артефакт
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URL через пробел"
+        required: true
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          mkdir out; i=0
+          for u in $URLS; do
+            i=$((i+1))
+            curl -sS -L --max-time 40 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" \
+              -H "Accept-Language: ru-RU,ru;q=0.9" -o "out/page$i.html" -w "$i %{http_code} %{size_download} $u\n" "$u" || true
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pages
+          path: out/
+          retention-days: 1
