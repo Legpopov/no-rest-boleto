@@ -18,6 +18,8 @@ CITIES = HERE / "cities.csv"
 OUT = HERE / "codes.csv"
 OVERRIDES = HERE / "codes_overrides.csv"
 RAIL_COUNTRIES = {"RU", "BY", "KZ"}
+# названия станций в системе «Экспресс», отличающиеся от названия города
+RAIL_ALIASES = {"Великий Новгород": "Новгород", "Нижнекамск": "Нижнекамск Пасс", "Орел": "Орёл"}
 FIELDS = ["city", "country", "ostrovok_slug", "ostrovok_match", "currency", "express"]
 
 
@@ -56,9 +58,11 @@ def main() -> None:
                     rec["ostrovok_match"] = f"error:{type(e).__name__}"
             if ov.get("express"):
                 rec["express"] = ov["express"]
-            elif not rec.get("express") and c["country_code"] in RAIL_COUNTRIES:
+            elif not rec.get("express") and (c["abroad"] == "0" or c["country_code"] in RAIL_COUNTRIES):
                 try:
                     rec["express"] = tutu.resolve_station(s, name) or ""
+                    if not rec["express"] and name in RAIL_ALIASES:
+                        rec["express"] = tutu.resolve_station(s, RAIL_ALIASES[name]) or ""
                 except Exception as e:  # noqa: BLE001
                     log.warning("tutu %s: %s", name, e)
             log.info("%-26s %-28s %s %s", name, rec.get("ostrovok_slug", ""), rec.get("ostrovok_match", ""), rec.get("express", ""))

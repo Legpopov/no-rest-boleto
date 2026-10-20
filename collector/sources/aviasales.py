@@ -35,6 +35,10 @@ def fetch_round_trips(session: PoliteSession, origin: str, destination: str, mon
             },
             headers={"X-Access-Token": token, "Accept-Encoding": "gzip, deflate"},
         )
+        if resp.status_code == 400:
+            # так API отвечает на направления без рейсов (закрытые аэропорты)
+            log.info("aviasales: нет данных %s-%s %s (400)", origin, destination, month)
+            continue
         if resp.status_code == 429:
             log.warning("aviasales: превышен лимит запросов на %s-%s %s", origin, destination, month)
             continue

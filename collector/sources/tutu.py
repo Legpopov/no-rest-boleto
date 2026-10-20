@@ -30,8 +30,10 @@ def trips(session: PoliteSession, from_code: str, to_code: str) -> list[dict]:
     """Поезда между станциями: [{train, name, firm, hours, classes: {coupe: 2616, ...}}]."""
     resp = session.get(TRIPS, params={"service": "tutu_trains", "term": from_code, "term2": to_code})
     resp.raise_for_status()
+    body = resp.json()
     out = []
-    for t in resp.json().get("trips") or []:
+    # если поездов нет, сервис отвечает пустым списком вместо объекта
+    for t in (body.get("trips") if isinstance(body, dict) else None) or []:
         classes = {c["type"]: c["price"] for c in t.get("categories") or [] if c.get("price")}
         if not classes:
             continue

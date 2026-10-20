@@ -44,10 +44,20 @@ class PoliteSession(requests.Session):
         if wait > 0:
             time.sleep(wait)
         kwargs.setdefault("timeout", 30)
-        try:
-            return super().request(method, url, *args, **kwargs)
-        finally:
-            self._last[host] = time.monotonic()
+        for attempt in (1, 2):
+            try:
+                resp = super().request(method, url, *args, **kwargs)
+                if resp.status_code in (408, 502, 503, 504) and attempt == 1:
+                    time.sleep(5)
+                    continue
+                return resp
+            except (requests.Timeout, requests.ConnectionError):
+                if attempt == 2:
+                    raise
+                time.sleep(5)
+            finally:
+                self._last[host] = time.monotonic()
+        return resp
 
 
 def load_dotenv(path: Path = ROOT / ".env") -> None:

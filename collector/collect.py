@@ -54,6 +54,8 @@ def load_cities() -> list[dict]:
 # ---------- источники ----------
 
 def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
+    if c.get("iata") == "MOW":
+        return {"status": "origin"}
     if not c.get("iata"):
         return {"status": "no_airport"}
     offers = aviasales.fetch_round_trips(s, "MOW", c["iata"], months)
@@ -75,6 +77,8 @@ def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
 
 def collect_rail(s: PoliteSession, c: dict) -> dict:
     code = c.get("express")
+    if c.get("iata") == "MOW" or code == tutu.MOSCOW:
+        return {"status": "origin"}
     if not code:
         return {"status": "no_station"}
     there = tutu.trips(s, tutu.MOSCOW, code)
