@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>no-rest-boleto — цены на поездки</title>
+  <meta name="description" content="Открытые рыночные цены на авиабилеты из Москвы, поезда и отели по городам России и мира.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563eb'/%3E%3Cpath d='M6 19l20-8-3 10-6-3-3 5-1-6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#cities">no-rest-boleto</a>
+    <span class="snapshot" id="snapshot">загрузка данных…</span>
+  </div>
+</header>
+
+<section class="trip wrap" aria-label="Параметры поездки">
+  <form id="trip-form" class="trip-form" autocomplete="off">
+    <label>Откуда
+      <input id="f-origin" list="dl-cities" placeholder="Москва" value="Москва">
+    </label>
+    <label>Куда
+      <input id="f-dest" list="dl-cities" placeholder="Город или код IATA" required>
+    </label>
+    <label>Туда
+      <input id="f-depart" type="date" required>
+    </label>
+    <label>Обратно
+      <input id="f-return" type="date">
+    </label>
+    <div class="nights" id="f-nights" aria-live="polite"></div>
+  </form>
+  <datalist id="dl-cities"></datalist>
+</section>
+
+<nav class="tabs wrap" role="tablist">
+  <a href="#cities" data-tab="cities">Города</a>
+  <a href="#air" data-tab="air">Авиа</a>
+  <a href="#rail" data-tab="rail">Поезда</a>
+  <a href="#hotels" data-tab="hotels">Отели</a>
+  <a href="#total" data-tab="total">Итог</a>
+</nav>
+
+<main class="wrap">
+  <!-- Города -->
+  <section id="tab-cities" class="tab">
+    <div class="toolbar">
+      <input id="c-search" type="search" placeholder="Поиск города или страны">
+      <label>Авиа:
+        <select id="c-airmode">
+          <option value="all">все варианты</option>
+          <option value="max1transfer">не более 1 пересадки</option>
+          <option value="direct">только прямые</option>
+        </select>
+      </label>
+      <label class="chk"><input type="checkbox" id="c-abroad-ru" checked> Россия</label>
+      <label class="chk"><input type="checkbox" id="c-abroad-x" checked> Зарубеж</label>
+    </div>
+    <p class="note">Авиа — туда-обратно из Москвы по ценам из кэша поисков Aviasales на ближайшие месяцы (поездки от 1 до 30 ночей). Поезд — минимальная цена в одну сторону, без привязки к дате. Отели — цена «от» за ночь на публичной выдаче без дат. Нажмите на город, чтобы искать по датам.</p>
+    <div class="table-scroll">
+      <table class="grid" id="c-table">
+        <thead><tr>
+          <th data-sort="city">Город</th>
+          <th data-sort="country">Страна / регион</th>
+          <th data-sort="air_med" class="num">Авиа, медиана</th>
+          <th data-sort="air_p90" class="num">Авиа, 90-й перц.</th>
+          <th data-sort="air_n" class="num">вариантов</th>
+          <th data-sort="rail" class="num">Поезд от</th>
+          <th data-sort="hot_med" class="num">Отель, медиана / ночь</th>
+          <th data-sort="hot_p25" class="num">Отель, 25-й перц.</th>
+          <th data-sort="hot_n" class="num">отелей</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="c-fx"></p>
+  </section>
+
+  <!-- Авиа -->
+  <section id="tab-air" class="tab" hidden>
+    <div class="toolbar">
+      <button id="a-search" class="primary" type="button">Найти билеты</button>
+      <label>Пересадки:
+        <select id="a-transfers">
+          <option value="9">любые</option>
+          <option value="1">не более 1</option>
+          <option value="0">только прямые</option>
+        </select>
+      </label>
+      <span class="muted" id="a-status"></span>
+    </div>
+    <div id="a-flex"></div>
+    <div id="a-results"></div>
+    <p class="note">Цены — из кэша поисков пользователей Aviasales за последние дни, а не живой поиск: актуальную цену и наличие мест проверяйте по ссылке.</p>
+  </section>
+
+  <!-- Поезда -->
+  <section id="tab-rail" class="tab" hidden>
+    <div class="toolbar">
+      <button id="r-search" class="primary" type="button">Показать поезда</button>
+      <label class="chk"><input type="checkbox" id="r-firm"> только фирменные</label>
+      <span class="muted" id="r-status"></span>
+    </div>
+    <p class="note warn">Цены «от» — минимальные по каждому классу вагона, <b>без привязки к дате</b>. На конкретную дату цена может быть выше или мест может не быть — проверьте на tutu.ru.</p>
+    <div id="r-links" class="links"></div>
+    <div id="r-results"></div>
+  </section>
+
+  <!-- Отели -->
+  <section id="tab-hotels" class="tab" hidden>
+    <div id="h-links" class="links"></div>
+    <div class="hotels-layout">
+      <aside class="filters" id="h-filters">
+        <h3>Фильтры</h3>
+        <label>Звёзд не меньше
+          <select id="h-stars"><option value="0">любые</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select>
+        </label>
+        <label class="chk"><input type="checkbox" id="h-stars-exact"> только ровно столько звёзд</label>
+        <label>Рейтинг не ниже
+          <select id="h-rating"><option value="0">любой</option><option value="6">6+</option><option value="7">7+</option><option value="8">8+</option><option value="9">9+</option></select>
+        </label>
+        <label>До центра, км не больше <output id="h-dist-out"></output>
+          <input type="range" id="h-dist" min="0.5" max="30" step="0.5" value="30">
+        </label>
+        <div class="pair">
+          <label>Цена от<input type="number" id="h-pmin" min="0" step="100" placeholder="0"></label>
+          <label>до<input type="number" id="h-pmax" min="0" step="100" placeholder="∞"></label>
+        </div>
+        <label class="chk"><input type="checkbox" id="h-noapart"> без апартаментов</label>
+        <label class="chk"><input type="checkbox" id="h-nohostel"> без хостелов</label>
+        <details><summary>Типы размещения</summary><div id="h-kinds"></div></details>
+        <label>Сортировка
+          <select id="h-sort"><option value="price">по цене</option><option value="dist">по расстоянию</option><option value="rating">по рейтингу</option></select>
+        </label>
+        <div class="stats" id="h-stats"></div>
+      </aside>
+      <div class="map-col">
+        <div id="map" class="map" role="region" aria-label="Карта отелей"></div>
+        <p class="note" id="h-note"></p>
+        <div id="h-list" class="hotel-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Итог -->
+  <section id="tab-total" class="tab" hidden>
+    <div class="total-grid">
+      <div class="card">
+        <h3>Дорога</h3>
+        <label class="radio"><input type="radio" name="t-ticket" value="flight" checked> Выбранный авиабилет</label>
+        <div class="pick" id="t-flight">не выбран — выберите на вкладке «Авиа»</div>
+        <label class="radio"><input type="radio" name="t-ticket" value="train"> Поезд туда и обратно</label>
+        <div class="pick" id="t-train">не выбран — выберите на вкладке «Поезда»</div>
+        <label class="radio"><input type="radio" name="t-ticket" value="manual"> Своя сумма
+          <input type="number" id="t-ticket-manual" min="0" step="100" placeholder="₽">
+        </label>
+      </div>
+      <div class="card">
+        <h3>Проживание</h3>
+        <label class="radio"><input type="radio" name="t-hotel" value="picked" checked> Выбранный отель</label>
+        <div class="pick" id="t-hotel-picked">не выбран — выберите на вкладке «Отели»</div>
+        <label class="radio"><input type="radio" name="t-hotel" value="median"> Медиана по фильтрам на карте</label>
+        <div class="pick" id="t-hotel-median">—</div>
+        <label class="radio"><input type="radio" name="t-hotel" value="manual"> Своя цена за ночь
+          <input type="number" id="t-hotel-manual" min="0" step="100" placeholder="₽">
+        </label>
+        <label>Ночей <input type="number" id="t-nights" min="0" max="365" step="1"></label>
+      </div>
+      <div class="card">
+        <h3>Прочее</h3>
+        <label>Дополнительные расходы, ₽ <input type="number" id="t-extra" min="0" step="100" value="0"></label>
+        <label>Человек <input type="number" id="t-people" min="1" max="20" step="1" value="1"></label>
+        <p class="note">Дорога умножается на число человек; проживание — на число ночей (номер на всех).</p>
+      </div>
+    </div>
+    <div class="card total" id="t-result"></div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  Данные: Aviasales Data API (Travelpayouts), Туту, публичная выдача Островка, курсы ЦБ РФ; карта © участники OpenStreetMap.
+  Все цены — ориентировочные рыночные, не оферта. Исходный код: <a href="https://github.com/Legpopov/no-rest-boleto">github.com/Legpopov/no-rest-boleto</a>.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Сайт: статика из site/ + функции из netlify/functions.
+# Сборка копирует свежий снимок data/ в site/data/ и строит список городов из collector/*.csv.
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+  command = "node netlify/build-data.mjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Ключ TRAVELPAYOUTS_TOKEN задаётся только в Site configuration -> Environment variables.
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=600"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
