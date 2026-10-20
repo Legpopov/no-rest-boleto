@@ -1,0 +1,243 @@
+city,country,ostrovok_slug,ostrovok_match,express
+Сидней,Австралия,australia/sydney,exact,
+Бад-Гаштайн,Австрия,austria/bad_gastein,exact,
+Вена,Австрия,,not_found,
+Лаксенбург,Австрия,,not_found,
+Баку,Азербайджан,azerbaijan/baku,exact,
+Буэнос Айрес,Аргентина,argentina/buenos_aires,exact,
+Ереван,Армения,armenia/yerevan,exact,
+Минск,Белоруссия,belarus/minsk,exact,2100000
+Брюссель,Бельгия,belgium/brussels,exact,
+Бургас,Болгария,bulgaria/bourgas,exact,
+София,Болгария,,not_found,
+Порту-Алегри,Бразилия,brazil/porto_alegre,exact,
+Рио-де-Жанейро,Бразилия,brazil/rio_de_janeiro,exact,
+Глазго,Великобритания,united_kingdom/glasgow,exact,
+Лестер,Великобритания,,not_found,
+Лондон,Великобритания,united_kingdom/london,exact,
+Манчестер,Великобритания,,not_found,
+Эдинбург,Великобритания,united_kingdom/edinburgh,exact,
+Люксембург,Великое Герцогство Люксембург,,not_found,
+Будапешт,Венгрия,hungary/budapest,exact,
+Дананг,Вьетнам,vietnam/da_nang2,exact,
+Кантхо,Вьетнам,vietnam/can_tho,exact,
+Нячанг,Вьетнам,vietnam/nha_trang,"fuzzy:Нячанг, Провинция Кханьхоа",
+Ханой,Вьетнам,vietnam/hanoi,"fuzzy:Ханой, Северный Вьетнам",
+Хошимин,Вьетнам,vietnam/ho_chi_minh_city,"fuzzy:Хошимин, Южный Вьетнам",
+Бад-Гарцбург,Германия,germany/bad_harzburg,exact,
+Берлин,Германия,germany/berlin,exact,
+Мюнхен,Германия,germany/munich,exact,
+Потсдам,Германия,germany/potsdam,exact,
+Регенсбург,Германия,germany/regensburg,exact,
+Фрайбург,Германия,germany/freiburg,exact,
+Франкфурт,Германия,germany/frankfurt,"fuzzy:Франкфурт-на-Майне, Гессен",
+Галле,Германия,,not_found,
+Штутгарт,Германия,germany/stuttgart,exact,
+Афины,Греция,greece/athens,exact,
+Ираклион,Греция,greece/heraklion,exact,
+Салоники,Греция,greece/thessaloniki,exact,
+Батуми,Грузия,georgia/batumi,exact,
+Тбилиси,Грузия,georgia/tbilisi,exact,
+Копенгаген,Дания,denmark/copenhagen,"fuzzy:Копенгаген, Столичная область",
+Пунта-Кана,Доминиканская Республика,dominican_republic/punta_cana,"fuzzy:Пунта Кана, Ла-Альтаграсия",
+Тель-Авив,Израиль,israel/tel_aviv,exact,
+Хайфа,Израиль,israel/haifa,exact,
+Нью-Дели,Индия,india/new_delhi,exact,
+Бали,Индонезия,indonesia/indonesia_bali_province,exact,
+Дублин,Ирландия,,not_found,
+Барселона,Испания,spain/barcelona,exact,
+Бильбао,Испания,spain/bilbao,exact,
+Кордоба,Испания,spain/priego_de_cordoba,fuzzy:Прьего-де-Кордоба,
+Мадрид,Испания,spain/madrid,exact,
+Сарагоса,Испания,spain/zaragoza,exact,
+Севилья,Испания,spain/seville,exact,
+Болонья,Италия,italy/bologna,exact,
+Больцано,Италия,italy/bolzano,exact,
+Венеция,Италия,,not_found,
+Кьянчано-Терме,Италия,,not_found,
+Милан,Италия,italy/milan,exact,
+Рим,Италия,italy/rome,"fuzzy:Рим, Метрополитенский город Рим",
+Алма-Ата,Казахстан,kazakhstan/almaty,fuzzy:Алматы,
+Астана,Казахстан,kazakhstan/astana,exact,2708001
+Пномпень,Камбоджа,cambodia/phnom_penh,exact,
+Ванкувер,Канада,canada/vancouver,exact,
+Монреаль,Канада,canada/montreal,exact,
+Доха,Катар,qatar/doha,exact,
+Ларнака,Кипр,cyprus/larnaca,exact,
+Гонконг,Китай,china/hong_kong_hong_kong_vicinity,exact,
+Гуанчжоу,Китай,china/guangzhou,exact,
+Пекин,Китай,china/beijing,exact,
+Ченду,Китай,china/chengdu,fuzzy:Чэнду,
+Чунцин,Китай,china/chongqing,exact,
+Шанхай,Китай,china/shanghai,exact,
+Шэньчжэнь,Китай,china/shenzhen,exact,
+Тяньцзинь,Китай,china/tianjin,exact,
+Бишкек,Киргизия,kyrgyzstan/bishkek,exact,
+Рига,Латвия,latvia/riga,"fuzzy:Рига, Видземе",
+Юрмала,Латвия,latvia/jurmala,exact,
+Бейрут,Ливан,,not_found,
+"Скопье, Северная Македония",Македония,f.y.r.o._macedonia/skopje,exact,
+Путраджая,Малайзия,malaysia/putrajaya,exact,
+Кота-Кинабалу,Малайзия,malaysia/kota_kinabalu,exact,
+Малакка,Малайзия,malaysia/melaka,exact,
+Куала-Лумпур,Малайзия,malaysia/kuala_lumpur,exact,
+Марракеш,Марокко,,not_found,
+Мехико,Мексика,mexico/mexico_city,exact,
+Бендеры,Молдова,moldova/bender,exact,
+Кишинёв,Молдова,moldova/chisinau,exact,
+Амстердам,Нидерланды,netherlands/amsterdam,"fuzzy:Амстердам, Северная Голландия",
+Амстердам,Нидерланды,netherlands/amsterdam,"fuzzy:Амстердам, Северная Голландия",
+Веллингтон,Новая Зеландия,new_zealand/wellington,exact,
+Берген,Норвегия,,not_found,
+Осло,Норвегия,norway/oslo,exact,
+Дубай,ОАЭ,united_arab_emirates/dubai,exact,
+Порт-Морсби,Папуа Новая Гвинея,,not_found,
+Варшава,Польша,poland/warsaw,exact,
+Лиссабон,Португалия,portugal/lisbon,exact,
+Сеул,Республика Корея,south_korea/seoul,exact,
+Бухарест,Румыния,romania/bucharest,exact,
+Эр-Рияд,Саудовская Аравия,saudi_arabia/riyadh,exact,
+Сингапур,Сингапур,singapore/singapore2,exact,
+Любляна,Словения,slovenia/ljubljana,exact,
+Сиэтл,США,united_states_of_america/seattle,"fuzzy:Сиэтл, Вашингтон (штат)",
+Бостон,США,united_states_of_america/boston,"fuzzy:Бостон, Массачусетс",
+Вашингтон,США,united_states_of_america/washington,"fuzzy:Вашингтон, Округ Колумбия",
+Лос-Анджелес,США,united_states_of_america/los_angeles,"fuzzy:Лос-Анджелес, Калифорния",
+Нью-Йорк,США,united_states_of_america/new_york,"fuzzy:Нью-Йорк, Нью-Йорк",
+Филадельфия,США,united_states_of_america/philadelphia,"fuzzy:Филадельфия, Пенсильвания",
+Балтимор,США,united_states_of_america/baltimore,"fuzzy:Балтимор, Мэриленд",
+Душанбе,Таджикистан,tajikistan/dushanbe,exact,
+Банкок,Тайланд,thailand/bangkok,fuzzy:Бангкок,
+Мерсин,Турция,turkey/mersin,"fuzzy:Мерсин, Средиземноморский регион",
+Стамбул,Турция,turkey/istanbul,"fuzzy:Стамбул, Мраморноморский регион",
+Самарканд,Узбекистан,uzbekistan/samarkand,exact,
+Ташкент,Узбекистан,uzbekistan/tashkent,exact,
+Ургенч,Узбекистан,uzbekistan/urgench,exact,
+Одесса,Украина,,not_found,
+Миккели,Финляндия,finland/mikkeli,exact,
+Хельсинки,Финляндия,finland/helsinki,exact,
+Бордо,Франция,,not_found,
+Лион,Франция,france/lion-en-sullias,fuzzy:Лион-ан-Сюльяс,
+Марсель,Франция,,not_found,
+Ницца,Франция,france/nice,exact,
+Париж,Франция,france/paris,exact,
+Реймс,Франция,france/reims,exact,
+Прага,Чехия,czech_republic/prague,exact,
+Сантьяго,Чили,chile/santiago,exact,
+Женева,Швейцария,,not_found,
+Цюрих,Швейцария,switzerland/zurich,exact,
+Давос,Швейцария,switzerland/davos,exact,
+Стокгольм,Швеция,sweden/stockholm,exact,
+Упсала,Швеция,,not_found,
+Таллин,Эстония,estonia/tallinn,"fuzzy:Таллин, Уезд Харьюмаа",
+Йоханнесбург,ЮАР,south_africa/johannesburg,exact,
+Токио,Япония,japan/tokyo,exact,
+Саппоро,Япония,japan/sapporo,"fuzzy:Саппоро, Хоккайдо",
+Барнаул,Россия,russia/barnaul,exact,2044800
+Архангельск,Россия,russia/arkhangelsk,exact,2010441
+Астрахань,Россия,russia/astrakhan,exact,2020600
+Уфа,Россия,russia/ufa,exact,2024600
+Яковлевский р-н,Россия,,not_found,
+Белгород,Россия,russia/belgorod,exact,2014370
+Брянск,Россия,russia/bryansk,exact,2000427
+Улан-Удэ,Россия,russia/ulan-ude,exact,2054555
+Кольчугино,Россия,russia/kol'chugino,exact,2010317
+Владимир,Россия,russia/vladimir,exact,2060340
+Волгоград,Россия,russia/volgograd,exact,2020500
+Череповец,Россия,russia/cherepovets,exact,2010290
+Вологда,Россия,russia/vologda,exact,2010041
+Борисоглебск,Россия,russia/borisoglebsk,exact,2014450
+Воронеж,Россия,russia/voronezh,exact,2014000
+Чита,Россия,russia/chita,exact,2050000
+Иваново,Россия,russia/ivanovo,"fuzzy:Иваново, Ивановская область",2010050
+Иркутск,Россия,russia/irkutsk,exact,2054000
+Нальчик,Россия,russia/nalchik,exact,2064055
+Калининград,Россия,russia/kaliningrad,exact,2058000
+Светлогорск,Россия,russia/svetlogorsk,"fuzzy:Светлогорск, Калининградская область",2100217
+Калуга,Россия,russia/kaluga,exact,2000351
+Петропавловск-Камчатский,Россия,russia/petropavlovsk-kamchatsky,exact,
+Черкесск,Россия,russia/cherkessk,exact,2064085
+Кемерово,Россия,russia/kemerovo,exact,2028000
+Кирово-Чепецк,Россия,russia/kirov_kirovo-chepetsk_neighborhood,exact,2060497
+Киров,Россия,russia/kirov,"fuzzy:Киров, Кировская область",2060600
+Каневская,Россия,russia/kanevskaya,exact,2064245
+Анапа,Россия,russia/anapa,exact,2064188
+Крымск,Россия,russia/krymsk,exact,2064320
+Сочи,Россия,russia/sochi,exact,2064130
+Красноярск,Россия,russia/krasnoyarsk,exact,2038000
+Курган,Россия,russia/kurgan,exact,2040600
+Курск,Россия,russia/kursk,exact,2000150
+Выборг,Россия,russia/vyborg,exact,2004682
+Липецк,Россия,russia/lipetsk,exact,2014130
+Магадан,Россия,russia/magadan,exact,
+Аносино,Россия,russia/anosino,exact,
+Домодедово,Россия,russia/domodedovo,exact,2000145
+Пушкино,Россия,russia/pushkino_2,"fuzzy:Пушкино, Московская область",2000035
+Москва,Россия,russia/moscow,exact,2000000
+Мурманск,Россия,russia/murmansk,exact,2004200
+Нижнекамск,Россия,russia/nizhnekamsk,exact,
+Дзержинск,Россия,russia/dzerzhinsk,exact,2060420
+Кстово,Россия,russia/nizhniy_novgorod_kstovo_neighborhood,exact,
+Нижний Новгород,Россия,russia/nizhniy_novgorod,exact,2060000
+Великий Новгород,Россия,russia/velikiy_novgorod,exact,
+Новосибирск,Россия,russia/novosibirsk,exact,2044000
+Омск,Россия,russia/omsk,exact,2044700
+Оренбург,Россия,russia/orenburg,exact,2040210
+Орел,Россия,russia/aktach,fuzzy:Акташ,2000140
+Пенза,Россия,russia/penza,exact,2024120
+Пермь,Россия,russia/perm,exact,2030120
+Владивосток,Россия,russia/vladivostok,exact,2034130
+Псков,Россия,russia/pskov,exact,2004500
+Горно-Алтайск,Россия,russia/gorno-altaisk,exact,
+Махачкала,Россия,russia/makhachkala,exact,2064900
+Петрозаводск,Россия,russia/petrozavodsk,exact,2004300
+Сыктывкар,Россия,russia/syktyvkar,exact,2010280
+Ухта,Россия,russia/ukhta,exact,2010095
+Гурзуф,Россия,russia/gurzuf,exact,
+Симферополь,Россия,,not_found,
+Судак,Россия,russia/sudak,exact,2078007
+Ялта,Россия,,not_found,
+Саранск,Россия,russia/saransk,exact,2024700
+Якутск,Россия,russia/yakutsk,exact,2048019
+Владикавказ,Россия,russia/vladikavkaz,exact,2064070
+Кызыл,Россия,russia/kyzyl,exact,2704999
+Ростов-на-Дону,Россия,russia/rostov-on-don,exact,2064000
+Таганрог,Россия,russia/taganrog,exact,2064287
+Шахты,Россия,russia/shakhty,exact,2064201
+Рязань,Россия,russia/ryazan,exact,2000125
+Самара,Россия,russia/samara,exact,2024000
+Тольятти,Россия,russia/togliatti,exact,2024810
+Санкт-Петербург,Россия,russia/st._petersburg,"fuzzy:Санкт-Петербург, Северо-Западный федеральный округ",2004000
+Саратов,Россия,russia/saratov,exact,2020000
+Южно-Сахалинск,Россия,russia/yuzhno-sakhalinsk,exact,2068400
+Екатеринбург,Россия,russia/yekaterinburg,exact,2030000
+Нижний Тагил,Россия,russia/nizhny_tagil,exact,2030080
+Севастополь,Россия,,not_found,
+Смоленск,Россия,russia/smolensk_oblast_smolensk,exact,2000170
+Минеральные Воды,Россия,russia/mineralnye_vody,exact,2064170
+Пятигорск,Россия,russia/pyatigorsk,exact,2064060
+Ставрополь,Россия,russia/stavropol,exact,2064700
+Мичуринск,Россия,russia/michurinsk,exact,2014421
+Тамбов,Россия,russia/tambov,exact,2014700
+Елабуга,Россия,russia/yelabuga,"fuzzy:Елабуга, Республика Татарстан",
+Казань,Россия,russia/kazan,exact,2060615
+Калязин,Россия,russia/kalyazin,exact,2004610
+Конаково,Россия,russia/konakovo,exact,
+Тверь,Россия,russia/tver,exact,2004600
+Томск,Россия,russia/tomsk,exact,2028156
+Тула,Россия,,not_found,2000174
+Тюмень,Россия,russia/tyumen,exact,2030100
+Ульяновск,Россия,russia/ulyanovsk,exact,2024900
+Хабаровск,Россия,russia/khabarovsk,exact,2034000
+Ханты-Мансийск,Россия,russia/khanty-mansiysk,exact,
+Когалым,Россия,russia/kogalim,exact,2030310
+Лангепас,Россия,russia/langepas,exact,2030153
+Нижневартовск,Россия,russia/nizhnevartovsk,exact,2030308
+Сургут,Россия,russia/surgut,exact,2030600
+Магнитогорск,Россия,russia/magnitogorsk,exact,2040510
+Челябинск,Россия,russia/chelyabinsk,exact,2040000
+Грозный,Россия,russia/grozny,"fuzzy:Грозный, Чеченская Республика",2064180
+Чебоксары,Россия,russia/cheboksary,exact,2060620
+Анадырь,Россия,russia/anadyr,exact,
+Салехард,Россия,russia/salekhard,exact,
+Ярославль,Россия,russia/yaroslavl,exact,2010000
