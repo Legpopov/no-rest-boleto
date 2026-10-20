@@ -2,7 +2,7 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Сидней,Австралия,australia/sydney,exact,,
 Бад-Гаштайн,Австрия,austria/bad_gastein,exact,,
 Вена,Австрия,austria/vienna,exact,EUR,
-Лаксенбург,Австрия,,not_found,,
+Лаксенбург,Австрия,austria/vienna,override,,
 Баку,Азербайджан,azerbaijan/baku,exact,,
 Буэнос Айрес,Аргентина,argentina/buenos_aires,exact,,
 Ереван,Армения,armenia/yerevan,exact,,
@@ -30,8 +30,8 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Потсдам,Германия,germany/potsdam,exact,,
 Регенсбург,Германия,germany/regensburg,exact,,
 Фрайбург,Германия,germany/freiburg,exact,,
-Франкфурт,Германия,germany/frankfurt_an_der_oder,"fuzzy:Франкфурт-на-Одере, Бранденбург",EUR,
-Галле,Германия,,not_found,,
+Франкфурт,Германия,germany/frankfurt,override,EUR,
+Галле,Германия,germany/leipzig,override,,
 Штутгарт,Германия,germany/stuttgart,exact,,
 Афины,Греция,greece/athens,exact,,
 Ираклион,Греция,greece/heraklion,exact,,
@@ -54,7 +54,7 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Болонья,Италия,italy/bologna,exact,,
 Больцано,Италия,italy/bolzano,exact,,
 Венеция,Италия,italy/venice,exact,EUR,
-Кьянчано-Терме,Италия,,not_found,,
+Кьянчано-Терме,Италия,italy/chianciano_terme,override,,
 Милан,Италия,italy/milan,exact,,
 Рим,Италия,italy/rome,exact,EUR,
 Алма-Ата,Казахстан,kazakhstan/almaty,fuzzy:Алматы,KZT,
@@ -75,7 +75,7 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Бишкек,Киргизия,kyrgyzstan/bishkek,exact,,
 Рига,Латвия,latvia/riga,exact,EUR,
 Юрмала,Латвия,latvia/jurmala,exact,,
-Бейрут,Ливан,lebanon/broumana,fuzzy:Броумана,LBP,
+Бейрут,Ливан,lebanon/beirut,override,LBP,
 "Скопье, Северная Македония",Македония,f.y.r.o._macedonia/skopje,exact,,
 Путраджая,Малайзия,malaysia/putrajaya,exact,,
 Кота-Кинабалу,Малайзия,malaysia/kota_kinabalu,exact,,
@@ -137,7 +137,7 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Архангельск,Россия,russia/arkhangelsk,exact,,2010441
 Астрахань,Россия,russia/astrakhan,exact,,2020600
 Уфа,Россия,russia/ufa,exact,,2024600
-Яковлевский р-н,Россия,,not_found,,
+Яковлевский р-н,Россия,russia/belgorod,override,,
 Белгород,Россия,russia/belgorod,exact,,2014370
 Брянск,Россия,russia/bryansk,exact,,2000427
 Улан-Удэ,Россия,russia/ulan-ude,exact,,2054555
@@ -194,9 +194,9 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Сыктывкар,Россия,russia/syktyvkar,exact,,2010280
 Ухта,Россия,russia/ukhta,exact,,2010095
 Гурзуф,Россия,russia/gurzuf,exact,,
-Симферополь,Россия,,not_found,,
+Симферополь,Россия,russia/simferopol,override,,
 Судак,Россия,russia/sudak,exact,,2078007
-Ялта,Россия,,not_found,,
+Ялта,Россия,russia/yalta,override,,
 Саранск,Россия,russia/saransk,exact,,2024700
 Якутск,Россия,russia/yakutsk,exact,,2048019
 Владикавказ,Россия,russia/vladikavkaz,exact,,2064070
@@ -212,7 +212,7 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Южно-Сахалинск,Россия,russia/yuzhno-sakhalinsk,exact,,2068400
 Екатеринбург,Россия,russia/yekaterinburg,exact,,2030000
 Нижний Тагил,Россия,russia/nizhny_tagil,exact,,2030080
-Севастополь,Россия,,not_found,,
+Севастополь,Россия,russia/sevastopol,override,,
 Смоленск,Россия,russia/smolensk_oblast_smolensk,exact,,2000170
 Минеральные Воды,Россия,russia/mineralnye_vody,exact,,2064170
 Пятигорск,Россия,russia/pyatigorsk,exact,,2064060
