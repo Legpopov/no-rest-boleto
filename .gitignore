@@ -1,0 +1,27 @@
+# Excel-файлы никогда не попадают в репозиторий
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+~$*
+
+# Секреты и локальные настройки
+.env
+.env.*
+*.local.json
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Логи и временные файлы сбора
+logs/
+*.log
+collector/.cache/
+
+# Netlify
+.netlify/
+node_modules/
