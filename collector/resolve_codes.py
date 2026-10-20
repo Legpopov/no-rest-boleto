@@ -19,7 +19,7 @@ OUT = HERE / "codes.csv"
 OVERRIDES = HERE / "codes_overrides.csv"
 RAIL_COUNTRIES = {"RU", "BY", "KZ"}
 # названия станций в системе «Экспресс», отличающиеся от названия города
-RAIL_ALIASES = {"Великий Новгород": "Новгород", "Нижнекамск": "Нижнекамск Пасс", "Орел": "Орёл"}
+RAIL_ALIASES = {"Орел": "Орёл"}
 FIELDS = ["city", "country", "ostrovok_slug", "ostrovok_match", "currency", "express"]
 
 

@@ -21,8 +21,17 @@ def resolve_station(session: PoliteSession, city: str) -> str | None:
     resp = session.get(SUGGEST, params={"name": city})
     resp.raise_for_status()
     items = resp.json() or []
-    exact = [i for i in items if _norm(i.get("value", "")) == _norm(city)]
-    best = (exact or [i for i in items if _norm(i.get("value", "")).startswith(_norm(city))] or [None])[0]
+    want = _norm(city)
+
+    def names(i: dict) -> list[str]:
+        # «Новгород Великий (Великий Новгород)» -> ["новгород великий", "великий новгород"]
+        v = _norm(i.get("value", ""))
+        head, _, rest = v.partition("(")
+        return [head.strip(), rest.rstrip(")").strip()] if rest else [v]
+
+    exact = [i for i in items if want in names(i)]
+    prefix = [i for i in items if names(i)[0].startswith(want + " ") or names(i)[0] == want]
+    best = (exact or prefix or [None])[0]
     return best["id"] if best else None
 
 
