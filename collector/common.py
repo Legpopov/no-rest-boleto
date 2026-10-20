@@ -50,6 +50,20 @@ class PoliteSession(requests.Session):
             self._last[host] = time.monotonic()
 
 
+def load_dotenv(path: Path = ROOT / ".env") -> None:
+    """Подхватывает переменные из .env (для локального запуска; в Actions их дают секреты)."""
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+load_dotenv()
+
+
 def env(name: str, required: bool = False) -> str | None:
     value = os.environ.get(name)
     if required and not value:
