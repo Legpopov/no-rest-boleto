@@ -16,8 +16,9 @@ from .sources import ostrovok, tutu
 HERE = Path(__file__).resolve().parent
 CITIES = HERE / "cities.csv"
 OUT = HERE / "codes.csv"
+OVERRIDES = HERE / "codes_overrides.csv"
 RAIL_COUNTRIES = {"RU", "BY", "KZ"}
-FIELDS = ["city", "country", "ostrovok_slug", "ostrovok_match", "express"]
+FIELDS = ["city", "country", "ostrovok_slug", "ostrovok_match", "currency", "express"]
 
 
 def main() -> None:
@@ -28,23 +29,34 @@ def main() -> None:
         with OUT.open(encoding="utf-8") as f:
             prev = {(r["city"], r["country"]): r for r in csv.DictReader(f)}
 
+    overrides = {}
+    if OVERRIDES.exists():
+        with OVERRIDES.open(encoding="utf-8") as f:
+            overrides = {r["city"]: r for r in csv.DictReader(f)}
+
     out = []
     with CITIES.open(encoding="utf-8") as f:
         for c in csv.DictReader(f):
             key = (c["city"], c["country"])
             rec = dict(prev.get(key) or {"city": c["city"], "country": c["country"]})
             name = c["city"].split(",")[0]
-            if not rec.get("ostrovok_slug"):
+            ov = overrides.get(c["city"], {})
+            if ov.get("ostrovok_slug"):
+                rec.update(ostrovok_slug=ov["ostrovok_slug"], ostrovok_match="override")
+            elif rec.get("ostrovok_match") != "exact":
                 try:
                     hit = ostrovok.resolve_slug(s, name, c["country_code"])
                     if hit:
                         rec["ostrovok_slug"] = hit["slug"]
                         rec["ostrovok_match"] = "exact" if hit["exact"] else f"fuzzy:{hit['region_name']}"
+                        rec["currency"] = hit.get("currency") or ""
                     else:
-                        rec["ostrovok_match"] = "not_found"
+                        rec.update(ostrovok_slug="", ostrovok_match="not_found")
                 except Exception as e:  # noqa: BLE001
                     rec["ostrovok_match"] = f"error:{type(e).__name__}"
-            if not rec.get("express") and c["country_code"] in RAIL_COUNTRIES:
+            if ov.get("express"):
+                rec["express"] = ov["express"]
+            elif not rec.get("express") and c["country_code"] in RAIL_COUNTRIES:
                 try:
                     rec["express"] = tutu.resolve_station(s, name) or ""
                 except Exception as e:  # noqa: BLE001

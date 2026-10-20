@@ -27,18 +27,27 @@ def resolve_slug(session: PoliteSession, city: str, country_code: str) -> dict |
     """Адрес города в каталоге Островка, например {'slug': 'australia/sydney', 'region_id': 3341}."""
     resp = session.get(f"{BASE}/api/site/multicomplete.json", params={"query": city, "locale": "ru"})
     resp.raise_for_status()
-    hotels = resp.json().get("hotels", [])
-    regions = {}
-    for h in hotels:
-        if h.get("slug"):
-            regions.setdefault(h["slug"], h)
-    cands = list(regions.values())
-    exact = [h for h in cands if _norm(h.get("region_name", "")) == _norm(city) and (not country_code or h.get("country_code") == country_code)]
-    same_country = [h for h in cands if not country_code or h.get("country_code") == country_code]
-    best = (exact or same_country or [None])[0]
+    body = resp.json()
+    # регионы: {"type": "City", "name": "Сидней, Новый Южный Уэльс", "country_code": "AU", "slug": ...}
+    cands = [
+        {"slug": r["slug"], "region_id": r.get("id"), "region_name": r.get("name", ""), "country_code": r.get("country_code"),
+         "currency": r.get("currency_code"), "type": r.get("type")}
+        for r in body.get("regions") or [] if r.get("slug")
+    ]
+    if not cands:  # запасной путь: регион первого найденного отеля
+        cands = [
+            {"slug": h["slug"], "region_id": h.get("region_id"), "region_name": h.get("region_name", ""), "country_code": h.get("country_code"),
+             "currency": None, "type": "City"}
+            for h in body.get("hotels") or [] if h.get("slug")
+        ]
+    in_country = [c for c in cands if not country_code or c["country_code"] == country_code]
+    exact = [c for c in in_country if _norm(c["region_name"].split(",")[0]) == _norm(city)]
+    cities = [c for c in in_country if c["type"] == "City"]
+    best = (exact or cities or [None])[0]
     if not best:
         return None
-    return {"slug": best["slug"], "region_id": best.get("region_id"), "region_name": best.get("region_name"), "exact": bool(exact)}
+    best["exact"] = bool(exact)
+    return best
 
 
 def fetch_page(session: PoliteSession, slug: str, page: int = 1) -> tuple[list[dict], dict]:
