@@ -1,5 +1,7 @@
 # Сайт и функции Netlify
 
+Сайт: **https://norestboleto.netlify.app/**
+
 ```
 netlify.toml              publish = site, functions = netlify/functions, сборка = node netlify/build-data.mjs
 netlify/build-data.mjs    копирует data/ в site/data/ и строит site/data/cities.json из collector/*.csv
@@ -41,12 +43,12 @@ node netlify/dev-server.mjs 8888
    - Value: токен Travelpayouts (тот же, что в секретах GitHub Actions)
    - Scopes: оставить по умолчанию (как минимум **Functions**).
 5. Нажать **Deploy**. Через 1–2 минуты сайт откроется по адресу вида `https://<случайное-имя>.netlify.app`.
-6. **Site configuration → Site details → Change site name** → `no-rest-boleto`.
-   Адрес станет https://no-rest-boleto.netlify.app (если имя свободно).
+6. **Site configuration → Site details → Change site name** → `norestboleto`.
+   Адрес станет https://norestboleto.netlify.app (если имя свободно).
 7. Если переменную добавили после первого деплоя: **Deploys → Trigger deploy → Deploy site**,
    чтобы функции получили токен.
 
-Проверка: открыть `https://no-rest-boleto.netlify.app/api/trains?from=2000000&to=2060615` — должен
+Проверка: открыть `https://norestboleto.netlify.app/api/trains?from=2000000&to=2060615` — должен
 прийти JSON с поездами; на вкладке «Авиа» поиск должен находить варианты.
 
 Альтернатива через терминал (нужен Node): `npx netlify-cli login`, затем `npx netlify-cli init`
