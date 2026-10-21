@@ -47,9 +47,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: part-${{ matrix.shard }}
-          path: |
-            data/parts/
-            data/hotels/
+          path: data/parts/
           retention-days: 2
 
   merge:
@@ -69,10 +67,10 @@ jobs:
           merge-multiple: true
       - name: Merge
         run: |
-          ls parts/data/parts/
+          ls parts/
           mkdir -p data/hotels
-          cp -f parts/data/hotels/*.json data/hotels/ 2>/dev/null || true
-          python -m collector.merge parts/data/parts/*.json
+          cp -f parts/hotels/*.json data/hotels/ 2>/dev/null || true
+          python -m collector.merge parts/*.json
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"

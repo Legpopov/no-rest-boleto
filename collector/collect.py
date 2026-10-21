@@ -196,9 +196,12 @@ def main() -> None:
     months = aviasales.months_ahead(args.months)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     s_air, s_rail, s_hot = PoliteSession(0.3, 0.6), PoliteSession(0.8, 1.5), PoliteSession(1.5, 3.0)
-    (DATA_DIR / "hotels").mkdir(parents=True, exist_ok=True)
+    # в режиме потоков файлы отелей пишутся рядом с файлом потока — только свои города
+    hotels_dir = (out_path.parent / "hotels") if args.of > 1 else (DATA_DIR / "hotels")
+    hotels_dir.mkdir(parents=True, exist_ok=True)
 
-    result = {"generated_at": now, "months": months, "hotel_windows": windows, "hotel_nights": args.hotel_nights, "origin": {"city": "Москва", "iata": "MOW", "express": tutu.MOSCOW}}
+    result = {"generated_at": now, "months": months, "hotel_windows": windows, "hotel_nights": args.hotel_nights,
+              "sources": sorted(sources), "origin": {"city": "Москва", "iata": "MOW", "express": tutu.MOSCOW}}
     if "fx" in sources:
         try:
             result["fx"] = cbr.fetch_rates()
@@ -229,7 +232,7 @@ def main() -> None:
                 if src == "hotels":
                     data, full = data
                     if full:
-                        (DATA_DIR / "hotels" / f"{c['id']}.json").write_text(
+                        (hotels_dir / f"{c['id']}.json").write_text(
                             json.dumps({"city": c["city"], "updated_at": now, "slug": data["slug"], "hotels": full}, ensure_ascii=False),
                             encoding="utf-8",
                         )

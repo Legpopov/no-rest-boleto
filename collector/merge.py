@@ -20,10 +20,18 @@ def main() -> None:
     if not parts:
         raise SystemExit("нет файлов потоков")
     for p in parts:
+        srcs = [s for s in p.get("sources", ["air", "rail", "hotels"]) if s in ("air", "rail", "hotels")]
         for c in p["cities"]:
-            cities[c["id"]] = c
+            if c["id"] not in cities:
+                cities[c["id"]] = c
+                continue
+            # накладываем только собранные в этом запуске источники — остальное остаётся из снимка
+            for s in srcs:
+                if s in c:
+                    cities[c["id"]][s] = c[s]
     head = parts[0]
-    result = {k: v for k, v in head.items() if k != "cities"}
+    result = {k: v for k, v in base.items() if k != "cities"}
+    result.update({k: v for k, v in head.items() if k not in ("cities", "fx", "sources") or (k == "fx" and v)})
     result["generated_at"] = max(p["generated_at"] for p in parts)
     if "fx" not in result and base.get("fx"):
         result["fx"] = base["fx"]
