@@ -40,20 +40,32 @@ def main() -> None:
         "filters": {}, "session_id": sid, "map_hotels": True,
     }
     hdr = {"Referer": page_url, "Origin": BASE, "X-CSRFToken": s.cookies.get("csrftoken", "")}
-    d = {}
-    for attempt in range(1, 21):
+    acc, d = {}, {}
+    for attempt in range(1, 31):
         r = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=body, headers=hdr)
         d = r.json()
-        log.info("попытка %d: finished=%s total_av=%s map=%d", attempt, d.get("search_finished"), d.get("total_av_hotels"),
-                 len(d.get("map_hotels") or []))
+        for h in d.get("map_hotels") or []:
+            acc[h["master_id"]] = h
+        log.info("попытка %d: finished=%s total_av=%s map+%d накоплено=%d", attempt, d.get("search_finished"), d.get("total_av_hotels"),
+                 len(d.get("map_hotels") or []), len(acc))
         if d.get("search_finished"):
             break
         time.sleep(1.5)
-    hs = d.get("map_hotels") or []
-    prices = sorted(h["price"] for h in hs if h.get("price"))
-    log.info("итог: %d отелей с ценой, медиана за весь срок %s", len(prices), prices[len(prices) // 2] if prices else None)
-    for h in hs[:3]:
-        print(json.dumps({k: h.get(k) for k in ("name", "stars", "rating", "price", "latitude", "longitude")}, ensure_ascii=False))
+    prices = sorted(h["price"] for h in acc.values() if h.get("price"))
+    log.info("итог map: %d отелей с ценой, медиана за весь срок %s", len(prices), prices[len(prices) // 2] if prices else None)
+    # постраничный список
+    pb = dict(body, page=1)
+    pb.pop("map_hotels")
+    r = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=pb, headers=hdr)
+    d = r.json()
+    hs = d.get("hotels") or []
+    log.info("page=1: finished=%s отелей=%d total_av=%s", d.get("search_finished"), len(hs), d.get("total_av_hotels"))
+    if hs:
+        h = hs[0]
+        log.info("ключи отеля: %s", list(h.keys()))
+        for k in ("rates", "min_rate", "rate", "price"):
+            if k in h:
+                log.info("%s: %s", k, json.dumps(h[k], ensure_ascii=False)[:600])
 
 
 if __name__ == "__main__":
