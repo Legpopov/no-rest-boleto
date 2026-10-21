@@ -232,15 +232,15 @@ function renderCities() {
   const status = (src) => (!src ? '' : src.status === 'ok' ? '' : ({ no_airport: 'нет аэропорта', no_station: 'нет ж/д', no_slug: 'нет данных', empty: 'нет цен', blocked: 'не собрано', error: 'ошибка' }[src.status] || src.status));
   $('#c-table tbody').innerHTML = list.map(({ r, m }) => `
     <tr data-id="${esc(r.id)}">
-      <td><b>${esc(r.city)}</b>${r.iata ? ` <span class="sub">${esc(r.iata)}</span>` : ''}</td>
-      <td class="sub">${esc(m.country)}</td>
-      <td class="num">${m.air_med != null ? rub(m.air_med) + stale(r.air) : `<span class="sub">${status(r.air)}</span>`}</td>
-      <td class="num">${rub(m.air_p90)}</td>
-      <td class="num sub">${m.air_n ?? ''}</td>
-      <td class="num">${m.rail != null ? rub(m.rail) + ` <span class="sub">${RAIL_CLS[m.rail_cls] || ''}</span>` + stale(r.rail) : `<span class="sub">${status(r.rail)}</span>`}</td>
-      <td class="num">${m.hot_med != null ? rub(m.hot_med) + stale(r.hotels) : `<span class="sub">${status(r.hotels)}</span>`}</td>
-      <td class="num">${rub(m.hot_p25)}</td>
-      <td class="num sub">${m.hot_n ?? ''}</td>
+      <td class="c-city"><b>${esc(r.city)}</b>${r.iata ? ` <span class="sub">${esc(r.iata)}</span>` : ''}</td>
+      <td class="sub c-country">${esc(m.country)}</td>
+      <td class="num" data-label="Авиа, медиана">${m.air_med != null ? rub(m.air_med) + stale(r.air) : `<span class="sub">${status(r.air)}</span>`}</td>
+      <td class="num" data-label="Авиа, 90%">${rub(m.air_p90)}</td>
+      <td class="num sub c-n">${m.air_n ?? ''}</td>
+      <td class="num" data-label="Поезд от">${m.rail != null ? rub(m.rail) + ` <span class="sub">${RAIL_CLS[m.rail_cls] || ''}</span>` + stale(r.rail) : `<span class="sub">${status(r.rail)}</span>`}</td>
+      <td class="num" data-label="Отель, медиана">${m.hot_med != null ? rub(m.hot_med) + stale(r.hotels) : `<span class="sub">${status(r.hotels)}</span>`}</td>
+      <td class="num" data-label="Отель, 25%">${rub(m.hot_p25)}</td>
+      <td class="num sub c-n">${m.hot_n ?? ''}</td>
     </tr>`).join('') || '<tr><td colspan="9" class="muted">Ничего не найдено</td></tr>';
 }
 
@@ -428,11 +428,11 @@ function renderRail() {
     let cheapest = null;
     for (const t of trips) for (const [c, p] of Object.entries(t.classes)) if (!cheapest || p < cheapest.p) cheapest = { p, c, t: t.train };
     return `<p class="muted">Самый дешёвый: ${rub(cheapest.p)} — ${RAIL_CLS[cheapest.c] || cheapest.c}, поезд ${esc(cheapest.t)}</p>
-    <div class="table-scroll"><table class="grid"><thead><tr><th>Поезд</th><th>Отпр.</th><th>Приб.</th><th class="num">В пути</th><th>Цены от (нажмите, чтобы взять в итог)</th></tr></thead><tbody>` +
+    <div class="table-scroll"><table class="grid cards"><thead><tr><th>Поезд</th><th>Отпр.</th><th>Приб.</th><th class="num">В пути</th><th>Цены от (нажмите, чтобы взять в итог)</th></tr></thead><tbody>` +
       trips.map((t) => `<tr>
         <td><b>${esc(t.train)}</b>${t.name ? ` <span class="sub">${esc(t.name)}</span>` : ''}${t.firm ? ' <span class="tag">фирменный</span>' : ''}</td>
-        <td>${esc(t.departure)}</td><td>${esc(t.arrival)}</td><td class="num">${t.hours} ч</td>
-        <td><div class="train-cls">${RAIL_ORDER.filter((c) => t.classes[c]).map((c) => {
+        <td data-label="Отправление">${esc(t.departure)}</td><td data-label="Прибытие">${esc(t.arrival)}</td><td class="num" data-label="В пути">${t.hours} ч</td>
+        <td class="t-cls"><div class="train-cls">${RAIL_ORDER.filter((c) => t.classes[c]).map((c) => {
           const on = S.train[dir] && S.train[dir].train === t.train && S.train[dir].cls === c;
           return `<button type="button" class="${on ? 'on' : ''}" data-dir="${dir}" data-train="${esc(t.train)}" data-cls="${c}" data-price="${t.classes[c]}">${RAIL_CLS[c]} ${rub(t.classes[c])}</button>`;
         }).join('')}</div></td></tr>`).join('') + '</tbody></table></div>';
@@ -719,6 +719,10 @@ async function main() {
     }
   });
 
+  $('#h-ftoggle').addEventListener('click', () => {
+    const open = $('#h-filters').classList.toggle('open');
+    $('#h-ftoggle').setAttribute('aria-expanded', String(open));
+  });
   $('#t-nights').addEventListener('input', () => { S.nightsTouched = true; renderTotal(); });
   $$('#tab-total input').forEach((i) => i.addEventListener('input', renderTotal));
   $('#t-people').addEventListener('input', () => { if (S.dest) $('#h-links').innerHTML = hotelLinks(S.dest); });

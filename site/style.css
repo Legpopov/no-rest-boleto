@@ -197,9 +197,10 @@ table.matrix { border-collapse: separate; border-spacing: 4px; font-size: 13px; 
 /* ---------- отели ---------- */
 .hotels-layout { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
 .filters { flex: 1 1 260px; max-width: 300px; background: var(--panel); border-radius: var(--r-card); box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-.filters h3 { margin: 0; }
-.filters > label, .filters .flabel { display: flex; flex-direction: column; gap: 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-.filters > label output { text-transform: none; letter-spacing: 0; color: var(--text); }
+.fbody { display: flex; flex-direction: column; gap: 16px; }
+.ftoggle { all: unset; font-size: 18px; font-weight: 800; color: var(--text); }
+.fbody > label, .fbody .flabel { display: flex; flex-direction: column; gap: 8px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.fbody > label output { text-transform: none; letter-spacing: 0; color: var(--text); }
 .filters .chk { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 15px; font-weight: 500; flex-direction: row; }
 .filters .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .filters .pair label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
@@ -248,7 +249,6 @@ table.matrix { border-collapse: separate; border-spacing: 4px; font-size: 13px; 
   .trip-form label:nth-child(even) { border-left: 1px solid #E5E1F0; }
   .trip-form label:nth-child(n+3) { border-top: 1px solid #E5E1F0; }
   .cta { grid-column: 1 / -1; }
-  .hero h1 { font-size: 26px; }
   .brand-sub { display: none; }
   .total-grid { grid-template-columns: 1fr; }
   .filters { max-width: none; }
@@ -256,8 +256,91 @@ table.matrix { border-collapse: separate; border-spacing: 4px; font-size: 13px; 
   .strip { grid-template-columns: repeat(7, minmax(0, 1fr)); }
   .strip .lab { grid-column: 1 / -1; }
   .cell .p { font-size: 13px; }
-  .offer { grid-template-columns: 36px minmax(0, 1fr); }
-  .offer img { width: 34px; height: 34px; }
-  .offer .right { grid-column: 1 / -1; justify-content: space-between; }
-  .seg { flex-wrap: wrap; }
+}
+
+/* ---------- телефон ---------- */
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  .wrap { padding: 0 16px; }
+  /* шапка и форма компактнее */
+  .top-row { min-height: 52px; flex-wrap: nowrap; }
+  .brand-name { font-size: 16px; white-space: nowrap; }
+  .brand { flex: none; gap: 8px; }
+  .mark { width: 28px; height: 28px; }
+  .snapshot { font-size: 12px; gap: 4px 6px; justify-content: flex-end; text-align: right; flex-wrap: wrap; }
+  .hero { padding: 16px 0 18px; }
+  .hero h1 { font-size: 22px; margin-bottom: 12px; }
+  .hero .lead { display: none; }
+  .trip-form label { padding: 8px 12px; }
+  .trip-form input { font-size: 16px; }
+  .cta { min-height: 52px; font-size: 18px; }
+  /* вкладки приклеены к верху и делят ширину поровну */
+  .tabs { position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 6px rgba(12, 19, 29, 0.08); }
+  .tabs-row { padding: 0; gap: 0; }
+  .tabs a { flex: 1 1 0; text-align: center; padding: 13px 2px 10px; font-size: 14px; }
+  main { padding-top: 18px; }
+  h2 { font-size: 20px; }
+  h4 { font-size: 16px; }
+  /* поля: 16px, чтобы iOS не увеличивал страницу при фокусе */
+  input, select, .search input { font-size: 16px; }
+  .toolbar { gap: 10px; }
+  .toolbar .grow { flex-basis: 100%; }
+  .search { flex: 1 1 100%; }
+  .toolbar > .btn.primary { flex: 1 1 100%; }
+  .seg { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); width: 100%; }
+  .seg button { padding: 0 6px; font-size: 13px; white-space: normal; line-height: 1.2; }
+  .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .stat { padding: 12px 14px; }
+  .stat-t { font-size: 12px; }
+  .stat-n { font-size: 22px; margin-top: 0; }
+
+  /* таблицы городов и поездов — карточками */
+  .table-scroll:has(table.cards) { background: transparent; box-shadow: none; overflow: visible; }
+  table.cards, table.cards tbody { display: block; }
+  table.cards thead { display: none; }
+  table.cards tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px; background: var(--panel); border-radius: 14px; box-shadow: var(--shadow); padding: 12px 14px; margin-bottom: 8px; }
+  table.cards td { display: block; padding: 0; border: 0; white-space: normal; text-align: left; }
+  table.cards td[data-label]::before { content: attr(data-label); display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+  table.cards td.num { text-align: left; }
+  #c-table .c-city { grid-column: 1 / -1; font-size: 16px; }
+  #c-table .c-country { grid-column: 1 / -1; margin-top: -6px; }
+  #c-table .c-n, #c-table td:nth-child(8) { display: none; }
+  #c-table td:nth-child(3), #c-table td:nth-child(7) { font-weight: 800; }
+  table.cards td:first-child { grid-column: 1 / -1; }
+  table.cards .t-cls { grid-column: 1 / -1; }
+  #r-results table.cards tr { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  table.cards tr:hover { background: var(--panel); }
+
+  /* авиа */
+  .strip { gap: 4px; }
+  .cell { padding: 6px 1px; border-radius: 10px; }
+  .cell .d { font-size: 10px; }
+  .cell .p { font-size: 12px; }
+  .hint { font-size: 15px; padding: 14px 16px; }
+  .offer { grid-template-columns: 32px minmax(0, 1fr); gap: 10px 12px; padding: 14px; }
+  .offer img { width: 32px; height: 32px; border-radius: 8px; }
+  .offer .legs { font-size: 13px; }
+  .offer .right { grid-column: 1 / -1; justify-content: space-between; flex-wrap: nowrap; gap: 10px; }
+  .offer .price { font-size: 20px; }
+  .btn.buy { min-height: 44px; padding: 0 18px; }
+
+  /* отели: фильтры сворачиваются */
+  .filters { padding: 14px 16px; gap: 10px; }
+  .ftoggle { display: flex; align-items: center; justify-content: space-between; min-height: 32px; cursor: pointer; font-size: 17px; }
+  .ftoggle::after { content: "▾"; font-size: 14px; color: var(--muted); transition: transform .15s; }
+  .filters.open .ftoggle::after { transform: rotate(180deg); }
+  .filters:not(.open) .fbody { display: none; }
+  .filters .stats { border-top: 0; padding-top: 0; font-size: 13px; line-height: 1.6; }
+  .map { height: 300px; }
+  .hotel { padding: 12px 14px; gap: 8px 12px; }
+  .hotel > div:last-child { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; }
+  .hotel .price { font-size: 18px; text-align: left; }
+  .hotel .acts { margin-top: 0; }
+  .links a { flex: 1 1 auto; justify-content: center; }
+
+  /* итог */
+  .card { padding: 14px 16px; }
+  .card.total { padding: 20px; border-radius: 16px; }
+  .total tr.sum td { font-size: 24px; }
+  .foot { padding-top: 18px; }
 }

@@ -82,7 +82,7 @@
     </div>
     <p class="note">Авиа — туда-обратно из Москвы по ценам из кэша поисков Aviasales на ближайшие месяцы (поездки от 1 до 30 ночей). Поезд — минимальная цена в одну сторону, без привязки к дате. Отели — цена «от» за ночь на публичной выдаче без дат. Нажмите на город, чтобы искать по датам.</p>
     <div class="table-scroll">
-      <table class="grid" id="c-table">
+      <table class="grid cards" id="c-table">
         <thead><tr>
           <th data-sort="city">Город</th>
           <th data-sort="country">Страна / регион</th>
@@ -138,7 +138,8 @@
     <div id="h-links" class="links"></div>
     <div class="hotels-layout">
       <aside class="filters" id="h-filters">
-        <h3>Фильтры</h3>
+        <button type="button" class="ftoggle" id="h-ftoggle" aria-expanded="false" aria-controls="h-fbody">Фильтры</button>
+        <div class="fbody" id="h-fbody">
         <div class="flabel">Звёзды
           <select id="h-stars" hidden><option value="0">любые</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select>
           <div class="seg seg-fill" data-for="h-stars" role="group" aria-label="Звёзд не меньше">
@@ -162,6 +163,7 @@
         <label>Сортировка
           <select id="h-sort"><option value="price">по цене</option><option value="dist">по расстоянию</option><option value="rating">по рейтингу</option></select>
         </label>
+        </div>
         <div class="stats" id="h-stats"></div>
       </aside>
       <div class="map-col">
