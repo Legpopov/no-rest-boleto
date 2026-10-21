@@ -92,6 +92,78 @@ def fetch_page(session: PoliteSession, slug: str, page: int = 1) -> tuple[list[d
     return hotels, meta
 
 
+APART_KINDS = {"apartment", "apart-hotel", "apart_hotel", "flat", "villa", "cottage", "guesthouse", "hostel", "bnb"}
+
+
+def fetch_dated(session: PoliteSession, slug: str, checkin: str, nights: int, pages: int = 5) -> dict:
+    """Отели на конкретные даты: как браузер — страница с датами (cookies, id региона и поиска),
+    затем постранично POST /hotel/search/v2/site/serp. Цена — средняя за ночь у самого дешёвого тарифа.
+    """
+    import datetime as dt
+    import uuid
+
+    d_in = dt.date.fromisoformat(checkin)
+    d_out = d_in + dt.timedelta(days=nights)
+    page_url = f"{BASE}/hotel/{slug}/?dates={d_in:%d.%m.%Y}-{d_out:%d.%m.%Y}&guests=1"
+    resp = session.get(page_url)
+    if "captcha" in resp.text[:20000].lower():
+        raise Blocked(page_url)
+    resp.raise_for_status()
+    m = NEXT_DATA.search(resp.text)
+    if not m:
+        raise Blocked(f"нет __NEXT_DATA__: {page_url}")
+    props = json.loads(m.group(1))["props"]["pageProps"]
+    region_id = (props.get("searchRegionData") or {}).get("regionId")
+    if not region_id:
+        return {"checkin": checkin, "nights": nights, "hotels": []}
+    sid = str(uuid.uuid4())
+    body = {
+        "session_params": {"arrival_date": d_in.isoformat(), "departure_date": d_out.isoformat(), "currency": "RUB",
+                           "language": "ru", "paxes": [{"adults": 1}], "region_id": region_id,
+                           "search_uuid": props.get("searchUuid") or str(uuid.uuid4())},
+        "filters": {}, "session_id": sid,
+    }
+    hdr = {"Referer": page_url, "Origin": BASE, "X-CSRFToken": session.cookies.get("csrftoken", "")}
+    seen: dict = {}
+    for page in range(1, pages + 1):
+        hs = []
+        for _ in range(5):  # поиск асинхронный: первая страница может прийти пустой
+            r = session.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=dict(body, page=page), headers=hdr)
+            r.raise_for_status()
+            hs = r.json().get("hotels") or []
+            if hs:
+                break
+            import time
+            time.sleep(1.0)
+        for h in hs:
+            sv = h.get("static_vm") or {}
+            per_day = []
+            for rate in h.get("rates") or []:
+                for pt in (rate.get("payment_options") or {}).get("payment_types") or []:
+                    v = pt.get("average_show_price_per_day")
+                    if v:
+                        per_day.append(float(v))
+            if not per_day:
+                continue
+            kind = (sv.get("kind") or "").lower()
+            seen[h.get("master_id")] = {
+                "id": h.get("master_id"),
+                "name": sv.get("name"),
+                "kind": sv.get("kind"),
+                "apart": kind in APART_KINDS,
+                "stars": round((sv.get("star_rating") or 0) / 10),
+                "rating": (sv.get("rating") or {}).get("total"),
+                "dist_m": sv.get("search_region_center_distance"),
+                "lat": sv.get("latitude"),
+                "lon": sv.get("longitude"),
+                "price": round(min(per_day)),
+            }
+        if len(hs) < 20:
+            break
+    log.info("ostrovok %s %s+%d: %d отелей на даты", slug, checkin, nights, len(seen))
+    return {"checkin": checkin, "nights": nights, "hotels": list(seen.values())}
+
+
 def fetch_city(session: PoliteSession, slug: str, pages: int = 5) -> dict:
     """Отели города с нескольких страниц выдачи. Дубликаты по id отбрасываются."""
     seen, out, meta = set(), [], {}

@@ -14,7 +14,7 @@ import argparse
 import csv
 import json
 import statistics as st
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from .common import DATA_DIR, PoliteSession, env, log, setup_logging
@@ -63,6 +63,12 @@ def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
     trips = [o for o in offers if o["return"] and o["depart"] and 1 <= (datetime.fromisoformat(o["return"]) - datetime.fromisoformat(o["depart"])).days <= 30]
     if not trips:
         return {"status": "empty", "raw_offers": len(offers)}
+    # по неделям вылета (понедельник недели): [week_start, n, median, p90]
+    weeks: dict[str, list[int]] = {}
+    for o in trips:
+        d = datetime.fromisoformat(o["depart"]).date()
+        weeks.setdefault((d - timedelta(days=d.weekday())).isoformat(), []).append(o["price"])
+    by_week = [[w, q["n"], q["median"], q["p90"]] for w, q in sorted((w, quantiles(p)) for w, p in weeks.items())]
     direct = [o["price"] for o in trips if (o["transfers"] or 0) == 0 and (o["return_transfers"] or 0) == 0]
     le1 = [o["price"] for o in trips if (o["transfers"] or 0) <= 1 and (o["return_transfers"] or 0) <= 1]
     return {
@@ -71,6 +77,7 @@ def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
         "all": quantiles([o["price"] for o in trips]),
         "max1transfer": quantiles(le1),
         "direct": quantiles(direct),
+        "by_week": by_week,
         "airlines": sorted({o["airline"] for o in trips if o["airline"]}),
     }
 
@@ -90,7 +97,31 @@ def collect_rail(s: PoliteSession, c: dict) -> dict:
     return {"status": "ok", "station": code, "there": pack(there), "back": pack(back)}
 
 
-def collect_hotels(s: PoliteSession, c: dict, pages: int) -> tuple[dict, list[dict]]:
+def pack_items(hotels: list[dict]) -> list[list]:
+    # компактно для Excel: [цена/ночь RUB, звёзды, рейтинг, расстояние м, тип, апартаменты 0/1]
+    return [[h["price"], h["stars"], h["rating"], h["dist_m"], h["kind"], int(h["apart"])] for h in hotels]
+
+
+def collect_dated(s: PoliteSession, slug: str, windows: list[int], nights: int) -> list[dict]:
+    """Отели на опорные даты заезда (сегодня + N дней) — для приблизительного расчёта на даты поездки."""
+    out = []
+    for offset in windows:
+        checkin = (date.today() + timedelta(days=offset)).isoformat()
+        try:
+            res = ostrovok.fetch_dated(s, slug, checkin, nights)
+        except ostrovok.Blocked as e:
+            log.warning("ostrovok (даты) заблокировал: %s", e)
+            continue
+        except Exception as e:  # noqa: BLE001
+            log.warning("ostrovok (даты) %s %s: %s", slug, checkin, e)
+            continue
+        if res["hotels"]:
+            out.append({"checkin": checkin, "nights": nights, "n": len(res["hotels"]),
+                        "price_all": quantiles([h["price"] for h in res["hotels"]]), "items": pack_items(res["hotels"])})
+    return out
+
+
+def collect_hotels(s: PoliteSession, c: dict, pages: int, windows: list[int], nights: int) -> tuple[dict, list[dict]]:
     slug = c.get("ostrovok_slug")
     if not slug:
         return {"status": "no_slug"}, []
@@ -99,12 +130,12 @@ def collect_hotels(s: PoliteSession, c: dict, pages: int) -> tuple[dict, list[di
     except ostrovok.Blocked as e:
         log.warning("ostrovok заблокировал: %s", e)
         return {"status": "blocked"}, []
+    dated = collect_dated(s, slug, windows, nights) if windows else []
     hotels = res["hotels"]
     if not hotels:
         return {"status": "empty"}, []
     kinds = sorted({h["kind"] for h in hotels if h["kind"]})
-    # компактно для Excel: [цена/ночь RUB, звёзды, рейтинг, расстояние м, тип, апартаменты 0/1]
-    items = [[h["price"], h["stars"], h["rating"], h["dist_m"], h["kind"], int(h["apart"])] for h in hotels]
+    items = pack_items(hotels)
     summary = {
         "status": "ok",
         "source": "ostrovok",
@@ -113,6 +144,7 @@ def collect_hotels(s: PoliteSession, c: dict, pages: int) -> tuple[dict, list[di
         "price_all": quantiles([h["price"] for h in hotels]),
         "kinds": kinds,
         "items": items,
+        "dated": dated,
     }
     return summary, hotels
 
@@ -126,7 +158,13 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--months", type=int, default=int(env("MONTHS_AHEAD") or 3))
     ap.add_argument("--hotel-pages", type=int, default=5)
+    ap.add_argument("--hotel-windows", default=env("HOTEL_WINDOWS") or "14",
+                    help="опорные заезды для цен на даты: дней от сегодня, через запятую; пусто = не собирать")
+    ap.add_argument("--hotel-nights", type=int, default=int(env("HOTEL_NIGHTS") or 7))
+    ap.add_argument("--shard", type=int, default=0, help="номер потока (0..of-1) при параллельном сборе")
+    ap.add_argument("--of", type=int, default=1, help="число параллельных потоков")
     ap.add_argument("--out", default=str(DATA_DIR / "prices.json"))
+    ap.add_argument("--previous", default=str(DATA_DIR / "prices.json"), help="прошлый снимок (для сохранения старых данных при сбоях)")
     args = ap.parse_args()
     setup_logging()
 
@@ -137,13 +175,17 @@ def main() -> None:
         cities = [c for c in cities if c["city"] in wanted]
     if args.limit:
         cities = cities[: args.limit]
+    if args.of > 1:
+        cities = [c for i, c in enumerate(cities) if i % args.of == args.shard]
+    windows = [int(x) for x in args.hotel_windows.split(",") if x.strip()]
 
     out_path = Path(args.out)
     # Предыдущий снимок: если источник сегодня упал, оставляем прошлые данные с их датой
+    prev_path = Path(args.previous)
     previous, prev_doc = {}, {}
-    if out_path.exists():
+    if prev_path.exists():
         try:
-            prev_doc = json.loads(out_path.read_text(encoding="utf-8"))
+            prev_doc = json.loads(prev_path.read_text(encoding="utf-8"))
             previous = {c["id"]: c for c in prev_doc.get("cities", [])}
         except (ValueError, KeyError):
             previous, prev_doc = {}, {}
@@ -153,7 +195,7 @@ def main() -> None:
     s_air, s_rail, s_hot = PoliteSession(0.3, 0.6), PoliteSession(0.8, 1.5), PoliteSession(1.5, 3.0)
     (DATA_DIR / "hotels").mkdir(parents=True, exist_ok=True)
 
-    result = {"generated_at": now, "months": months, "origin": {"city": "Москва", "iata": "MOW", "express": tutu.MOSCOW}}
+    result = {"generated_at": now, "months": months, "hotel_windows": windows, "hotel_nights": args.hotel_nights, "origin": {"city": "Москва", "iata": "MOW", "express": tutu.MOSCOW}}
     if "fx" in sources:
         try:
             result["fx"] = cbr.fetch_rates()
@@ -173,7 +215,7 @@ def main() -> None:
         for src, fn in (
             ("air", lambda: collect_air(s_air, c, months)),
             ("rail", lambda: collect_rail(s_rail, c)),
-            ("hotels", lambda: collect_hotels(s_hot, c, args.hotel_pages)),
+            ("hotels", lambda: collect_hotels(s_hot, c, args.hotel_pages, windows, args.hotel_nights)),
         ):
             if src not in sources:
                 if src in prev:
@@ -202,6 +244,14 @@ def main() -> None:
         log.info("[%d/%d] %s: air=%s rail=%s hotels=%s", n, len(cities), c["city"],
                  row.get("air", {}).get("status"), row.get("rail", {}).get("status"), row.get("hotels", {}).get("status"))
         rows.append(row)
+
+    if args.of > 1:
+        # поток пишет только свои города; объединяет collector.merge
+        result["cities"] = rows
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        log.info("Поток %d/%d: записано %d городов в %s", args.shard, args.of, len(rows), out_path)
+        return
 
     # города, которые не обрабатывались в этом запуске, сохраняем из прошлого снимка
     done = {r["id"] for r in rows}
