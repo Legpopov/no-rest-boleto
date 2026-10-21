@@ -23,13 +23,19 @@ def main() -> None:
                            "paxes": [{"adults": 1}], "region_id": region_id, "search_uuid": str(uuid.uuid4())},
         "filters": {}, "session_id": sid, "map_hotels": True,
     }
-    r = s.post(f"{URL}?session={sid}", json=body, headers={"Referer": "https://ostrovok.ru/", "Origin": "https://ostrovok.ru"})
-    log.info("status %s, %d байт", r.status_code, len(r.content))
-    try:
-        d = r.json()
-    except ValueError:
-        print(r.text[:500])
-        return
+    import time
+    for attempt in range(1, 16):
+        r = s.post(f"{URL}?session={sid}", json=body, headers={"Referer": "https://ostrovok.ru/", "Origin": "https://ostrovok.ru"})
+        try:
+            d = r.json()
+        except ValueError:
+            print(r.status_code, r.text[:500])
+            return
+        log.info("попытка %d: status %s, finished=%s, total_av=%s, map=%d", attempt, r.status_code, d.get("search_finished"),
+                 d.get("total_av_hotels"), len(d.get("map_hotels") or []))
+        if d.get("search_finished") and d.get("map_hotels"):
+            break
+        time.sleep(1.5)
     hs = d.get("map_hotels") or []
     log.info("map_hotels: %d, ключи ответа: %s", len(hs), list(d.keys()))
     for h in hs[:5]:
