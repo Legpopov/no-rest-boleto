@@ -40,32 +40,36 @@ def main() -> None:
         "filters": {}, "session_id": sid, "map_hotels": True,
     }
     hdr = {"Referer": page_url, "Origin": BASE, "X-CSRFToken": s.cookies.get("csrftoken", "")}
-    acc, d = {}, {}
-    for attempt in range(1, 31):
-        r = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=body, headers=hdr)
-        d = r.json()
-        for h in d.get("map_hotels") or []:
-            acc[h["master_id"]] = h
-        log.info("попытка %d: finished=%s total_av=%s map+%d накоплено=%d", attempt, d.get("search_finished"), d.get("total_av_hotels"),
-                 len(d.get("map_hotels") or []), len(acc))
-        if d.get("search_finished"):
+    t0 = time.time()
+    seen = {}
+    for page in range(1, 6):
+        pb = dict(body, page=page); pb.pop("map_hotels")
+        for attempt in range(1, 6):
+            d = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=pb, headers=hdr).json()
+            hs = d.get("hotels") or []
+            if hs:
+                break
+            time.sleep(1.0)
+        for h in hs:
+            seen[h["master_id"]] = h
+        log.info("page %d (попыток %d, %.1f c): отелей %d, накоплено %d, finished=%s", page, attempt, time.time() - t0, len(hs), len(seen), d.get("search_finished"))
+        if len(hs) < 20:
             break
-        time.sleep(1.5)
-    prices = sorted(h["price"] for h in acc.values() if h.get("price"))
-    log.info("итог map: %d отелей с ценой, медиана за весь срок %s", len(prices), prices[len(prices) // 2] if prices else None)
-    # постраничный список
-    pb = dict(body, page=1)
-    pb.pop("map_hotels")
-    r = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=pb, headers=hdr)
-    d = r.json()
-    hs = d.get("hotels") or []
-    log.info("page=1: finished=%s отелей=%d total_av=%s", d.get("search_finished"), len(hs), d.get("total_av_hotels"))
-    if hs:
-        h = hs[0]
-        log.info("ключи отеля: %s", list(h.keys()))
-        for k in ("rates", "min_rate", "rate", "price"):
-            if k in h:
-                log.info("%s: %s", k, json.dumps(h[k], ensure_ascii=False)[:600])
+    h = next(iter(seen.values()))
+    sv = h.get("static_vm") or {}
+    log.info("static_vm ключи: %s", list(sv.keys()))
+    log.info("static_vm выборка: %s", json.dumps({k: sv.get(k) for k in ("name", "kind", "star_rating", "stars", "rating", "latitude", "longitude", "is_apart_like", "hotel_kind")}, ensure_ascii=False))
+    r0 = (h.get("rates") or [{}])[0]
+    log.info("rate ключи: %s", list(r0.keys()))
+    def find_prices(o, path=""):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if any(w in k for w in ("amount", "price", "total", "daily")) and not isinstance(v, (dict, list)):
+                    log.info("  %s.%s = %s", path, k, v)
+                find_prices(v, f"{path}.{k}")
+        elif isinstance(o, list) and o:
+            find_prices(o[0], path + "[0]")
+    find_prices(r0)
 
 
 if __name__ == "__main__":
