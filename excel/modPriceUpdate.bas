@@ -43,10 +43,16 @@ Private Const K_FRESH As String = "Предупреждать, если снимок старше, дней"
 Private Const K_ACCEPT As String = "Критерий приёмки, % городов"
 Private Const K_BACKUP As String = "Бэкап файла перед обновлением, хранить копий"
 Private Const K_CUR_HEAD As String = "Валюта в «Справочнике»"
+Private Const K_DEP As String = "Дата отправления"
+Private Const K_DAYS As String = "Дней в поездке"
+Private Const K_AIR_TOL As String = "Даты: авиа — допуск до ближайшей недели, дней"
+Private Const K_HOT_TOL As String = "Даты: отель — допуск до ближайшего заезда, дней"
 Private Const O_RUN As String = "Последний запуск"
 Private Const O_SNAP As String = "Снимок данных от"
 Private Const O_FX As String = "Курс ЦБ на"
 Private Const O_TOTAL As String = "Итог"
+Private Const O_DATES As String = "Даты расчёта"
+Private Const DATES_TAG As String = " (на даты "    ' начало приписки к заголовкам в режиме дат
 
 Private Const SKIP_COLOR As Long = 10092543    ' RGB(255, 255, 153) — светло-жёлтый «пропуск»
 
@@ -57,6 +63,10 @@ Private Const R_NA As String = "не применимо"
 
 Private gQuiet As Boolean
 Private gLastError As String
+' режим дат: цены на введённую дату отправления (приблизительно, из того же снимка)
+Private gDateMode As Boolean
+Private gDep As Date, gRet As Date, gDays As Long
+Private nAirDated As Long, nAirUndated As Long, nHotDated As Long, nHotUndated As Long
 Private prm As Object        ' имя -> Array(значение, включено)
 Private curMap As Object     ' валюта из листа (нормализованная) -> код ЦБ
 Private logRows As Collection
@@ -96,9 +106,15 @@ Private Sub RunUpdate()
     Set ws = wb.Worksheets(SH_REF)
     Set wsPar = wb.Worksheets(SH_PAR)
     LoadParams wsPar
+    step = "даты поездки"
+    ReadTripDates wsPar
+    nAirDated = 0: nAirUndated = 0: nHotDated = 0: nHotUndated = 0
 
     step = "резервная копия"
     warn = MakeBackup(wb)
+    If gDateMode And gDays > 30 Then
+        warn = warn & "Поездка длиннее 30 дней: цены перелётов в данных собраны для пребывания 1–30 ночей." & vbLf
+    End If
 
     step = "загрузка данных"
     Application.StatusBar = "Обновление цен: загрузка данных..."
@@ -152,7 +168,8 @@ Private Sub RunUpdate()
         msg = "Обновлено полностью: " & nFull & " из " & nCities & " (" & Format(SafePct(nFull, nCities), "0") & "%)" & vbLf & _
               "Частично: " & nPart & ", не обновлено: " & nNone & vbLf & _
               "Снимок данных: " & IsoToText(CStr(JGet(data, "generated_at"))) & vbLf & _
-              "Курс ЦБ на: " & fxDate & vbLf & vbLf & _
+              "Курс ЦБ на: " & fxDate & vbLf & _
+              "Даты: " & DatesText() & vbLf & vbLf & _
               "Пропуски залиты жёлтым, подробности — на листе «" & SH_LOG & "»."
         If warn <> "" Then msg = msg & vbLf & vbLf & "Внимание:" & vbLf & warn
         MsgBox msg, IIf(warn = "", vbInformation, vbExclamation), "Обновление цен"
@@ -229,7 +246,7 @@ End Sub
 
 Private Function DoAir(ws As Worksheet, ByVal r As Long, place As String, city As String, c As Object, ByVal abroad As Boolean) As String
     Dim blk As Variant, why As String, med As Variant, p90 As Variant, bag As Double
-    Dim rng As Range
+    Dim rng As Range, dateNote As String
     Set rng = ws.Range(ws.Cells(r, C_AIR_AVG), ws.Cells(r, C_AIR_MAX))
 
     If IsObject(JGet(c, "air")) Then Set blk = JGet(c, "air")
@@ -251,8 +268,18 @@ Private Function DoAir(ws As Worksheet, ByVal r As Long, place As String, city A
     why = BlockProblem(blk)
     If why <> "" Then DoAir = Skip(rng, r, place, city, "Авиа", why): Exit Function
 
-    med = JGet(blk, "all.median")
-    p90 = JGet(blk, "all.p90")
+    If gDateMode Then
+        If PickAirWeek(JGet(blk, "by_week"), med, p90, dateNote) Then
+            nAirDated = nAirDated + 1
+        Else
+            nAirUndated = nAirUndated + 1
+            med = JGet(blk, "all.median")
+            p90 = JGet(blk, "all.p90")
+        End If
+    Else
+        med = JGet(blk, "all.median")
+        p90 = JGet(blk, "all.p90")
+    End If
     If Not IsNumeric(med) Or Not IsNumeric(p90) Or IsEmpty(med) Or IsEmpty(p90) Then
         DoAir = Skip(rng, r, place, city, "Авиа", "нет медианы/90-го перцентиля в данных")
         Exit Function
@@ -265,7 +292,7 @@ Private Function DoAir(ws As Worksheet, ByVal r As Long, place As String, city A
     ws.Cells(r, C_AIR_AVG).Value = Round(med + 2 * bag, 0)
     ws.Cells(r, C_AIR_MAX).Value = Round(p90 + 2 * bag, 0)
     MarkOk rng
-    LogLine r, place, city, "Авиа сред.", R_OK, ws.Cells(r, C_AIR_AVG).Value, "медиана " & med & " + багаж 2x" & bag & AgeNote(blk)
+    LogLine r, place, city, "Авиа сред.", R_OK, ws.Cells(r, C_AIR_AVG).Value, "медиана " & med & " + багаж 2x" & bag & DateNoteText(dateNote) & AgeNote(blk)
     LogLine r, place, city, "Авиа макс.", R_OK, ws.Cells(r, C_AIR_MAX).Value, "90-й перцентиль " & p90 & " + багаж 2x" & bag
     DoAir = R_OK
 End Function
@@ -389,7 +416,7 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
                          ByVal abroad As Boolean, ByVal curText As String, ByVal rate As Double) As String
     Dim blk As Variant, why As String, items As Variant, it As Variant, i As Long
     Dim total As Long, nPass As Long, sumP As Double, maxP As Double, avgP As Double
-    Dim rng As Range, rubFormula As Boolean, foreign As Boolean
+    Dim rng As Range, rubFormula As Boolean, foreign As Boolean, dateNote As String
     Set rng = ws.Range(ws.Cells(r, C_HOT_RUB), ws.Cells(r, C_HOT_MAX))
 
     If IsObject(JGet(c, "hotels")) Then Set blk = JGet(c, "hotels")
@@ -400,7 +427,11 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
     why = BlockProblem(blk)
     If why <> "" Then DoHotel = SkipHotel(ws, r, place, city, why): Exit Function
 
-    items = JGet(blk, "items")
+    If gDateMode Then
+        items = PickHotelWindow(JGet(blk, "dated"), dateNote)
+        If IsArray(items) Then nHotDated = nHotDated + 1 Else nHotUndated = nHotUndated + 1
+    End If
+    If Not IsArray(items) Then items = JGet(blk, "items")
     If Not IsArray(items) Then DoHotel = SkipHotel(ws, r, place, city, "нет списка отелей"): Exit Function
     For i = 0 To UBound(items)
         it = items(i)
@@ -414,7 +445,7 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
         End If
     Next
     If nPass = 0 Then
-        DoHotel = SkipHotel(ws, r, place, city, "после фильтров не осталось вариантов (было " & total & ")")
+        DoHotel = SkipHotel(ws, r, place, city, "после фильтров не осталось вариантов (было " & total & ")" & DateNoteText(dateNote))
         Exit Function
     End If
     avgP = sumP / nPass
@@ -429,7 +460,7 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
             MarkOk ws.Cells(r, C_HOT_RUB)
             MarkSkip ws.Cells(r, C_HOT_VAL)
             MarkSkip ws.Cells(r, C_HOT_MAX)
-            LogLine r, place, city, "Гостиница сред. руб.", R_OK, Round(avgP, 0), "среднее " & nPass & " из " & total & AgeNote(blk)
+            LogLine r, place, city, "Гостиница сред. руб.", R_OK, Round(avgP, 0), "среднее " & nPass & " из " & total & DateNoteText(dateNote) & AgeNote(blk)
             LogLine r, place, city, "Гостиница в валюте", R_SKIP, Empty, "нет курса валюты"
             DoHotel = R_SKIP
         End If
@@ -449,7 +480,7 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
     MarkOk ws.Cells(r, C_HOT_VAL)
     MarkOk ws.Cells(r, C_HOT_MAX)
     LogLine r, place, city, "Гостиница сред. руб.", R_OK, Round(avgP, 0), _
-            "среднее " & nPass & " из " & total & IIf(rubFormula, " (BR — формула, пересчитана через BT)", "") & AgeNote(blk)
+            "среднее " & nPass & " из " & total & IIf(rubFormula, " (BR — формула, пересчитана через BT)", "") & DateNoteText(dateNote) & AgeNote(blk)
     LogLine r, place, city, "Гостиница макс.", R_OK, ws.Cells(r, C_HOT_MAX).Value, _
             "максимум после фильтров" & IIf(foreign, ", в валюте «" & curText & "»", ", руб.")
     DoHotel = R_OK
@@ -489,6 +520,143 @@ Private Function HotelPasses(it As Variant, ByVal abroad As Boolean) As Boolean
         Next
     End If
     HotelPasses = True
+End Function
+
+' ======================= режим дат =======================
+
+' Дата отправления и число дней — на листе параметров (ищутся по подписи, значение — в ячейке справа).
+' Пустая дата — обычный режим (средние за весь период снимка).
+Private Sub ReadTripDates(ws As Worksheet)
+    Dim f As Range, v As Variant
+    gDateMode = False: gDays = 0
+    Set f = ws.UsedRange.Find(What:=K_DEP, LookIn:=xlValues, LookAt:=xlWhole)
+    If f Is Nothing Then Exit Sub
+    v = f.Offset(0, 1).Value
+    If IsEmpty(v) Then Exit Sub
+    If Trim$(CStr(v)) = "" Then Exit Sub
+    If Not IsDate(v) Then Err.Raise vbObjectError + 810, , "«" & K_DEP & "»: не похоже на дату («" & CStr(v) & "»)"
+    gDep = DateSerial(Year(CDate(v)), Month(CDate(v)), Day(CDate(v)))
+    If gDep < Date Then Err.Raise vbObjectError + 811, , "«" & K_DEP & "» " & Format(gDep, "dd.mm.yyyy") & _
+                                  " уже прошла — укажите будущую дату или очистите ячейку"
+    Set f = ws.UsedRange.Find(What:=K_DAYS, LookIn:=xlValues, LookAt:=xlWhole)
+    If f Is Nothing Then Err.Raise vbObjectError + 812, , "на листе «" & SH_PAR & "» нет ячейки «" & K_DAYS & "»"
+    v = f.Offset(0, 1).Value
+    If IsEmpty(v) Or Not IsNumeric(v) Then Err.Raise vbObjectError + 813, , "«" & K_DAYS & "» — укажите целое число дней"
+    If CDbl(v) < 1 Or CDbl(v) <> Int(CDbl(v)) Then Err.Raise vbObjectError + 813, , "«" & K_DAYS & "» — целое число не меньше 1"
+    gDays = CLng(v)
+    gRet = gDep + gDays - 1
+    RequireParams Array(K_AIR_TOL, K_HOT_TOL)
+    gDateMode = True
+End Sub
+
+Private Function DatesText() As String
+    If gDateMode Then
+        DatesText = Format(gDep, "dd.mm.yyyy") & " – " & Format(gRet, "dd.mm.yyyy") & " (" & gDays & " дн.)"
+    Else
+        DatesText = "не заданы — средние за период снимка"
+    End If
+End Function
+
+Private Function DateNoteText(ByVal note As String) As String
+    If note <> "" Then DateNoteText = "; опорная дата: " & note
+End Function
+
+' Допуск в днях; если параметр выключен — без ограничения.
+Private Function Tolerance(ByVal k As String) As Double
+    If PEnabled(k) Then Tolerance = PNum(k) Else Tolerance = 1E+30
+End Function
+
+' "YYYY-MM-DD" -> Date или Empty
+Private Function IsoDay(ByVal v As Variant) As Variant
+    Dim t As String
+    IsoDay = Empty
+    t = CStr(Nz(v))
+    If Len(t) < 10 Then Exit Function
+    On Error Resume Next
+    IsoDay = DateSerial(CInt(Mid$(t, 1, 4)), CInt(Mid$(t, 6, 2)), CInt(Mid$(t, 9, 2)))
+    If Err.Number <> 0 Then IsoDay = Empty
+    On Error GoTo 0
+End Function
+
+' air.by_week: [[понедельник недели вылета, n, median, p90], ...].
+' Берётся неделя, в которую попадает дата отправления, иначе ближайшая в пределах допуска.
+Private Function PickAirWeek(ByVal byWeek As Variant, ByRef med As Variant, ByRef p90 As Variant, ByRef note As String) As Boolean
+    Dim i As Long, w As Variant, wk As Variant, dist As Double, best As Double, bi As Long, tol As Double
+    tol = Tolerance(K_AIR_TOL)
+    best = -1: bi = -1
+    If IsArray(byWeek) Then
+        For i = 0 To UBound(byWeek)
+            w = byWeek(i)
+            If IsArray(w) Then
+                If UBound(w) >= 3 Then
+                    wk = IsoDay(w(0))
+                    If Not IsEmpty(wk) And NumOr(w(2), -1) > 0 And NumOr(w(3), -1) > 0 Then
+                        If gDep < wk Then
+                            dist = wk - gDep
+                        ElseIf gDep > wk + 6 Then
+                            dist = gDep - (wk + 6)
+                        Else
+                            dist = 0
+                        End If
+                        If best < 0 Or dist < best Then best = dist: bi = i
+                    End If
+                End If
+            End If
+        Next
+    End If
+    If bi < 0 Then
+        note = "в данных нет цен по неделям — взята медиана за весь период"
+    ElseIf best > tol Then
+        note = "ближайшая неделя с ценами в " & best & " дн. от даты (допуск " & tol & ") — взята медиана за весь период"
+    Else
+        w = byWeek(bi)
+        med = w(2): p90 = w(3)
+        note = "авиа: неделя с " & Format(IsoDay(w(0)), "dd.mm") & IIf(best > 0, " (±" & best & " дн.)", "") & _
+               ", вариантов " & Nz(w(1))
+        PickAirWeek = True
+    End If
+End Function
+
+' hotels.dated: [{checkin, nights, n, items}, ...] — окно с ближайшим к дате отправления заездом.
+' Возвращает items окна или Empty (тогда берутся цены без даты).
+Private Function PickHotelWindow(ByVal dated As Variant, ByRef note As String) As Variant
+    Dim i As Long, w As Object, ci As Variant, dist As Double, best As Double, bi As Long, tol As Double
+    PickHotelWindow = Empty
+    tol = Tolerance(K_HOT_TOL)
+    best = -1: bi = -1
+    If IsArray(dated) Then
+        For i = 0 To UBound(dated)
+            If IsObject(dated(i)) Then
+                Set w = dated(i)
+                ci = IsoDay(JGet(w, "checkin"))
+                If Not IsEmpty(ci) And IsArray(JGet(w, "items")) Then
+                    dist = Abs(ci - gDep)
+                    If best < 0 Or dist < best Then best = dist: bi = i
+                End If
+            End If
+        Next
+    End If
+    If bi < 0 Then
+        note = "в данных нет цен на даты заезда — взяты цены без даты"
+    ElseIf best > tol Then
+        note = "ближайший заезд в " & best & " дн. от даты (допуск " & tol & ") — взяты цены без даты"
+    Else
+        Set w = dated(bi)
+        ci = IsoDay(JGet(w, "checkin"))
+        note = "отель: опорный заезд " & Format(ci, "dd.mm") & ", ночей " & Nz(JGet(w, "nights")) & ", " & ShiftText(ci - gDep)
+        PickHotelWindow = JGet(w, "items")
+    End If
+End Function
+
+' Положение опорной даты относительно даты отправления: «за 12 дн. до отправления» / «через 5 дн. после» / «в день отправления».
+Private Function ShiftText(ByVal diff As Double) As String
+    If diff = 0 Then
+        ShiftText = "в день отправления"
+    ElseIf diff < 0 Then
+        ShiftText = "за " & -diff & " дн. до отправления"
+    Else
+        ShiftText = "через " & diff & " дн. после отправления"
+    End If
 End Function
 
 ' ======================= вспомогательное: данные =======================
@@ -767,7 +935,16 @@ End Function
 ' ======================= вспомогательное: лист и журнал =======================
 
 Private Sub EnsureHeaders(ws As Worksheet, ByVal fxDate As String)
+    Dim col As Variant, t As String, k As Long
     If fxDate <> "" Then ws.Cells(HEADER_ROW, C_RATE).Value = "Курс ЦБ на " & fxDate
+    ' приписка «на даты …» у колонок, зависящих от дат (снимается, когда даты очищены)
+    For Each col In Array(C_AIR_AVG, C_AIR_MAX, C_HOT_RUB, C_HOT_VAL, C_HOT_MAX)
+        t = CStr(ws.Cells(HEADER_ROW, col).Value)
+        k = InStr(t, DATES_TAG)
+        If k > 0 Then t = Left$(t, k - 1)
+        If gDateMode Then t = t & DATES_TAG & Format(gDep, "dd.mm") & "–" & Format(gRet, "dd.mm") & ", приблизительно)"
+        If t <> CStr(ws.Cells(HEADER_ROW, col).Value) Then ws.Cells(HEADER_ROW, col).Value = t
+    Next
     If Trim$(CStr(ws.Cells(HEADER_ROW, C_RAIL_AVG).Value)) = "" Then
         ws.Cells(HEADER_ROW, C_RAIL_AVG).Value = "ЖД - сред. цена (туда-обратно)"
     End If
@@ -832,6 +1009,9 @@ Private Sub WriteLog(wb As Workbook, ByVal startedAt As Date, data As Object, By
         Array("Запуск", Format(startedAt, "dd.mm.yyyy hh:nn:ss")), _
         Array("Снимок данных (generated_at)", gen), _
         Array("Курс ЦБ на", fxDate), _
+        Array("Даты поездки", DatesText()), _
+        Array("Цены на даты", IIf(gDateMode, "авиа: " & nAirDated & " по неделе вылета, " & nAirUndated & " без даты; " & _
+              "отели: " & nHotDated & " по дате заезда, " & nHotUndated & " без даты (приблизительно)", "режим дат выключен")), _
         Array("Городов в таблице", nCities), _
         Array("Обновлено полностью", nFull & " (" & Format(pct, "0.0") & "%)"), _
         Array("Обновлено частично", nPart), _
@@ -843,10 +1023,11 @@ Private Sub WriteLog(wb As Workbook, ByVal startedAt As Date, data As Object, By
         ws.Cells(2 + i, 1).Value = head(i)(0)
         ws.Cells(2 + i, 2).Value = head(i)(1)
     Next
-    ws.Range("B2:B10").HorizontalAlignment = xlLeft
-    ws.Range("A2:A10").Font.Bold = True
-    If acceptPct > 0 Then ws.Range("B10").Interior.Color = IIf(pct >= acceptPct, RGB(198, 239, 206), RGB(255, 199, 206))
-    top = 11
+    top = 2 + UBound(head)                      ' строка критерия приёмки (последняя в шапке)
+    ws.Range(ws.Cells(2, 2), ws.Cells(top, 2)).HorizontalAlignment = xlLeft
+    ws.Range(ws.Cells(2, 1), ws.Cells(top, 1)).Font.Bold = True
+    If acceptPct > 0 Then ws.Cells(top, 2).Interior.Color = IIf(pct >= acceptPct, RGB(198, 239, 206), RGB(255, 199, 206))
+    top = top + 1
     If warn <> "" Then
         ws.Cells(top, 1).Value = "Внимание"
         ws.Cells(top, 1).Font.Bold = True
@@ -881,6 +1062,7 @@ Private Sub WriteSummary(ws As Worksheet, ByVal startedAt As Date, data As Objec
     SetOut ws, O_RUN, Format(startedAt, "dd.mm.yyyy hh:nn")
     SetOut ws, O_SNAP, IsoToText(CStr(Nz(JGet(data, "generated_at"))))
     SetOut ws, O_FX, fxDate
+    SetOut ws, O_DATES, DatesText()
     SetOut ws, O_TOTAL, "полностью " & nFull & " из " & nCities & " (" & Format(SafePct(nFull, nCities), "0") & "%), частично " & nPart
 End Sub
 
