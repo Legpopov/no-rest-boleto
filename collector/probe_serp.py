@@ -1,44 +1,56 @@
-"""Проверка: отвечает ли поиск Островка на даты без браузера (обычный POST JSON).
+"""Проверка: отвечает ли поиск Островка на даты без браузера.
 
-Запуск:  python -m collector.probe_serp 1993 2026-11-15 2026-11-18
+Как браузер: сначала GET страницы города с датами (cookies + id поиска из __NEXT_DATA__),
+затем POST /hotel/search/v2/site/serp с опросом до search_finished.
+Запуск:  python -m collector.probe_serp russia/kazan 2026-11-15 2026-11-18
 """
 from __future__ import annotations
 
 import json
+import re
 import sys
+import time
 import uuid
 
 from .common import PoliteSession, setup_logging, log
 
-URL = "https://ostrovok.ru/hotel/search/v2/site/serp"
+BASE = "https://ostrovok.ru"
 
 
 def main() -> None:
     setup_logging()
-    region_id, arrival, departure = int(sys.argv[1]), sys.argv[2], sys.argv[3]
+    slug, arrival, departure = sys.argv[1], sys.argv[2], sys.argv[3]
     s = PoliteSession(0, 0)
+    d1 = "{2}.{1}.{0}".format(*arrival.split("-"))
+    d2 = "{2}.{1}.{0}".format(*departure.split("-"))
+    page_url = f"{BASE}/hotel/{slug}/?dates={d1}-{d2}&guests=1"
+    page = s.get(page_url)
+    log.info("страница: %s, cookies: %s", page.status_code, list(s.cookies.keys()))
+    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', page.text, re.S)
+    props = json.loads(m.group(1))["props"]["pageProps"]
+    region_id = (props.get("searchRegionData") or {}).get("id")
+    search_uuid = props.get("searchUuid") or str(uuid.uuid4())
+    log.info("region_id=%s searchUuid=%s", region_id, search_uuid)
     sid = str(uuid.uuid4())
     body = {
         "session_params": {"arrival_date": arrival, "departure_date": departure, "currency": "RUB", "language": "ru",
-                           "paxes": [{"adults": 1}], "region_id": region_id, "search_uuid": str(uuid.uuid4())},
+                           "paxes": [{"adults": 1}], "region_id": region_id, "search_uuid": search_uuid},
         "filters": {}, "session_id": sid, "map_hotels": True,
     }
-    import time
-    for attempt in range(1, 16):
-        r = s.post(f"{URL}?session={sid}", json=body, headers={"Referer": "https://ostrovok.ru/", "Origin": "https://ostrovok.ru"})
-        try:
-            d = r.json()
-        except ValueError:
-            print(r.status_code, r.text[:500])
-            return
-        log.info("попытка %d: status %s, finished=%s, total_av=%s, map=%d", attempt, r.status_code, d.get("search_finished"),
-                 d.get("total_av_hotels"), len(d.get("map_hotels") or []))
-        if d.get("search_finished") and d.get("map_hotels"):
+    hdr = {"Referer": page_url, "Origin": BASE}
+    d = {}
+    for attempt in range(1, 21):
+        r = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=body, headers=hdr)
+        d = r.json()
+        log.info("попытка %d: finished=%s total_av=%s map=%d", attempt, d.get("search_finished"), d.get("total_av_hotels"),
+                 len(d.get("map_hotels") or []))
+        if d.get("search_finished"):
             break
         time.sleep(1.5)
     hs = d.get("map_hotels") or []
-    log.info("map_hotels: %d, ключи ответа: %s", len(hs), list(d.keys()))
-    for h in hs[:5]:
+    prices = sorted(h["price"] for h in hs if h.get("price"))
+    log.info("итог: %d отелей с ценой, медиана за весь срок %s", len(prices), prices[len(prices) // 2] if prices else None)
+    for h in hs[:3]:
         print(json.dumps({k: h.get(k) for k in ("name", "stars", "rating", "price", "latitude", "longitude")}, ensure_ascii=False))
 
 
