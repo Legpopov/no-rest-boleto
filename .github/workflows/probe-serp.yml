@@ -4,7 +4,7 @@ on:
     inputs:
       args:
         description: "slug arrival departure"
-        default: "russia/kazan 2026-11-15 2026-11-18"
+        default: "russia/kazan 2026-11-15 2026-11-18 1993"
 jobs:
   probe:
     runs-on: ubuntu-latest

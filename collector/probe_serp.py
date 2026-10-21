@@ -28,7 +28,9 @@ def main() -> None:
     log.info("страница: %s, cookies: %s", page.status_code, list(s.cookies.keys()))
     m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', page.text, re.S)
     props = json.loads(m.group(1))["props"]["pageProps"]
-    region_id = (props.get("searchRegionData") or {}).get("id")
+    srd = props.get("searchRegionData") or {}
+    log.info("ключи searchRegionData: %s", list(srd.keys())[:30])
+    region_id = srd.get("id") or srd.get("regionId") or srd.get("region_id") or (int(sys.argv[4]) if len(sys.argv) > 4 else None)
     search_uuid = props.get("searchUuid") or str(uuid.uuid4())
     log.info("region_id=%s searchUuid=%s", region_id, search_uuid)
     sid = str(uuid.uuid4())
@@ -37,7 +39,7 @@ def main() -> None:
                            "paxes": [{"adults": 1}], "region_id": region_id, "search_uuid": search_uuid},
         "filters": {}, "session_id": sid, "map_hotels": True,
     }
-    hdr = {"Referer": page_url, "Origin": BASE}
+    hdr = {"Referer": page_url, "Origin": BASE, "X-CSRFToken": s.cookies.get("csrftoken", "")}
     d = {}
     for attempt in range(1, 21):
         r = s.post(f"{BASE}/hotel/search/v2/site/serp?session={sid}", json=body, headers=hdr)
