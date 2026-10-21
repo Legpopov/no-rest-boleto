@@ -391,6 +391,8 @@ function renderFlex(F, mode, offers) {
 }
 
 // ---------- поезда ----------
+// Поиск РЖД по кодам станций «Экспресс» и дате (ГГГГ-ММ-ДД); trainNumber — подсветка нужного поезда в выдаче
+const rzdUrl = (from, to, iso, train) => `https://ticket.rzd.ru/searchresults/v/1/${from}/${to}/${iso}${train ? '?trainNumber=' + encodeURIComponent(train) : ''}`;
 const tutuUrl = (from, to, iso) => `https://www.tutu.ru/poezda/rasp_d.php?nnst1=${from}&nnst2=${to}${iso ? '&date=' + dmy(iso) : ''}`;
 async function searchRail() {
   const st = $('#r-status');
@@ -413,8 +415,10 @@ function renderRail() {
   if (!S.dest) { links.innerHTML = ''; needDest(res); return; }
   const from = S.origin.express, to = S.dest.express;
   links.innerHTML = from && to
-    ? `<a href="${tutuUrl(from, to, S.depart)}" target="_blank" rel="noopener">tutu.ru: ${esc(S.origin.city)} → ${esc(S.dest.city)}, ${dmy(S.depart)}</a>` +
-      (S.ret ? `<a href="${tutuUrl(to, from, S.ret)}" target="_blank" rel="noopener">tutu.ru: обратно, ${dmy(S.ret)}</a>` : '')
+    ? `<a class="btn buy" href="${rzdUrl(from, to, S.depart)}" target="_blank" rel="noopener">Купить на РЖД · туда ${dm(S.depart)}</a>` +
+      (S.ret ? `<a class="btn buy" href="${rzdUrl(to, from, S.ret)}" target="_blank" rel="noopener">Купить на РЖД · обратно ${dm(S.ret)}</a>` : '') +
+      `<a href="${tutuUrl(from, to, S.depart)}" target="_blank" rel="noopener">tutu.ru: туда ${dm(S.depart)}</a>` +
+      (S.ret ? `<a href="${tutuUrl(to, from, S.ret)}" target="_blank" rel="noopener">tutu.ru: обратно ${dm(S.ret)}</a>` : '')
     : '';
   if (!S.trains || S.trains.key !== `${from}|${to}`) {
     res.innerHTML = from && to ? '<p class="muted">Нажмите «Показать поезда».</p>' : `<p class="muted">Для этого направления нет кода ж/д станции.</p>`;
@@ -424,18 +428,21 @@ function renderRail() {
   const firmOnly = $('#r-firm').checked;
   const table = (dir, data) => {
     const trips = data.trips.filter((t) => !firmOnly || t.firm);
+    // дата покупки: туда — дата вылета, обратно — дата возврата (если не задана — дата поездки)
+    const [bFrom, bTo, bDate] = dir === 'there' ? [from, to, S.depart] : [to, from, S.ret || S.depart];
     if (!trips.length) return `<p class="muted">Поездов не найдено${firmOnly ? ' (с фильтром «фирменные»)' : ''}.</p>`;
     let cheapest = null;
     for (const t of trips) for (const [c, p] of Object.entries(t.classes)) if (!cheapest || p < cheapest.p) cheapest = { p, c, t: t.train };
     return `<p class="muted">Самый дешёвый: ${rub(cheapest.p)} — ${RAIL_CLS[cheapest.c] || cheapest.c}, поезд ${esc(cheapest.t)}</p>
-    <div class="table-scroll"><table class="grid cards"><thead><tr><th>Поезд</th><th>Отпр.</th><th>Приб.</th><th class="num">В пути</th><th>Цены от (нажмите, чтобы взять в итог)</th></tr></thead><tbody>` +
+    <div class="table-scroll"><table class="grid cards"><thead><tr><th>Поезд</th><th>Отпр.</th><th>Приб.</th><th class="num">В пути</th><th>Цены от (нажмите, чтобы взять в итог)</th><th></th></tr></thead><tbody>` +
       trips.map((t) => `<tr>
         <td><b>${esc(t.train)}</b>${t.name ? ` <span class="sub">${esc(t.name)}</span>` : ''}${t.firm ? ' <span class="tag">фирменный</span>' : ''}</td>
         <td data-label="Отправление">${esc(t.departure)}</td><td data-label="Прибытие">${esc(t.arrival)}</td><td class="num" data-label="В пути">${t.hours} ч</td>
         <td class="t-cls"><div class="train-cls">${RAIL_ORDER.filter((c) => t.classes[c]).map((c) => {
           const on = S.train[dir] && S.train[dir].train === t.train && S.train[dir].cls === c;
           return `<button type="button" class="${on ? 'on' : ''}" data-dir="${dir}" data-train="${esc(t.train)}" data-cls="${c}" data-price="${t.classes[c]}">${RAIL_CLS[c]} ${rub(t.classes[c])}</button>`;
-        }).join('')}</div></td></tr>`).join('') + '</tbody></table></div>';
+        }).join('')}</div></td>
+        <td class="t-buy"><a class="btn buy sm" href="${rzdUrl(bFrom, bTo, bDate, t.train)}" target="_blank" rel="noopener" title="Поиск на РЖД на ${dmy(bDate)}, поезд ${esc(t.train)}">Купить на РЖД</a></td></tr>`).join('') + '</tbody></table></div>';
   };
   res.innerHTML = `<h4>Туда: ${esc(S.origin.city)} → ${esc(S.dest.city)}</h4>${table('there', S.trains.there)}` +
     `<h4>Обратно: ${esc(S.dest.city)} → ${esc(S.origin.city)}</h4>${table('back', S.trains.back)}` +

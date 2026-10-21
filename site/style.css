@@ -105,6 +105,10 @@ main { padding-top: 28px; padding-bottom: 48px; }
 .btn.primary:hover { background: #A30C32; }
 .btn.buy { background: var(--orange); color: #fff; font-size: 19px; min-height: 52px; padding: 0 24px; border-radius: 12px; }
 .btn.buy:hover { background: #D45209; }
+.btn.buy.sm { background: #C2410C; font-size: 14px; min-height: 40px; padding: 0 14px; border-radius: 10px; }
+.btn.buy.sm:hover { background: #A3360A; }
+.links .btn.buy { background: #C2410C; color: #fff; font-size: 16px; font-weight: 800; }
+.links .btn.buy:hover { background: #A3360A; filter: none; }
 .btn.tint { background: var(--blue-soft); color: var(--blue); }
 .btn.tint.on { background: var(--blue); color: #fff; }
 .btn.gray { background: var(--chip); color: var(--chip-text); }
@@ -307,7 +311,8 @@ table.matrix { border-collapse: separate; border-spacing: 4px; font-size: 13px; 
   #c-table .c-n, #c-table td:nth-child(8) { display: none; }
   #c-table td:nth-child(3), #c-table td:nth-child(7) { font-weight: 800; }
   table.cards td:first-child { grid-column: 1 / -1; }
-  table.cards .t-cls { grid-column: 1 / -1; }
+  table.cards .t-cls, table.cards .t-buy { grid-column: 1 / -1; }
+  table.cards .t-buy .btn { width: 100%; }
   #r-results table.cards tr { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   table.cards tr:hover { background: var(--panel); }
 
