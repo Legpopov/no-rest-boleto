@@ -13,6 +13,10 @@ from ..common import PoliteSession, env, log
 URL = "https://api.travelpayouts.com/aviasales/v3/prices_for_dates"
 
 
+class NotFlightable(RuntimeError):
+    """Aviasales не ищет рейсы в этот аэропорт (закрыт или код устарел)."""
+
+
 def fetch_round_trips(session: PoliteSession, origin: str, destination: str, months: list[str]) -> list[dict]:
     """Все найденные варианты туда-обратно с вылетом в указанные месяцы (YYYY-MM).
 
@@ -36,8 +40,15 @@ def fetch_round_trips(session: PoliteSession, origin: str, destination: str, mon
             headers={"X-Access-Token": token, "Accept-Encoding": "gzip, deflate"},
         )
         if resp.status_code == 400:
-            # так API отвечает на направления без рейсов (закрытые аэропорты)
-            log.info("aviasales: нет данных %s-%s %s (400)", origin, destination, month)
+            err = ""
+            try:
+                err = resp.json().get("error") or ""
+            except ValueError:
+                pass
+            if "not flightable" in err:
+                # закрытый аэропорт (Анапа, Воронеж…) или устаревший код — дальше спрашивать бессмысленно
+                raise NotFlightable(err)
+            log.info("aviasales: нет данных %s-%s %s (400: %s)", origin, destination, month, err)
             continue
         if resp.status_code == 429:
             log.warning("aviasales: превышен лимит запросов на %s-%s %s", origin, destination, month)

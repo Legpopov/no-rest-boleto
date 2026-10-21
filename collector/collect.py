@@ -58,7 +58,10 @@ def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
         return {"status": "origin"}
     if not c.get("iata"):
         return {"status": "no_airport"}
-    offers = aviasales.fetch_round_trips(s, "MOW", c["iata"], months)
+    try:
+        offers = aviasales.fetch_round_trips(s, "MOW", c["iata"], months)
+    except aviasales.NotFlightable as e:
+        return {"status": "not_flightable", "airport": c["iata"], "note": str(e)[:120]}
     # поездки с хотя бы одной ночёвкой и не длиннее 30 дней
     trips = [o for o in offers if o["return"] and o["depart"] and 1 <= (datetime.fromisoformat(o["return"]) - datetime.fromisoformat(o["depart"])).days <= 30]
     if not trips:
