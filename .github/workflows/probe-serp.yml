@@ -1,0 +1,19 @@
+name: probe-serp
+on:
+  workflow_dispatch:
+    inputs:
+      args:
+        description: "region_id arrival departure"
+        default: "1993 2026-11-15 2026-11-18"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - env:
+          ARGS: ${{ inputs.args }}
+        run: python -m collector.probe_serp $ARGS
