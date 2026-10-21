@@ -6,56 +6,77 @@
   <title>no-rest-boleto — цены на поездки</title>
   <meta name="description" content="Открытые рыночные цены на авиабилеты из Москвы, поезда и отели по городам России и мира.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563eb'/%3E%3Cpath d='M6 19l20-8-3 10-6-3-3 5-1-6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
   <div class="wrap top-row">
-    <a class="brand" href="#cities">no-rest-boleto</a>
+    <a class="brand" href="#cities">
+      <span class="mark" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-7-6 12-4-5-5 3z"/></svg></span>
+      <span class="brand-name">no-rest-boleto</span>
+      <span class="brand-sub">рыночные цены на поездки</span>
+    </a>
     <span class="snapshot" id="snapshot">загрузка данных…</span>
   </div>
 </header>
 
-<section class="trip wrap" aria-label="Параметры поездки">
-  <form id="trip-form" class="trip-form" autocomplete="off">
-    <label>Откуда
-      <input id="f-origin" list="dl-cities" placeholder="Москва" value="Москва">
-    </label>
-    <label>Куда
-      <input id="f-dest" list="dl-cities" placeholder="Город или код IATA" required>
-    </label>
-    <label>Туда
-      <input id="f-depart" type="date" required>
-    </label>
-    <label>Обратно
-      <input id="f-return" type="date">
-    </label>
-    <div class="nights" id="f-nights" aria-live="polite"></div>
-  </form>
-  <datalist id="dl-cities"></datalist>
+<section class="hero" aria-label="Параметры поездки">
+  <div class="wrap">
+    <h1>Сколько стоит поездка</h1>
+    <p class="lead">Авиабилеты, поезда и отели по городам России и мира — из открытых источников, обновление каждую ночь.</p>
+    <form id="trip-form" class="trip-form" autocomplete="off">
+      <label>Откуда
+        <input id="f-origin" list="dl-cities" placeholder="Москва" value="Москва">
+      </label>
+      <label>Куда
+        <input id="f-dest" list="dl-cities" placeholder="Город или код IATA" required>
+      </label>
+      <label>Туда
+        <input id="f-depart" type="date" required>
+      </label>
+      <label><span>Обратно <span id="f-nights" aria-live="polite"></span></span>
+        <input id="f-return" type="date">
+      </label>
+      <button type="submit" class="cta">Найти варианты</button>
+    </form>
+    <datalist id="dl-cities"></datalist>
+  </div>
 </section>
 
-<nav class="tabs wrap" role="tablist">
-  <a href="#cities" data-tab="cities">Города</a>
-  <a href="#air" data-tab="air">Авиа</a>
-  <a href="#rail" data-tab="rail">Поезда</a>
-  <a href="#hotels" data-tab="hotels">Отели</a>
-  <a href="#total" data-tab="total">Итог</a>
+<nav class="tabs" role="tablist">
+  <div class="wrap tabs-row">
+    <a href="#cities" data-tab="cities">Города</a>
+    <a href="#air" data-tab="air">Авиа</a>
+    <a href="#rail" data-tab="rail">Поезда</a>
+    <a href="#hotels" data-tab="hotels">Отели</a>
+    <a href="#total" data-tab="total">Итог</a>
+  </div>
 </nav>
 
 <main class="wrap">
   <!-- Города -->
   <section id="tab-cities" class="tab">
+    <div class="stats-row" id="c-stats"></div>
     <div class="toolbar">
-      <input id="c-search" type="search" placeholder="Поиск города или страны">
-      <label>Авиа:
-        <select id="c-airmode">
-          <option value="all">все варианты</option>
-          <option value="max1transfer">не более 1 пересадки</option>
-          <option value="direct">только прямые</option>
-        </select>
+      <h2 class="grow">Цены по городам</h2>
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="c-search" type="search" placeholder="Поиск города или страны" aria-label="Поиск города или страны">
       </label>
+      <select id="c-airmode" hidden>
+        <option value="all">все варианты</option>
+        <option value="max1transfer">не более 1 пересадки</option>
+        <option value="direct">только прямые</option>
+      </select>
+      <div class="seg" data-for="c-airmode" role="group" aria-label="Авиа: пересадки">
+        <button type="button" data-value="all">Все рейсы</button>
+        <button type="button" data-value="max1transfer">≤ 1 пересадки</button>
+        <button type="button" data-value="direct">Прямые</button>
+      </div>
       <label class="chk"><input type="checkbox" id="c-abroad-ru" checked> Россия</label>
       <label class="chk"><input type="checkbox" id="c-abroad-x" checked> Зарубеж</label>
     </div>
@@ -82,14 +103,17 @@
   <!-- Авиа -->
   <section id="tab-air" class="tab" hidden>
     <div class="toolbar">
-      <button id="a-search" class="primary" type="button">Найти билеты</button>
-      <label>Пересадки:
-        <select id="a-transfers">
-          <option value="9">любые</option>
-          <option value="1">не более 1</option>
-          <option value="0">только прямые</option>
-        </select>
-      </label>
+      <button id="a-search" class="btn primary" type="button">Найти билеты</button>
+      <select id="a-transfers" hidden>
+        <option value="9">любые</option>
+        <option value="1">не более 1</option>
+        <option value="0">только прямые</option>
+      </select>
+      <div class="seg" data-for="a-transfers" role="group" aria-label="Пересадки">
+        <button type="button" data-value="9">Любые пересадки</button>
+        <button type="button" data-value="1">≤ 1</button>
+        <button type="button" data-value="0">Прямые</button>
+      </div>
       <span class="muted" id="a-status"></span>
     </div>
     <div id="a-flex"></div>
@@ -100,7 +124,7 @@
   <!-- Поезда -->
   <section id="tab-rail" class="tab" hidden>
     <div class="toolbar">
-      <button id="r-search" class="primary" type="button">Показать поезда</button>
+      <button id="r-search" class="btn primary" type="button">Показать поезда</button>
       <label class="chk"><input type="checkbox" id="r-firm"> только фирменные</label>
       <span class="muted" id="r-status"></span>
     </div>
@@ -115,9 +139,12 @@
     <div class="hotels-layout">
       <aside class="filters" id="h-filters">
         <h3>Фильтры</h3>
-        <label>Звёзд не меньше
-          <select id="h-stars"><option value="0">любые</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select>
-        </label>
+        <div class="flabel">Звёзды
+          <select id="h-stars" hidden><option value="0">любые</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select>
+          <div class="seg seg-fill" data-for="h-stars" role="group" aria-label="Звёзд не меньше">
+            <button type="button" data-value="0">все</button><button type="button" data-value="2">2+</button><button type="button" data-value="3">3+</button><button type="button" data-value="4">4+</button><button type="button" data-value="5">5</button>
+          </div>
+        </div>
         <label class="chk"><input type="checkbox" id="h-stars-exact"> только ровно столько звёзд</label>
         <label>Рейтинг не ниже
           <select id="h-rating"><option value="0">любой</option><option value="6">6+</option><option value="7">7+</option><option value="8">8+</option><option value="9">9+</option></select>
@@ -180,10 +207,10 @@
   </section>
 </main>
 
-<footer class="wrap foot">
+<footer class="foot-wrap"><div class="wrap foot">
   Данные: Aviasales Data API (Travelpayouts), Туту, публичная выдача Островка, курсы ЦБ РФ; карта © участники OpenStreetMap.
   Все цены — ориентировочные рыночные, не оферта. Исходный код: <a href="https://github.com/Legpopov/no-rest-boleto">github.com/Legpopov/no-rest-boleto</a>.
-</footer>
+</div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="app.js"></script>

@@ -88,9 +88,12 @@ function renderSnapshot() {
   const age = Math.floor((Date.now() - d) / 864e5);
   const when = d.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Moscow' });
   const cov = S.prices.coverage;
-  el.innerHTML = `${S.demo ? '<span class="demo">демо-данные</span> ' : ''}Снимок цен: <b>${when}</b> МСК` +
-    ` (${age <= 0 ? 'сегодня' : age === 1 ? 'вчера' : `${age} дн. назад`})` +
-    (cov ? ` · авиа ${cov.air}, поезда ${cov.rail}, отели ${cov.hotels} из ${cov.total}` : '');
+  el.innerHTML = `<i class="dot"></i>${S.demo ? '<span class="demo">демо-данные</span> ' : ''}Снимок цен: <b>${when} МСК</b>` +
+    ` · ${age <= 0 ? 'сегодня' : age === 1 ? 'вчера' : `${age} дн. назад`}`;
+  if (cov) {
+    $('#c-stats').innerHTML = [['Городов в снимке', cov.total], ['С ценами на авиа', cov.air], ['С поездами', cov.rail], ['С отелями', cov.hotels]]
+      .map(([t, n]) => `<div class="stat"><div class="stat-t">${t}</div><div class="stat-n">${n}</div></div>`).join('');
+  }
   el.classList.toggle('old', age > 3);
   el.title = 'Время сбора data/prices.json (generated_at). Живой поиск по датам на вкладках «Авиа» и «Поезда» идёт отдельно.';
   const fx = S.prices.fx;
@@ -291,8 +294,8 @@ function renderAir() {
         <div class="right">
           <div class="price">${rub(o.price)}</div>
           <div class="acts">
-            ${o.link ? `<a class="small" href="${esc(o.link)}" target="_blank" rel="noopener">Купить на Aviasales</a>` : ''}
-            <button class="small${picked ? ' on' : ''}" data-pick-flight="${i}" type="button">${picked ? 'В итоге ✓' : 'В итог'}</button>
+            ${o.link ? `<a class="btn buy" href="${esc(o.link)}" target="_blank" rel="noopener">Купить</a>` : ''}
+            <button class="btn tint${picked ? ' on' : ''}" data-pick-flight="${i}" type="button">${picked ? 'В итоге ✓' : 'В итог'}</button>
           </div>
         </div>
       </div>`;
@@ -325,19 +328,19 @@ function renderFlex(F, mode, offers) {
     return `Если ${what} <b>${dm(to)}</b> (${wd(to)}) вместо ${dm(from)} — дешевле на <b>${rub(base - p)}</b> (${rub(p)})`;
   };
   // вылет: меняем только дату вылета
-  const depAlts = shifts.map((k) => addDays(F.depart, k)).filter((d) => d >= todayIso() && (F.one_way || d <= F.return)).map((d) => ({ d, p: price(d, F.return) }));
+  const depAlts = shifts.map((k) => addDays(F.depart, k)).filter((d) => d >= todayIso() && (F.one_way || d < F.return)).map((d) => ({ d, p: price(d, F.return) }));
   const bestDep = depAlts.filter((x) => x.p != null && x.d !== F.depart).sort((a, b) => a.p - b.p)[0];
   if (bestDep && (base == null || bestDep.p < base)) hints.push(fmtHint('вылететь', F.depart, bestDep.d, bestDep.p));
   let retAlts = [], bestRet = null;
   if (!F.one_way) {
-    retAlts = shifts.map((k) => addDays(F.return, k)).filter((r) => r >= F.depart).map((r) => ({ r, p: price(F.depart, r) }));
+    retAlts = shifts.map((k) => addDays(F.return, k)).filter((r) => r > F.depart).map((r) => ({ r, p: price(F.depart, r) }));
     bestRet = retAlts.filter((x) => x.p != null && x.r !== F.return).sort((a, b) => a.p - b.p)[0];
     if (bestRet && (base == null || bestRet.p < base)) hints.push(fmtHint('вернуться', F.return, bestRet.r, bestRet.p));
     // обе даты сразу
     let bestBoth = null;
     for (const a of shifts) for (const b of shifts) {
       const d = addDays(F.depart, a), r = addDays(F.return, b);
-      if (d < todayIso() || r < d) continue;
+      if (d < todayIso() || r <= d) continue;
       const p = price(d, r);
       if (p != null && (!bestBoth || p < bestBoth.p)) bestBoth = { d, r, p };
     }
@@ -367,13 +370,13 @@ function renderFlex(F, mode, offers) {
     const deps = shifts.map((k) => addDays(F.depart, k)).filter((d) => d >= todayIso());
     const rets = shifts.map((k) => addDays(F.return, k));
     const all = [];
-    for (const d of deps) for (const r of rets) if (r >= d) { const p = price(d, r); if (p != null) all.push(p); }
+    for (const d of deps) for (const r of rets) if (r > d) { const p = price(d, r); if (p != null) all.push(p); }
     if (all.length > 2) {
       const mn = Math.min(...all), mx = Math.max(...all);
       const shade = (p) => `hsla(${Math.round(130 - 130 * ((p - mn) / (mx - mn || 1)))}, 70%, 45%, .22)`;
       html += `<details><summary class="muted">Все сочетания дат ±${W} дня (вылет × возврат)</summary><div class="matrix-wrap"><table class="matrix"><tr><th>вылет ↓ / возврат →</th>${rets.map((r) => `<th>${dm(r)} ${wd(r)}</th>`).join('')}</tr>` +
         deps.map((d) => `<tr><th>${dm(d)} ${wd(d)}</th>${rets.map((r) => {
-          const p = r >= d ? price(d, r) : null;
+          const p = r > d ? price(d, r) : null;
           if (p == null) return '<td class="none">—</td>';
           const c = [d === F.depart && r === F.return ? 'cur' : '', p === mn ? 'best' : ''].join(' ');
           return `<td class="${c}" style="background:${shade(p)}" data-both="${d}|${r}">${Math.round(p / 100) / 10}к</td>`;
@@ -549,8 +552,8 @@ function drawHotels() {
       </div>
       <div><div class="price">от ${rub(h.price)}</div>
         <div class="acts" style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap">
-          ${url ? `<a class="small" href="${esc(url)}" target="_blank" rel="noopener">Островок</a>` : ''}
-          <button class="small${picked ? ' on' : ''}" type="button" data-pick-hotel="${esc(h.id)}">${picked ? 'В итоге ✓' : 'В итог'}</button>
+          ${url ? `<a class="btn gray" href="${esc(url)}" target="_blank" rel="noopener">Островок</a>` : ''}
+          <button class="btn tint${picked ? ' on' : ''}" type="button" data-pick-hotel="${esc(h.id)}">${picked ? 'В итоге ✓' : 'В итог'}</button>
         </div></div>
     </div>`;
   }).join('') + (list.length > shown.length ? `<p class="muted">Показаны первые ${shown.length} из ${list.length}.</p>` : '');
@@ -659,7 +662,27 @@ async function main() {
     onTripChange('dates');
   });
   $('#f-return').addEventListener('change', () => onTripChange('dates'));
-  $('#trip-form').addEventListener('submit', (e) => { e.preventDefault(); onTripChange('route'); });
+  $('#trip-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    onTripChange('route');
+    if (!S.dest) return;
+    if (cur === 'cities') location.hash = S.dest.iata ? 'air' : S.dest.express ? 'rail' : 'hotels';
+    if (location.hash === '#air') searchAir();
+    else if (location.hash === '#rail') searchRail();
+  });
+  // переключатели-«таблетки»: кнопки .seg[data-for] управляют скрытым <select>
+  for (const seg of $$('.seg[data-for]')) {
+    const sel = $('#' + seg.dataset.for);
+    const sync = () => $$('button', seg).forEach((b) => b.classList.toggle('on', b.dataset.value === sel.value));
+    seg.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-value]');
+      if (!b) return;
+      sel.value = b.dataset.value;
+      sel.dispatchEvent(new Event('change'));
+      sync();
+    });
+    sync();
+  }
 
   $('#c-search').addEventListener('input', renderCities);
   ['#c-airmode', '#c-abroad-ru', '#c-abroad-x'].forEach((s) => $(s).addEventListener('change', renderCities));
