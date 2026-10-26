@@ -34,15 +34,23 @@ def main() -> None:
             body = {"routes": [{"departureId": str(moscow), "arrivalId": str(to), "departureDate": day, "geoType": "BUS"}],
                     "passengers": {"adultCount": 1, "children": []}, "userData": {"sessionId": sid}, "sessionId": sid,
                     "searchId": str(uuid.uuid4()), "source": "offers"}
-            r = s.post(OFFERS, json=body)
-            txt = r.text
-            try:
-                data = r.json()
-            except ValueError:
-                log.info("%s %s: %s не JSON: %s", city, day, r.status_code, txt[:200])
-                continue
-            blocks = data if isinstance(data, list) else [data]
-            voyages = sum(len(((b.get("dictionary") or {}).get("bus") or {}).get("voyages") or {}) for b in blocks)
+            import time
+            voyages, txt, blocks = 0, "", []
+            for attempt in range(1, 9):
+                r = s.post(OFFERS, json=body)
+                txt = r.text
+                try:
+                    data = r.json()
+                except ValueError:
+                    log.info("%s %s: %s не JSON: %s", city, day, r.status_code, txt[:200])
+                    break
+                blocks = data if isinstance(data, list) else [data]
+                voyages = sum(len(((b.get("dictionary") or {}).get("bus") or {}).get("voyages") or {}) for b in blocks)
+                keys = sorted({k for b in blocks for k in b.keys()})
+                log.info("  попытка %d: рейсов %d, ключи %s, finished=%s", attempt, voyages, keys, [b.get("isFinished", b.get("finished", b.get("status"))) for b in blocks])
+                if voyages:
+                    break
+                time.sleep(2)
             prices = sorted({int(float(m)) for m in __import__("re").findall(r'"(?:amount|total|value)":\s*"?(\d{3,6}(?:\.\d+)?)', txt)})[:12]
             log.info("%s (%s) %s: status %s, частей ответа %d, рейсов %d, похожие цены %s", city, to, day, r.status_code, len(blocks), voyages, prices)
             if voyages and city == cities[0]:
