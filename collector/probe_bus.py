@@ -35,8 +35,11 @@ def main() -> None:
                     "passengers": {"adultCount": 1, "children": []}, "userData": {"sessionId": sid}, "sessionId": sid,
                     "searchId": str(uuid.uuid4()), "source": "offers"}
             import time
+            # как браузер: сначала страница поиска (cookies, сессия)
+            page = s.get("https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_X/", params={"date": f"{day[8:10]}.{day[5:7]}.{day[:4]}", "amount": 1, "from": moscow, "to": to, "travelers": 1})
+            log.info("  страница %s, cookies %s", page.status_code, list(s.cookies.keys())[:8])
             voyages, txt, blocks = 0, "", []
-            for attempt in range(1, 9):
+            for attempt in range(1, 5):
                 r = s.post(OFFERS, json=body)
                 txt = r.text
                 try:
@@ -47,7 +50,8 @@ def main() -> None:
                 blocks = data if isinstance(data, list) else [data]
                 voyages = sum(len(((b.get("dictionary") or {}).get("bus") or {}).get("voyages") or {}) for b in blocks)
                 keys = sorted({k for b in blocks for k in b.keys()})
-                log.info("  попытка %d: рейсов %d, ключи %s, finished=%s", attempt, voyages, keys, [b.get("isFinished", b.get("finished", b.get("status"))) for b in blocks])
+                log.info("  попытка %d: рейсов %d, offers=%s, warnings=%s", attempt, voyages,
+                         str([b.get("offers") for b in blocks])[:200], str([b.get("warnings") for b in blocks])[:400])
                 if voyages:
                     break
                 time.sleep(2)
