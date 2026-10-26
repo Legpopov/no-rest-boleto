@@ -28,3 +28,6 @@ node_modules/
 
 # промежуточные файлы потоков сбора
 data/parts/
+
+# Локальные секреты wrangler (Cloudflare Pages)
+.dev.vars
