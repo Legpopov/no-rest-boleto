@@ -11,7 +11,7 @@ Private Const SH_REF As String = "Справочник"
 Private Const SH_PAR As String = "Параметры цен"
 Private Const SH_LOG As String = "Журнал обновления"
 Private Const FIRST_ROW As Long = 4
-Private Const LAST_ROW As Long = 245          ' строка 246 — средние по РФ (формулы), не трогаем
+Private Const TOTAL_MARK As String = "уточняется"   ' строка средних по РФ (формулы) — таблица заканчивается над ней
 Private Const HEADER_ROW As Long = 2
 Private Const C_COUNTRY As String = "BJ"
 Private Const C_CITY As String = "BK"
@@ -89,6 +89,7 @@ End Function
 ' ======================= основной сценарий =======================
 
 Private Sub RunUpdate()
+    Dim lastRow As Long
     Dim wb As Workbook, ws As Worksheet, wsPar As Worksheet
     Dim calcMode As XlCalculation, startedAt As Date
     Dim data As Object, idx As Object, rates As Object, fxDate As String
@@ -142,9 +143,10 @@ Private Sub RunUpdate()
     Application.Calculation = xlCalculationManual
     EnsureHeaders ws, fxDate
 
-    For r = FIRST_ROW To LAST_ROW
+    lastRow = TableLastRow(ws)
+    For r = FIRST_ROW To lastRow
         If Trim$(CStr(ws.Cells(r, C_CITY).Value)) <> "" Then
-            If r Mod 20 = 0 Then Application.StatusBar = "Обновление цен: строка " & r & " из " & LAST_ROW
+            If r Mod 20 = 0 Then Application.StatusBar = "Обновление цен: строка " & r & " из " & lastRow
             cityStat = ProcessRow(ws, r, idx, rates)
             nCities = nCities + 1
             Select Case cityStat
@@ -235,6 +237,20 @@ Private Function ProcessRow(ws As Worksheet, ByVal r As Long, idx As Object, rat
     Else
         ProcessRow = "none"
     End If
+End Function
+
+' Последняя строка таблицы цен: над строкой «уточняется» (средние по РФ), иначе — последняя заполненная.
+' Так новые города можно вставлять внутрь таблицы без правки макроса.
+Private Function TableLastRow(ws As Worksheet) As Long
+    Dim r As Long, last As Long
+    last = ws.Cells(ws.Rows.Count, C_CITY).End(xlUp).Row
+    For r = FIRST_ROW To last
+        If LCase$(Trim$(CStr(ws.Cells(r, C_CITY).Value))) = TOTAL_MARK Then
+            TableLastRow = r - 1
+            Exit Function
+        End If
+    Next
+    TableLastRow = last
 End Function
 
 Private Sub Tally(ByVal res As String, ByRef nOk As Long, ByRef nSkip As Long)
