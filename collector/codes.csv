@@ -241,3 +241,5 @@ city,country,ostrovok_slug,ostrovok_match,currency,express
 Анадырь,Россия,russia/anadyr,exact,,
 Салехард,Россия,russia/salekhard,exact,,
 Ярославль,Россия,russia/yaroslavl,exact,,2010000
+Донецк,Россия,russia/doneck,exact,RUB,2214000
+Луганск,Россия,russia/buzuluk,fuzzy:Бузулук,,2214200
