@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import statistics as st
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -22,6 +23,13 @@ from .sources import atlas, aviasales, cbr, ostrovok, tutu
 
 HERE = Path(__file__).resolve().parent
 ALL_SOURCES = ("fx", "air", "rail", "bus", "hotels")
+URL_QUERY = re.compile(r"(https?://[^\s?#]+)\?[^\s]*")
+
+
+def public_error(e: Exception) -> str:
+    """Текст ошибки для публичного prices.json: без query-строк URL — в них бывают ключи (apikey=...)."""
+    text = URL_QUERY.sub(r"\1?...", str(e))
+    return f"{type(e).__name__}: {text[:200]}"
 
 
 def quantiles(values: list[float]) -> dict | None:
@@ -253,7 +261,7 @@ def main() -> None:
                 data["updated_at"] = now
             except Exception as e:  # noqa: BLE001
                 log.warning("%s %s: %s", src, c["city"], e)
-                data = {"status": "error", "error": f"{type(e).__name__}: {str(e)[:200]}", "updated_at": now}
+                data = {"status": "error", "error": public_error(e), "updated_at": now}
             # если сегодня неудача, а раньше были данные — сохраняем старые с пометкой
             if data["status"] not in ("ok", "not_needed") and prev.get(src, {}).get("status") == "ok":
                 kept = dict(prev[src])

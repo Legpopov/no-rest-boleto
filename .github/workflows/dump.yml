@@ -8,6 +8,9 @@ on:
         description: "URL через пробел"
         required: true
 
+# Отладка: токен репозитория не нужен (без checkout). Удалить по окончании разработки — см. КОСТЫЛИ.md, п. 3.2.
+permissions: {}
+
 jobs:
   dump:
     runs-on: ubuntu-latest
@@ -22,7 +25,7 @@ jobs:
             curl -sS -L --max-time 40 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" \
               -H "Accept-Language: ru-RU,ru;q=0.9" -o "out/page$i.html" -w "$i %{http_code} %{size_download} $u\n" "$u" || true
           done
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: pages
           path: out/

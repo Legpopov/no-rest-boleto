@@ -10,6 +10,7 @@
 const AVIA_API = 'https://api.travelpayouts.com/aviasales/v3/prices_for_dates';
 const TRAINS_API = 'https://suggest.travelpayouts.com/search';
 const WINDOW = 3;
+const HORIZON = 365;
 const IATA = /^[A-Z]{3}$/;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 const CODE = /^\d{7}$/;
@@ -86,6 +87,8 @@ export async function flights(url, token) {
   if (ret && ret < depart) return json({ error: 'Дата возврата раньше даты вылета' }, 400);
   const today = new Date().toISOString().slice(0, 10);
   if (depart < today) return json({ error: 'Дата вылета уже прошла' }, 400);
+  // дальше года кэш Aviasales пуст; ограничение заодно сужает перебор дат, тратящий лимит токена
+  if ((ret || depart) > addDays(today, HORIZON)) return json({ error: `Даты не дальше ${HORIZON} дней от сегодня` }, 400);
   if (!token) return json({ error: 'На сервере не задан TRAVELPAYOUTS_TOKEN' }, 500);
 
   const oneWay = !ret;
@@ -172,10 +175,15 @@ export async function trains(url) {
 
 // Кэш на границе Cloudflare (Cache API) для Pages Functions: ответы функций Cloudflare сам не кэширует.
 // Срок берётся из s-maxage в Cache-Control ответа; ошибки (no-store) не кэшируются.
-export async function edgeCached(ctx, make) {
+// Ключ кэша — только параметры params (в верхнем регистре): лишние вроде ?x=1 или mow вместо MOW
+// не создают новых записей и не обходят кэш, расходуя лимит токена.
+export async function edgeCached(ctx, make, params) {
   const cache = globalThis.caches?.default;
   if (!cache || ctx.request.method !== 'GET') return make();
-  const key = new Request(ctx.request.url, { method: 'GET' });
+  const url = new URL(ctx.request.url);
+  const canon = new URL(url.origin + url.pathname);
+  for (const p of params) canon.searchParams.set(p, (url.searchParams.get(p) || '').toUpperCase());
+  const key = new Request(canon.toString(), { method: 'GET' });
   try {
     const hit = await cache.match(key);
     if (hit) return hit;
