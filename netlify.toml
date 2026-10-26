@@ -1,9 +1,13 @@
 # Сайт: статика из site/ + функции из netlify/functions.
-# Сборка копирует свежий снимок data/ в site/data/ и строит список городов из collector/*.csv.
+# Данные (data/prices.json, data/hotels/, collector/*.csv) сайт читает прямо с raw.githubusercontent.com,
+# поэтому ночные снимки не требуют пересборки. Сборка копирует data/ в site/data/ — запасной вариант.
 [build]
   publish = "site"
   functions = "netlify/functions"
   command = "node netlify/build-data.mjs"
+  # Пересобирать только при изменении кода сайта: код 0 — сборка пропускается, 1 — идёт.
+  # Без кэша прошлой сборки (первый деплой, сброс кэша) — всегда собирать.
+  ignore = "if [ -z \"$CACHED_COMMIT_REF\" ]; then exit 1; fi; git diff --quiet \"$CACHED_COMMIT_REF\" \"$COMMIT_REF\" -- site/ netlify/ netlify.toml"
 
 [build.environment]
   NODE_VERSION = "20"

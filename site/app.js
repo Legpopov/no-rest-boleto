@@ -4,7 +4,7 @@
 
 const MOSCOW = { city: 'Москва', iata: 'MOW', express: '2000000' };
 const S = {
-  base: 'data/', demo: false, prices: null, cities: [], byId: new Map(), rows: [],
+  dataSrc: '', hotelBases: ['data/'], demo: false, prices: null, cities: [], byId: new Map(), rows: [],
   origin: MOSCOW, dest: null, depart: '', ret: '',
   flights: null, flight: null,
   trains: null, train: { there: null, back: null },
@@ -65,11 +65,72 @@ const isHostel = (h) => /HOSTEL|CAPSULE/.test(kindKey(h.kind));
 const isApart = (h) => h.apart || kindKey(h.kind) === 'APARTMENT';
 
 // ---------- загрузка ----------
+// Данные читаются прямо из репозитория (обновляются ночным сбором без пересборки сайта);
+// копия в site/data/ из сборки Netlify — запасной вариант, если GitHub недоступен.
+const RAW = 'https://raw.githubusercontent.com/Legpopov/no-rest-boleto/main/';
+const DATA_BASES = [RAW + 'data/', 'data/'];
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [], cell = '', q = false;
+  text = text.replace(/^\uFEFF/, '');
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (ch === '"') q = false; else cell += ch;
+    } else if (ch === '"') q = true;
+    else if (ch === ',') { row.push(cell); cell = ''; }
+    else if (ch === '\n' || ch === '\r') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell); rows.push(row); row = []; cell = '';
+    } else cell += ch;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  const [head, ...body] = rows.filter((r) => r.length > 1 || r[0]);
+  return body.map((r) => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ''])));
+}
+async function getText(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.text();
+}
+// Список городов из collector/cities.csv + codes.csv; id c000.. = номер строки cities.csv, как в collector/collect.py
+async function loadCitiesFromRepo() {
+  const [citiesCsv, codesCsv] = await Promise.all([getText(RAW + 'collector/cities.csv'), getText(RAW + 'collector/codes.csv').catch(() => '')]);
+  const codes = new Map(parseCsv(codesCsv || 'city\n').map((r) => [`${r.city}|${r.country}`, r]));
+  const list = parseCsv(citiesCsv).map((c, i) => {
+    const k = codes.get(`${c.city}|${c.country}`) || {};
+    return {
+      id: `c${String(i).padStart(3, '0')}`, city: c.city, country: c.country, region: c.region, abroad: c.abroad === '1',
+      country_code: c.country_code, iata: c.iata || null, express: k.express || null, slug: k.ostrovok_slug || null,
+      lat: c.lat ? Number(c.lat) : null, lon: c.lon ? Number(c.lon) : null,
+    };
+  });
+  if (!list.length) throw new Error('пустой список городов');
+  return list;
+}
+async function firstOk(loaders) {
+  let err;
+  for (const [src, fn] of loaders) {
+    try { return { src, value: await fn() }; } catch (e) { err = e; }
+  }
+  throw err;
+}
 async function loadData() {
-  let prices;
-  try { prices = await getJson('data/prices.json'); } catch { S.base = 'sample/'; S.demo = true; prices = await getJson('sample/prices.json'); }
-  let cities;
-  try { cities = await getJson(S.base + 'cities.json'); } catch { cities = await getJson('sample/cities.json'); }
+  const p = await firstOk([
+    ['github', () => getJson(DATA_BASES[0] + 'prices.json')],
+    ['site', () => getJson(DATA_BASES[1] + 'prices.json')],
+    ['sample', () => getJson('sample/prices.json')],
+  ]);
+  S.dataSrc = p.src;
+  S.demo = p.src === 'sample';
+  S.hotelBases = p.src === 'github' ? DATA_BASES : p.src === 'site' ? [DATA_BASES[1]] : ['sample/'];
+  const c = await firstOk([
+    ['github', loadCitiesFromRepo],
+    ['site', () => getJson('data/cities.json')],
+    ['sample', () => getJson('sample/cities.json')],
+  ]);
+  const prices = p.value, cities = c.value;
   S.prices = prices;
   S.cities = cities;
   for (const c of cities) S.byId.set(c.id, c);
@@ -95,7 +156,7 @@ function renderSnapshot() {
       .map(([t, n]) => `<div class="stat"><div class="stat-t">${t}</div><div class="stat-n">${n}</div></div>`).join('');
   }
   el.classList.toggle('old', age > 3);
-  el.title = 'Время сбора data/prices.json (generated_at). Живой поиск по датам на вкладках «Авиа» и «Поезда» идёт отдельно.';
+  el.title = `Время сбора data/prices.json (generated_at), источник: ${{ github: 'репозиторий на GitHub', site: 'копия на сайте', sample: 'демо-данные' }[S.dataSrc]}. Живой поиск по датам на вкладках «Авиа» и «Поезда» идёт отдельно.`;
   const fx = S.prices.fx;
   if (fx && fx.rates) {
     $('#c-fx').textContent = `Курсы ЦБ РФ на ${fx.date}: ` + ['USD', 'EUR', 'CNY', 'TRY', 'AED', 'KZT'].filter((k) => fx.rates[k]).map((k) => `${k} ${fx.rates[k].toLocaleString('ru-RU', { maximumFractionDigits: 4 })} ₽`).join(' · ');
@@ -480,7 +541,7 @@ async function loadHotels() {
   S.hotelsMeta = null;
   $('#h-note').textContent = 'загружаем отели…';
   try {
-    const j = await getJson(`${S.base}hotels/${c.id}.json`);
+    const { value: j } = await firstOk(S.hotelBases.map((b) => [b, () => getJson(`${b}hotels/${c.id}.json`)]));
     S.hotels = j.hotels || [];
     S.hotelsMeta = j;
   } catch {
