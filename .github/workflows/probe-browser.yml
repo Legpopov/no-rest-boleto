@@ -10,6 +10,9 @@ on:
       match:
         description: "Подстрока адреса запросов, которые сохранять"
         default: "api"
+      click:
+        description: "CSS-селектор, по которому кликнуть после загрузки (необязательно)"
+        default: ""
 
 jobs:
   probe:
@@ -23,11 +26,12 @@ jobs:
         env:
           URL: ${{ inputs.url }}
           MATCH: ${{ inputs.match }}
+          CLICK: ${{ inputs.click }}
         run: |
           cat > cap.py <<'EOF'
           import asyncio, json, os
           from playwright.async_api import async_playwright
-          URL, MATCH = os.environ["URL"], os.environ["MATCH"]
+          URL, MATCH, CLICK = os.environ["URL"], os.environ["MATCH"], os.environ.get("CLICK", "")
           out = []
           async def main():
               async with async_playwright() as p:
@@ -42,7 +46,19 @@ jobs:
                                       "status": r.status, "req_headers": dict(req.headers), "resp": body})
                   pg.on("response", lambda r: asyncio.ensure_future(on_resp(r)))
                   await pg.goto(URL, wait_until="networkidle", timeout=90000)
-                  await pg.wait_for_timeout(8000)
+                  await pg.wait_for_timeout(5000)
+                  if CLICK:
+                      try:
+                          await pg.locator(CLICK).first.click(timeout=15000)
+                          await pg.wait_for_timeout(4000)
+                          # если открылся календарь — кликнуть первый доступный день
+                          for sel in ['[data-ti*="day"]:not([disabled])', '[class*="day"]:not([class*="disabled"])', 'td button:not([disabled])']:
+                              if await pg.locator(sel).count():
+                                  await pg.locator(sel).nth(10).click(timeout=5000); break
+                          await pg.wait_for_timeout(10000)
+                      except Exception as e:
+                          print("click error:", e)
+                  print("FINAL URL:", pg.url)
                   await b.close()
           asyncio.run(main())
           json.dump(out, open("capture.json", "w"), ensure_ascii=False, indent=1)
