@@ -39,6 +39,7 @@ Private Const K_H_RATING As String = "Отель: рейтинг не меньше"
 Private Const K_H_DIST As String = "Отель: до центра не дальше, км"
 Private Const K_H_APART As String = "Отель: исключить апартаменты"
 Private Const K_H_KINDS As String = "Отель: исключить типы размещения"
+Private Const K_H_NOSTAR As String = "Отель: города без фильтра звёзд и рейтинга"
 Private Const K_FRESH As String = "Предупреждать, если снимок старше, дней"
 Private Const K_ACCEPT As String = "Критерий приёмки, % городов"
 Private Const K_BACKUP As String = "Бэкап файла перед обновлением, хранить копий"
@@ -54,6 +55,7 @@ Private Const O_TOTAL As String = "Итог"
 Private Const O_DATES As String = "Даты расчёта"
 Private Const DATES_TAG As String = " (на даты "    ' начало приписки к заголовкам в режиме дат
 
+Private Const BUS_TAG As String = "(автобус)"   ' пометка в числовом формате ЖД-ячеек, когда записан автобус
 Private Const SKIP_COLOR As Long = 10092543    ' RGB(255, 255, 153) — светло-жёлтый «пропуск»
 
 ' результаты по полю
@@ -326,17 +328,16 @@ Private Function DoRail(ws As Worksheet, ByVal r As Long, place As String, city 
     End If
     st = CStr(JGet(blk, "status"))
     If st = "no_station" Then
-        LogLine r, place, city, "ЖД", R_NA, Empty, "нет ж/д станции в данных"
-        DoRail = R_NA
+        DoRail = RailOrBus(ws, r, place, city, c, R_NA, "нет ж/д станции в данных")
         Exit Function
     End If
     why = BlockProblem(blk)
-    If why <> "" Then DoRail = Skip(rng, r, place, city, "ЖД", why): Exit Function
+    If why <> "" Then DoRail = RailOrBus(ws, r, place, city, c, R_SKIP, why): Exit Function
 
     nT = RailFares(JGet(blk, "there"), there)
     nB = RailFares(JGet(blk, "back"), back)
     If nT = 0 Or nB = 0 Then
-        DoRail = Skip(rng, r, place, city, "ЖД", "нет мест допустимых классов (туда: " & nT & ", обратно: " & nB & ")")
+        DoRail = RailOrBus(ws, r, place, city, c, R_SKIP, "нет мест допустимых классов (туда: " & nT & ", обратно: " & nB & ")")
         Exit Function
     End If
     q = PNum(K_RAIL_Q)
@@ -344,11 +345,92 @@ Private Function DoRail(ws As Worksheet, ByVal r As Long, place As String, city 
     maxV = WorksheetFunction.Percentile(there, q) + WorksheetFunction.Percentile(back, q)
     ws.Cells(r, C_RAIL_AVG).Value = Round(avgV, 0)
     ws.Cells(r, C_RAIL_MAX).Value = Round(maxV, 0)
+    SetBusFormat ws, r, False
     MarkOk rng
     LogLine r, place, city, "ЖД сред.", R_OK, Round(avgV, 0), "медиана туда+обратно; тарифов " & nT & "/" & nB & AgeNote(blk)
     LogLine r, place, city, "ЖД макс.", R_OK, Round(maxV, 0), "перцентиль " & q & " туда+обратно"
     DoRail = R_OK
 End Function
+
+' Поезда нет: если есть автобус (bus.status = ok) — пишем его в колонки ЖД с пометкой «(автобус)» в формате ячейки;
+' иначе — прежний исход для ЖД (пропуск с жёлтой заливкой или «не применимо»).
+Private Function RailOrBus(ws As Worksheet, ByVal r As Long, place As String, city As String, c As Object, _
+                           ByVal failRes As String, ByVal railWhy As String) As String
+    Dim blk As Variant, there() As Double, back() As Double, nT As Long, nB As Long, q As Double
+    Dim avgV As Double, maxV As Double, rng As Range, busWhy As String, how As String
+    Set rng = ws.Range(ws.Cells(r, C_RAIL_AVG), ws.Cells(r, C_RAIL_MAX))
+    If IsObject(JGet(c, "bus")) Then Set blk = JGet(c, "bus")
+    If IsObject(blk) Then
+        busWhy = BlockProblem(blk)
+        If busWhy = "" Then
+            nT = BusFares(JGet(blk, "there"), there)
+            nB = BusFares(JGet(blk, "back"), back)
+            If nT = 0 Then busWhy = "нет рейсов туда"
+        End If
+        If busWhy = "" Then
+            q = PNum(K_RAIL_Q)
+            If nB > 0 Then
+                avgV = WorksheetFunction.Median(there) + WorksheetFunction.Median(back)
+                maxV = WorksheetFunction.Percentile(there, q) + WorksheetFunction.Percentile(back, q)
+                how = "медиана туда+обратно; рейсов " & nT & "/" & nB
+            Else
+                avgV = 2 * WorksheetFunction.Median(there)
+                maxV = 2 * WorksheetFunction.Percentile(there, q)
+                how = "обратных рейсов нет — туда x2; рейсов " & nT
+            End If
+            ws.Cells(r, C_RAIL_AVG).Value = Round(avgV, 0)
+            ws.Cells(r, C_RAIL_MAX).Value = Round(maxV, 0)
+            SetBusFormat ws, r, True
+            MarkOk rng
+            LogLine r, place, city, "ЖД сред.", R_OK, Round(avgV, 0), "ЖД: автобус (нет поезда: " & railWhy & "); " & how & AgeNote(blk)
+            LogLine r, place, city, "ЖД макс.", R_OK, Round(maxV, 0), "автобус, перцентиль " & q & IIf(nB > 0, " туда+обратно", " туда x2")
+            RailOrBus = R_OK
+            Exit Function
+        End If
+        If CStr(Nz(JGet(blk, "status"))) <> "not_needed" Then railWhy = railWhy & "; автобус: " & busWhy
+    End If
+    If failRes = R_NA Then
+        LogLine r, place, city, "ЖД", R_NA, Empty, railWhy
+        RailOrBus = R_NA
+    Else
+        RailOrBus = Skip(rng, r, place, city, "ЖД", railWhy)
+    End If
+End Function
+
+' Цены автобусов из списка рейсов [название, часов, цена RUB].
+Private Function BusFares(ByVal trips As Variant, ByRef out() As Double) As Long
+    Dim i As Long, t As Variant, cnt As Long
+    ReDim out(0 To 0)
+    If Not IsArray(trips) Then Exit Function
+    For i = 0 To UBound(trips)
+        t = trips(i)
+        If IsArray(t) Then
+            If UBound(t) >= 2 Then
+                If NumOr(t(2), 0) > 0 Then
+                    If cnt > UBound(out) Then ReDim Preserve out(0 To 2 * cnt + 1)
+                    out(cnt) = t(2)
+                    cnt = cnt + 1
+                End If
+            End If
+        End If
+    Next
+    If cnt > 0 Then ReDim Preserve out(0 To cnt - 1)
+    BusFares = cnt
+End Function
+
+' Пометка «(автобус)» — только числовым форматом, значение остаётся числом (для средних в итоговой строке).
+' Для обычного ЖД возвращается формат соседней колонки авиа той же строки.
+Private Sub SetBusFormat(ws As Worksheet, ByVal r As Long, ByVal isBus As Boolean)
+    Dim col As Variant, cell As Range
+    For Each col In Array(C_RAIL_AVG, C_RAIL_MAX)
+        Set cell = ws.Cells(r, col)
+        If isBus Then
+            cell.NumberFormat = "#,##0"" " & BUS_TAG & """"
+        ElseIf InStr(cell.NumberFormat, BUS_TAG) > 0 Then
+            cell.NumberFormat = ws.Cells(r, C_AIR_MAX).NumberFormat
+        End If
+    Next
+End Sub
 
 ' Цены допустимых классов из списка поездов [номер, фирменный 0/1, часы, {класс: цена}].
 Private Function RailFares(ByVal trains As Variant, ByRef out() As Double) As Long
@@ -433,7 +515,10 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
     Dim blk As Variant, why As String, items As Variant, it As Variant, i As Long
     Dim total As Long, nPass As Long, sumP As Double, maxP As Double, avgP As Double
     Dim rng As Range, rubFormula As Boolean, foreign As Boolean, dateNote As String
+    Dim noStar As Boolean
     Set rng = ws.Range(ws.Cells(r, C_HOT_RUB), ws.Cells(r, C_HOT_MAX))
+    noStar = CityInParam(city, K_H_NOSTAR)
+    If noStar Then dateNote = "без фильтра звёзд/рейтинга"
 
     If IsObject(JGet(c, "hotels")) Then Set blk = JGet(c, "hotels")
     If Not IsObject(blk) Then
@@ -444,7 +529,9 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
     If why <> "" Then DoHotel = SkipHotel(ws, r, place, city, why): Exit Function
 
     If gDateMode Then
-        items = PickHotelWindow(JGet(blk, "dated"), dateNote)
+        Dim winNote As String
+        items = PickHotelWindow(JGet(blk, "dated"), winNote)
+        dateNote = JoinNote(dateNote, winNote)
         If IsArray(items) Then nHotDated = nHotDated + 1 Else nHotUndated = nHotUndated + 1
     End If
     If Not IsArray(items) Then items = JGet(blk, "items")
@@ -453,7 +540,7 @@ Private Function DoHotel(ws As Worksheet, ByVal r As Long, place As String, city
         it = items(i)
         If IsArray(it) Then
             total = total + 1
-            If HotelPasses(it, abroad) Then
+            If HotelPasses(it, abroad, noStar) Then
                 nPass = nPass + 1
                 sumP = sumP + it(0)
                 If it(0) > maxP Then maxP = it(0)
@@ -511,7 +598,8 @@ Private Function SkipHotel(ws As Worksheet, ByVal r As Long, place As String, ci
 End Function
 
 ' Отель: [цена/ночь RUB, звёзды, рейтинг, расстояние м, тип, апартаменты 0/1]
-Private Function HotelPasses(it As Variant, ByVal abroad As Boolean) As Boolean
+' noStar = True — для города из списка «без фильтра звёзд и рейтинга»: эти два фильтра не применяются.
+Private Function HotelPasses(it As Variant, ByVal abroad As Boolean, ByVal noStar As Boolean) As Boolean
     Dim kinds As Variant, j As Long, kind As String
     If UBound(it) < 5 Then Exit Function
     If Not IsNumeric(it(0)) Or IsNull(it(0)) Then Exit Function
@@ -521,8 +609,10 @@ Private Function HotelPasses(it As Variant, ByVal abroad As Boolean) As Boolean
     Else
         If PEnabled(K_H_LIM_RU) Then If it(0) > PNum(K_H_LIM_RU) Then Exit Function
     End If
-    If PEnabled(K_H_STARS) Then If NumOr(it(1), -1) < PNum(K_H_STARS) Then Exit Function
-    If PEnabled(K_H_RATING) Then If NumOr(it(2), -1) < PNum(K_H_RATING) Then Exit Function
+    If Not noStar Then
+        If PEnabled(K_H_STARS) Then If NumOr(it(1), -1) < PNum(K_H_STARS) Then Exit Function
+        If PEnabled(K_H_RATING) Then If NumOr(it(2), -1) < PNum(K_H_RATING) Then Exit Function
+    End If
     If PEnabled(K_H_DIST) Then
         If NumOr(it(3), -1) < 0 Then Exit Function
         If it(3) > PNum(K_H_DIST) * 1000 Then Exit Function
@@ -574,7 +664,21 @@ Private Function DatesText() As String
 End Function
 
 Private Function DateNoteText(ByVal note As String) As String
-    If note <> "" Then DateNoteText = "; опорная дата: " & note
+    If note <> "" Then DateNoteText = "; " & note
+End Function
+
+Private Function JoinNote(ByVal a As String, ByVal b As String) As String
+    If a <> "" And b <> "" Then JoinNote = a & "; " & b Else JoinNote = a & b
+End Function
+
+' Город есть в списке параметра (через запятую или «;», без учёта регистра и «ё»). Параметр может отсутствовать.
+Private Function CityInParam(ByVal city As String, ByVal k As String) As Boolean
+    Dim lst As Variant, i As Long
+    If Not prm.Exists(k) Or Not PEnabled(k) Then Exit Function
+    lst = Split(Replace(CStr(PVal(k)), ";", ","), ",")
+    For i = 0 To UBound(lst)
+        If NormKey(CStr(lst(i))) <> "" And NormKey(CStr(lst(i))) = NormKey(city) Then CityInParam = True: Exit Function
+    Next
 End Function
 
 ' Допуск в днях; если параметр выключен — без ограничения.
@@ -621,13 +725,13 @@ Private Function PickAirWeek(ByVal byWeek As Variant, ByRef med As Variant, ByRe
         Next
     End If
     If bi < 0 Then
-        note = "в данных нет цен по неделям — взята медиана за весь период"
+        note = "опорная дата: в данных нет цен по неделям — взята медиана за весь период"
     ElseIf best > tol Then
-        note = "ближайшая неделя с ценами в " & best & " дн. от даты (допуск " & tol & ") — взята медиана за весь период"
+        note = "опорная дата: ближайшая неделя с ценами в " & best & " дн. от даты (допуск " & tol & ") — взята медиана за весь период"
     Else
         w = byWeek(bi)
         med = w(2): p90 = w(3)
-        note = "авиа: неделя с " & Format(IsoDay(w(0)), "dd.mm") & IIf(best > 0, " (±" & best & " дн.)", "") & _
+        note = "опорная дата: авиа, неделя с " & Format(IsoDay(w(0)), "dd.mm") & IIf(best > 0, " (±" & best & " дн.)", "") & _
                ", вариантов " & Nz(w(1))
         PickAirWeek = True
     End If
@@ -653,13 +757,13 @@ Private Function PickHotelWindow(ByVal dated As Variant, ByRef note As String) A
         Next
     End If
     If bi < 0 Then
-        note = "в данных нет цен на даты заезда — взяты цены без даты"
+        note = "опорная дата: в данных нет цен на даты заезда — взяты цены без даты"
     ElseIf best > tol Then
-        note = "ближайший заезд в " & best & " дн. от даты (допуск " & tol & ") — взяты цены без даты"
+        note = "опорная дата: ближайший заезд в " & best & " дн. от даты (допуск " & tol & ") — взяты цены без даты"
     Else
         Set w = dated(bi)
         ci = IsoDay(JGet(w, "checkin"))
-        note = "отель: опорный заезд " & Format(ci, "dd.mm") & ", ночей " & Nz(JGet(w, "nights")) & ", " & ShiftText(ci - gDep)
+        note = "опорная дата: отель, заезд " & Format(ci, "dd.mm") & ", ночей " & Nz(JGet(w, "nights")) & ", " & ShiftText(ci - gDep)
         PickHotelWindow = JGet(w, "items")
     End If
 End Function
