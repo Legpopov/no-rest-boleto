@@ -43,7 +43,9 @@ def main() -> None:
             rec = dict(prev.get(key) or {"city": c["city"], "country": c["country"]})
             name = c["city"].split(",")[0]
             ov = overrides.get(c["city"], {})
-            if ov.get("ostrovok_slug"):
+            if ov.get("ostrovok_slug") == "none":  # города нет на Островке — не искать
+                rec.update(ostrovok_slug="", ostrovok_match="none")
+            elif ov.get("ostrovok_slug"):
                 rec.update(ostrovok_slug=ov["ostrovok_slug"], ostrovok_match="override")
             elif rec.get("ostrovok_match") != "exact":
                 try:
