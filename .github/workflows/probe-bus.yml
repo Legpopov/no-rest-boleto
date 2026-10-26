@@ -1,0 +1,21 @@
+name: probe-bus
+on:
+  workflow_dispatch:
+    inputs:
+      cities:
+        default: "Донецк,Луганск,Брянск"
+      dates:
+        default: "2026-11-10,2026-11-17"
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - env:
+          CITIES: ${{ inputs.cities }}
+          DATES: ${{ inputs.dates }}
+        run: python -m collector.probe_bus "$CITIES" "$DATES"
