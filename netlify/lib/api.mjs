@@ -175,14 +175,15 @@ export async function trains(url) {
 
 // Кэш на границе Cloudflare (Cache API) для Pages Functions: ответы функций Cloudflare сам не кэширует.
 // Срок берётся из s-maxage в Cache-Control ответа; ошибки (no-store) не кэшируются.
-// Ключ кэша — только параметры params (в верхнем регистре): лишние вроде ?x=1 или mow вместо MOW
+// Ключ кэша — только параметры params { имя: значение по умолчанию } в верхнем регистре:
+// лишние вроде ?x=1, mow вместо MOW или явный origin=MOW вместо пропущенного
 // не создают новых записей и не обходят кэш, расходуя лимит токена.
 export async function edgeCached(ctx, make, params) {
   const cache = globalThis.caches?.default;
   if (!cache || ctx.request.method !== 'GET') return make();
   const url = new URL(ctx.request.url);
   const canon = new URL(url.origin + url.pathname);
-  for (const p of params) canon.searchParams.set(p, (url.searchParams.get(p) || '').toUpperCase());
+  for (const [p, dflt] of Object.entries(params)) canon.searchParams.set(p, (url.searchParams.get(p) || dflt).toUpperCase());
   const key = new Request(canon.toString(), { method: 'GET' });
   try {
     const hit = await cache.match(key);

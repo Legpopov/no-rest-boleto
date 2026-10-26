@@ -3,4 +3,4 @@
 import { flights, edgeCached } from '../../netlify/lib/api.mjs';
 
 export const onRequest = (ctx) => edgeCached(ctx, () => flights(new URL(ctx.request.url), ctx.env.TRAVELPAYOUTS_TOKEN),
-  ['origin', 'destination', 'depart', 'return']);
+  { origin: 'MOW', destination: '', depart: '', return: '' });
