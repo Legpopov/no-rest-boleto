@@ -27,6 +27,7 @@ jobs:
           URL: ${{ inputs.url }}
           MATCH: ${{ inputs.match }}
           CLICK: ${{ inputs.click }}
+          WAIT_MS: "25000"
         run: |
           cat > cap.py <<'EOF'
           import asyncio, json, os
@@ -46,7 +47,7 @@ jobs:
                                       "status": r.status, "req_headers": dict(req.headers), "resp": body})
                   pg.on("response", lambda r: asyncio.ensure_future(on_resp(r)))
                   await pg.goto(URL, wait_until="networkidle", timeout=90000)
-                  await pg.wait_for_timeout(5000)
+                  await pg.wait_for_timeout(int(os.environ.get("WAIT_MS", "5000")))
                   if CLICK:
                       try:
                           await pg.locator(CLICK).first.click(timeout=15000)
