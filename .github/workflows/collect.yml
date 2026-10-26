@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
     inputs:
       sources:
-        description: "Источники через запятую (fx,air,rail,hotels)"
-        default: "fx,air,rail,hotels"
+        description: "Источники через запятую (fx,air,rail,bus,hotels)"
+        default: "fx,air,rail,bus,hotels"
       cities:
         description: "Города через запятую (пусто = все)"
         default: ""
@@ -39,7 +39,7 @@ jobs:
         env:
           TRAVELPAYOUTS_TOKEN: ${{ secrets.TRAVELPAYOUTS_TOKEN }}
           YANDEX_RASP_KEY: ${{ secrets.YANDEX_RASP_KEY }}
-          SOURCES: ${{ inputs.sources || 'fx,air,rail,hotels' }}
+          SOURCES: ${{ inputs.sources || 'fx,air,rail,bus,hotels' }}
           CITIES: ${{ inputs.cities || '' }}
         run: |
           python -m collector.collect --sources "$SOURCES" --cities "$CITIES" \

@@ -18,10 +18,10 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from .common import DATA_DIR, PoliteSession, env, log, setup_logging
-from .sources import aviasales, cbr, ostrovok, tutu
+from .sources import atlas, aviasales, cbr, ostrovok, tutu
 
 HERE = Path(__file__).resolve().parent
-ALL_SOURCES = ("fx", "air", "rail", "hotels")
+ALL_SOURCES = ("fx", "air", "rail", "bus", "hotels")
 
 
 def quantiles(values: list[float]) -> dict | None:
@@ -98,6 +98,18 @@ def collect_rail(s: PoliteSession, c: dict) -> dict:
     # компактно: [номер, фирменный 0/1, часы, {класс: цена}]
     pack = lambda ts: [[t["train"], int(t["firm"]), t["hours"], t["classes"]] for t in ts]  # noqa: E731
     return {"status": "ok", "station": code, "there": pack(there), "back": pack(back)}
+
+
+def collect_bus(s: PoliteSession, c: dict, rail: dict | None) -> dict:
+    """Автобус — только для городов РФ, куда нет поезда (замена ЖД)."""
+    if c["abroad"] == "1" or c.get("iata") == "MOW":
+        return {"status": "not_needed"}
+    if (rail or {}).get("status") == "ok" and (rail.get("there") or rail.get("back")):
+        return {"status": "not_needed"}
+    res = atlas.trips(s, c["city"].split(",")[0])
+    if not res["there"] and not res["back"]:
+        return {"status": "empty", "source": "atlasbus"}
+    return {"status": "ok", "source": "atlasbus", **res}
 
 
 def pack_items(hotels: list[dict]) -> list[list]:
@@ -196,6 +208,7 @@ def main() -> None:
     months = aviasales.months_ahead(args.months)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     s_air, s_rail, s_hot = PoliteSession(0.3, 0.6), PoliteSession(0.8, 1.5), PoliteSession(1.5, 3.0)
+    s_bus = PoliteSession(1.0, 2.0)
     # в режиме потоков файлы отелей пишутся рядом с файлом потока — только свои города
     hotels_dir = (out_path.parent / "hotels") if args.of > 1 else (DATA_DIR / "hotels")
     hotels_dir.mkdir(parents=True, exist_ok=True)
@@ -221,6 +234,7 @@ def main() -> None:
         for src, fn in (
             ("air", lambda: collect_air(s_air, c, months)),
             ("rail", lambda: collect_rail(s_rail, c)),
+            ("bus", lambda: collect_bus(s_bus, c, row.get("rail") or prev.get("rail"))),
             ("hotels", lambda: collect_hotels(s_hot, c, args.hotel_pages, windows, args.hotel_nights)),
         ):
             if src not in sources:
@@ -241,14 +255,15 @@ def main() -> None:
                 log.warning("%s %s: %s", src, c["city"], e)
                 data = {"status": "error", "error": f"{type(e).__name__}: {str(e)[:200]}", "updated_at": now}
             # если сегодня неудача, а раньше были данные — сохраняем старые с пометкой
-            if data["status"] != "ok" and prev.get(src, {}).get("status") == "ok":
+            if data["status"] not in ("ok", "not_needed") and prev.get(src, {}).get("status") == "ok":
                 kept = dict(prev[src])
                 kept["stale"] = True
                 kept["last_attempt"] = {"at": now, "status": data["status"]}
                 data = kept
             row[src] = data
-        log.info("[%d/%d] %s: air=%s rail=%s hotels=%s", n, len(cities), c["city"],
-                 row.get("air", {}).get("status"), row.get("rail", {}).get("status"), row.get("hotels", {}).get("status"))
+        log.info("[%d/%d] %s: air=%s rail=%s bus=%s hotels=%s", n, len(cities), c["city"],
+                 row.get("air", {}).get("status"), row.get("rail", {}).get("status"), row.get("bus", {}).get("status"),
+                 row.get("hotels", {}).get("status"))
         rows.append(row)
 
     if args.of > 1:
@@ -265,7 +280,7 @@ def main() -> None:
     rows.sort(key=lambda r: r["id"])
     result["cities"] = rows
     result["coverage"] = {
-        src: sum(1 for r in rows if r.get(src, {}).get("status") == "ok" and not r[src].get("stale")) for src in ("air", "rail", "hotels")
+        src: sum(1 for r in rows if r.get(src, {}).get("status") == "ok" and not r[src].get("stale")) for src in ("air", "rail", "bus", "hotels")
     }
     result["coverage"]["total"] = len(rows)
     out_path.parent.mkdir(parents=True, exist_ok=True)

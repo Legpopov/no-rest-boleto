@@ -20,7 +20,7 @@ def main() -> None:
     if not parts:
         raise SystemExit("нет файлов потоков")
     for p in parts:
-        srcs = [s for s in p.get("sources", ["air", "rail", "hotels"]) if s in ("air", "rail", "hotels")]
+        srcs = [s for s in p.get("sources", ["air", "rail", "bus", "hotels"]) if s in ("air", "rail", "bus", "hotels")]
         for c in p["cities"]:
             if c["id"] not in cities:
                 cities[c["id"]] = c
@@ -38,7 +38,7 @@ def main() -> None:
     rows = sorted(cities.values(), key=lambda r: r["id"])
     result["cities"] = rows
     result["coverage"] = {
-        src: sum(1 for r in rows if r.get(src, {}).get("status") == "ok" and not r[src].get("stale")) for src in ("air", "rail", "hotels")
+        src: sum(1 for r in rows if r.get(src, {}).get("status") == "ok" and not r[src].get("stale")) for src in ("air", "rail", "bus", "hotels")
     }
     result["coverage"]["total"] = len(rows)
     result["coverage"]["hotels_dated"] = sum(1 for r in rows if (r.get("hotels") or {}).get("dated"))
