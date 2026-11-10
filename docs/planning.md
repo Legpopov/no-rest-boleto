@@ -1,8 +1,9 @@
 # Planning calculation contract
 
-`collector.planning` provides calculation primitives; it is not yet connected to
-the workbook or the source archive. Source calibration and workbook integration
-must supply the inputs below before an end-to-end estimate is available.
+`collector.planning` provides calculation primitives.
+`collector.planning_catalog` publishes matched source fares to `data/planning.json`;
+`excel/modPlanning.bas` connects these to the existing trip sheet. Workbook
+installation and present coverage limitations are documented in `excel/README.md`.
 
 - `semester_months(year, cohort, semester, Calendar(...))` resolves calendar months.
   The editable calendar defaults to September–January and February–June.
@@ -28,3 +29,12 @@ per-person quantities, transit stays and expense-category aggregation belong to
 the integration layer, and must not be inferred from transport prices.
 
 Run checks with `python -m unittest discover -s tests -v`.
+
+The Excel scenario repeats the individual route/month 2025–2026 reference rate
+in each year after 2026. This explicit scenario is distinct from the primitive
+API, which accepts an independently sourced index for each year. The catalog
+contains only matched, unambiguous one-way RUB references with source links.
+There is currently no calibrated peer/official fallback in the Excel catalog.
+Unknown semester months propagate `#N/A` into dependent budget sums rather than
+being silently treated as zero or averaged away. Known zero hotel nights are a
+valid zero expense; missing prices are not.

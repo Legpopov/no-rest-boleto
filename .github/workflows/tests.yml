@@ -1,10 +1,10 @@
 name: tests
 on:
   pull_request:
-    paths: ['collector/**', 'tests/**', '.github/workflows/tests.yml']
+    paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning.json', 'data/research/**', '.github/workflows/tests.yml']
   push:
     branches: ['fix/sem-route-planning']
-    paths: ['collector/**', 'tests/**', '.github/workflows/tests.yml']
+    paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning.json', 'data/research/**', '.github/workflows/tests.yml']
 permissions:
   contents: read
 jobs:
