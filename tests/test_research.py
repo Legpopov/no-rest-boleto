@@ -17,6 +17,22 @@ class ResearchTests(unittest.TestCase):
     def test_repeat_is_idempotent(self):
         self.assertEqual(route_quotes(HTML,SOURCE),route_quotes(HTML,SOURCE))
 
+    def test_caption_variant_does_not_inherit_previous_origin(self):
+        other=HTML.replace('Минимальная стоимость билетов из Москвы','Стоимость билетов из Казани')
+        rows,_=route_quotes(HTML+other,SOURCE)
+        self.assertEqual([r['origin'] for r in rows],['Москва','Москва','Казань','Казань'])
+
+    def test_short_caption_is_bound_to_its_own_origin(self):
+        other=HTML.replace('Минимальная стоимость билетов из Москвы','Из Калининграда')
+        rows,_=route_quotes(HTML+other,SOURCE)
+        self.assertEqual(rows[-1]['origin'],'Калининград')
+
+    def test_city_case_and_reference_month_exception(self):
+        other=HTML.replace('Санкт-Петербург (3 мая)','Минеральные воды (2 апреля)')
+        rows,_=route_quotes(other,SOURCE)
+        self.assertEqual(rows[0]['destination'],'Минеральные Воды')
+        self.assertEqual(rows[0]['travel_month'],'2026-04')
+
     def test_malformed_currency_not_silently_zero(self):
         with self.assertRaises(ValueError): route_quotes(HTML.replace('руб.','USD'),SOURCE)
 

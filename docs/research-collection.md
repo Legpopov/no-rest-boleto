@@ -28,6 +28,14 @@ monitoring are separate evidence types. Official CPI may be used as the final
 fallback, never presented as observed inflation for a particular route. Regional
 prices per 100/1000 km must not be labelled as actual endpoint-to-endpoint fares.
 
+`ator-route-yoy.json` compares matching origin, destination, baggage, currency,
+one-way basis and calendar month across years. These remain **reference-date**
+comparisons; check booking horizons in the linked publications before adopting a
+rate for a forecast. `comparison-exclusions.json` retains the IDs of observations
+excluded because more than one reference quote exists for a route/month. This
+occurs when a publication carries a date exception referring to an earlier month.
+The underlying observations are preserved rather than overwritten or relabelled.
+
 The source matrix must cover 2025 and available 2026 months for each mode. Search
 publisher report archives, official statistical datasets and historical snapshots;
 record access failures and missing periods. Do not force a numeric forecast by

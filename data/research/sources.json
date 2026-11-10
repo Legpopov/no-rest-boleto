@@ -1,5 +1,25 @@
 [
   {
+    "id": "ator-may-2025",
+    "url": "https://www.atorus.ru/article/kak-izmenilas-stoimost-pereletov-po-rossii-za-mesyac-61604",
+    "retrieved_at": "2026-11-10T21:54:56.040133+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/kak-izmenilas-stoimost-pereletov-po-rossii-za-mesyac-61604",
+    "bytes": 120484,
+    "sha256": "a53a5f1443de739c4bfcfa235dcc93c6183df27ec684fcb1111cbded6fc88434",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-june-2025",
+    "url": "https://www.atorus.ru/article/aviabilety-na-yug-podorozhali-na-tret-k-nachalu-vysokogo-sezona-61997",
+    "retrieved_at": "2026-11-10T21:54:56.122329+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviabilety-na-yug-podorozhali-na-tret-k-nachalu-vysokogo-sezona-61997",
+    "bytes": 241617,
+    "sha256": "c2321e844fed541fb4ba83d2012a8a1871d5da4b446d1104e71674c8685ccd6f",
+    "extracted_quotes": 104
+  },
+  {
     "id": "ator-may-2026",
     "url": "https://www.atorus.ru/article/prervannyy-vzlet-ceny-na-aviabilety-pikiruyut-67291",
     "retrieved_at": "2026-11-10T21:39:59.949062+00:00",

@@ -4,6 +4,7 @@ python -m collector.research manifest.json --out data/research
 Raw HTML must be downloaded and inspected separately before this step.
 """
 import argparse
+from collections import Counter
 from datetime import date
 import hashlib
 from html import unescape
@@ -58,13 +59,14 @@ def route_quotes(html, source):
     records, rejected = [], []
     for table in parser.tables:
         # Bind origin and travel date to the nearest actual route-table caption.
-        captions = list(re.finditer(r'Минимальная стоимость билетов из (.*?) в крупнейшие аэропорты России на (\d+) (\w+) (20\d{2}) года',table['context']))
+        origin_pattern='|'.join(re.escape(k) for k in ORIGINS)
+        captions = list(re.finditer(r'(?:Минимальная стоимость билетов из|Стоимость билетов из|Из) ('+origin_pattern+r') в крупнейшие аэропорты России на (\d+) (\w+) (20\d{2}) года(?:\s*\(при покупке[^)]*\))?\s*:?\s*$',table['context'],re.I))
         rows = table['rows']
         if not rows or not captions: continue
         header = rows[0]
         if 'Без багажа' not in header or 'С багажом' not in header: continue
         caption = captions[-1]
-        origin = ORIGINS.get(caption[1])
+        origin = {k.casefold():v for k,v in ORIGINS.items()}.get(caption[1].casefold())
         if origin is None: raise ValueError('Unmapped origin: '+caption[1])
         day, month, year = int(caption[2]), MONTHS[caption[3]], int(caption[4])
         for row in rows[1:]:
@@ -74,7 +76,7 @@ def route_quotes(html, source):
             dest_text = re.sub(r'^в\s+', '', row[0])
             override = re.search(r'\((\d+) (\w+)\)',dest_text)
             dest_text = re.sub(r'\s*\(.*?\)', '', dest_text)
-            dest = DESTINATIONS.get(dest_text)
+            dest = {k.casefold():v for k,v in DESTINATIONS.items()}.get(dest_text.casefold())
             if dest is None: raise ValueError('Unmapped destination: '+dest_text)
             travel_date = date(year, MONTHS[override[2]] if override else month, int(override[1]) if override else day).isoformat()
             for label, baggage in (('Без багажа',False),('С багажом',True)):
@@ -164,10 +166,27 @@ def main():
         all_rows.update((r['id'],r) for r in rows)
     args.out.mkdir(parents=True,exist_ok=True)
     ordered=sorted(all_rows.values(),key=lambda r:(r['travel_date'],r['origin'],r['destination'],r['baggage_included']))
+    comparison_key=lambda r:(r['origin'],r['destination'],r['travel_month'],r['baggage_included'],r['basis'],r['currency'])
+    counts=Counter(comparison_key(r) for r in ordered)
+    excluded=[{'quote_id':r['id'],'reason':'multiple_reference_quotes_in_month'}
+              for r in ordered if counts[comparison_key(r)]>1]
+    comparison_rows=[r for r in ordered if counts[comparison_key(r)]==1]
+    yoy=[]
+    periods={r['travel_month'] for r in ordered}
+    for period in sorted(periods):
+        previous=f'{int(period[:4])-1:04d}'+period[4:]
+        if previous not in periods: continue
+        for row in reference_changes(comparison_rows,previous,period):
+            yoy.append({**row,'month':int(period[-2:]),'previous_year':int(previous[:4]),
+                        'year':int(period[:4]),'method':'year_over_year_reference_date_change',
+                        'scope':'individual_route',
+                        'limitation':'Reference departure dates may differ; not a monthly transaction average.'})
     for filename, content in [('ator-quotes.json',ordered),('sources.json',sources),('rejections.json',rejected),
-                              ('ator-pooled-yoy.json',indices),('ator-reference-changes.json',reference_changes(ordered))]:
+                              ('ator-pooled-yoy.json',indices),('ator-reference-changes.json',reference_changes(ordered)),
+                              ('ator-route-yoy.json',yoy),('comparison-exclusions.json',excluded)]:
         (args.out/filename).write_text(json.dumps(content,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'quotes':len(ordered),'sources':len(sources),'rejected':len(rejected),
+                      'excluded_from_comparisons':len(excluded),'route_yoy':len(yoy),
                       'travel_months':sorted({r['travel_month'] for r in ordered})},ensure_ascii=False))
 
 

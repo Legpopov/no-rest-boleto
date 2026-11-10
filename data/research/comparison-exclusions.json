@@ -1,0 +1,50 @@
+[
+  {
+    "quote_id": "90688e8dbe9f6ad6e746bac162c048a08e7898acd5d57777634ecbc67060e2a3",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0d48c7d94ebf1b53e8931e5d1ebdf601e85ed5d54f710df874233e2ffbad87ab",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "26bc5b8c3fb1cd33aeeaa3083d276766def30eb5495f952e980aaab590495886",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f135f2efee2e8c88921c0143862dad82a1d8039c484fa05c2bbf7adad0164d40",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d6c1b9c2883b2706e24fe607c357c68c74043a4861917e1bdbf83684c0d57a7f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d6b19d3381ebd1eafaf87e23618cc8628e098ec769822b8a8c7a4abf2b66f342",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "88a5991a4c9217180e8696690228b296407cdefc563f287ed8fb397bdeb46561",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "19ec69f2e27e795c1163387c85000df60fbf35f03428406a1af36efa0f9e3a67",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e8fdd4fb3eb0718fab0de5f136171669a8ae019298bac899fdc25299ebb943ce",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a81146526ea4288e086ea42cf5e7c02a4d47504a1621d8d5445304ec4df6efe8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1e61f6d51ea56de65a4d35a11b0eba8348601a148c4c31e457ba211278a79313",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "059da871df7f3207606a6e8b0e141a776ee4c4c04a101009e05e874508734e7f",
+    "reason": "multiple_reference_quotes_in_month"
+  }
+]
