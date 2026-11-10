@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ator-may-2026",
+    "url": "https://www.atorus.ru/article/prervannyy-vzlet-ceny-na-aviabilety-pikiruyut-67291",
+    "retrieved_at": "2026-11-10T21:39:59.949062+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/prervannyy-vzlet-ceny-na-aviabilety-pikiruyut-67291",
+    "bytes": 124388,
+    "sha256": "9612f82feab8c4ba08531879e15803af640fe990add0a8494aa98f97a3211d3d",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-june-2026",
+    "url": "https://www.atorus.ru/article/turisticheskiy-spros-ne-opravdal-ozhidaniy-aviakompanii-snizhayut-tarify-67860",
+    "retrieved_at": "2026-11-10T21:40:05.518251+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/turisticheskiy-spros-ne-opravdal-ozhidaniy-aviakompanii-snizhayut-tarify-67860",
+    "bytes": 125103,
+    "sha256": "52baea103980853f8d054937f084f7e18536c079b058ae415edf060d7f2b6bf8",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-july-2025",
+    "url": "https://www.atorus.ru/article/skolko-stoyat-aviabilety-po-rossii-etim-letom-62426",
+    "retrieved_at": "2026-11-10T21:40:05.916335+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/skolko-stoyat-aviabilety-po-rossii-etim-letom-62426",
+    "bytes": 119765,
+    "sha256": "29f55a4b39dd2132a0f0deb9bc2e6e93c67ea643e554417617ba1fe0934d9ed5",
+    "extracted_quotes": 104
+  }
+]
