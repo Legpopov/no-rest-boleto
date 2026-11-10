@@ -14,6 +14,11 @@ def build_catalog(quotes, changes):
     for change in changes:
         current = by_id[change['after_id']]
         previous = by_id[change['before_id']]
+        comparable = ('origin','destination','mode','basis','currency','baggage_included')
+        if (any(current[k] != previous[k] for k in comparable)
+                or current['travel_month'] != f"2026-{change['month']:02d}"
+                or previous['travel_month'] != f"2025-{change['month']:02d}"):
+            raise ValueError('Mismatched route/month comparison')
         if (current['basis'] != 'one_way' or current['currency'] != 'RUB'
                 or not positive(current['price']) or not positive(previous['price'])):
             raise ValueError('Excel catalog requires positive one-way RUB fares')

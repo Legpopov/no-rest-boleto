@@ -21,6 +21,13 @@ DESTINATIONS = {'Москву':'Москва','Санкт-Петербург':'�
                 'Казань':'Казань','Новосибирск':'Новосибирск','Сочи':'Сочи',
                 'Минеральные Воды':'Минеральные Воды','Калининград':'Калининград'}
 
+# These two inspected articles put the common date/asterisk footnote outside
+# individual captions. Never infer an undated table's year from page chrome.
+UNDATED_CAPTIONS = {
+    'ator-november-2026': ('2026-11-02', '2026-11-03'),
+    'ator-december-2026': ('2026-12-01', '2026-12-02'),
+}
+
 
 def clean(s):
     return re.sub(r'\s+', ' ', unescape(s).replace('\u2060','').replace('\u200b','')).strip()
@@ -60,28 +67,80 @@ def route_quotes(html, source):
     for table in parser.tables:
         # Bind origin and travel date to the nearest actual route-table caption.
         origin_pattern='|'.join(re.escape(k) for k in ORIGINS)
-        captions = list(re.finditer(r'(?:Минимальная стоимость билетов из|Стоимость билетов из|Из) ('+origin_pattern+r') в крупнейшие аэропорты России на (\d+) (\w+) (20\d{2}) года(?:\s*\(при покупке[^)]*\))?\s*:?\s*$',table['context'],re.I))
+        captions = list(re.finditer(r'(?:Минимальная стоимость (?:авиа)?билетов из|Стоимость билетов из|Из) ('+origin_pattern+r') в крупнейшие аэропорты России (?:на|с вылетом) (\d+) (\w+) (20\d{2}) года(?:\s*\([^)]*\))?\s*:?\s*$',table['context'],re.I))
         rows = table['rows']
-        if not rows or not captions: continue
-        header = rows[0]
+        fallback = None
+        caption_repair = False
+        if not captions and source['id']=='ator-august-2025':
+            # The section title and seven preceding captions specify 1 August.
+            # Kaliningrad's own caption accidentally omits the day number.
+            fallback = re.search(r'Минимальная стоимость билетов из (Калининграда) в крупнейшие аэропорты России на августа 2025 года:\s*$',table['context'],re.I)
+            caption_repair = fallback is not None
+        if not captions and source['id'] in UNDATED_CAPTIONS:
+            fallback = re.search(r'Минимальная стоимость билетов из ('+origin_pattern+r')\s*:?\s*$',table['context'],re.I)
+        if not rows: continue
+        header = [h.capitalize() for h in rows[0]]
         if 'Без багажа' not in header or 'С багажом' not in header: continue
-        caption = captions[-1]
+        if not captions and not fallback:
+            rejected.append({'source':source['id'],'reason':'unresolved_route_caption',
+                             'caption':table['context'][-250:]})
+            continue
+        caption = captions[-1] if captions else fallback
         origin = {k.casefold():v for k,v in ORIGINS.items()}.get(caption[1].casefold())
         if origin is None: raise ValueError('Unmapped origin: '+caption[1])
-        day, month, year = int(caption[2]), MONTHS[caption[3]], int(caption[4])
+        if captions:
+            day, month, year = int(caption[2]), MONTHS[caption[3]], int(caption[4])
+        elif caption_repair:
+            year, month, day = 2025, 8, 1
+        else:
+            year, month, day = map(int, UNDATED_CAPTIONS[source['id']][0].split('-'))
         for row in rows[1:]:
             if len(row) != len(header):
                 rejected.append({'source':source['id'],'reason':'column_count','row':row})
                 continue
             dest_text = re.sub(r'^в\s+', '', row[0])
+            marker = len(dest_text) - len(dest_text.rstrip('*'))
+            dest_text = dest_text.rstrip('*').strip()
             override = re.search(r'\((\d+) (\w+)\)',dest_text)
             dest_text = re.sub(r'\s*\(.*?\)', '', dest_text)
             dest = {k.casefold():v for k,v in DESTINATIONS.items()}.get(dest_text.casefold())
             if dest is None: raise ValueError('Unmapped destination: '+dest_text)
             travel_date = date(year, MONTHS[override[2]] if override else month, int(override[1]) if override else day).isoformat()
+            if marker == 1:
+                if source['id'] not in UNDATED_CAPTIONS:
+                    raise ValueError('Unmapped footnote in '+source['id'])
+                travel_date = UNDATED_CAPTIONS[source['id']][1]
+            elif marker > 1:
+                if not (source['id']=='ator-november-2026' and origin=='Новосибирск' and dest=='Сочи' and marker==2):
+                    raise ValueError('Unmapped multi-asterisk footnote')
             for label, baggage in (('Без багажа',False),('С багажом',True)):
                 value = row[header.index(label)]
-                match = re.match(r'([\d\s]+)\s*руб\.',value)
+                baggage_note = marker == 2 or value.endswith('**')
+                if baggage_note and not (source['id']=='ator-november-2026' and origin=='Новосибирск' and dest=='Сочи'):
+                    raise ValueError('Unmapped baggage footnote')
+                if baggage_note and not baggage:
+                    rejected.append({'source':source['id'],'reason':'fare_includes_baggage',
+                                     'origin':origin,'destination':dest,'travel_date':travel_date,
+                                     'baggage_included':False})
+                    continue
+                if value in ('', '-', '—'):
+                    rejected.append({'source':source['id'],'reason':'missing_quote',
+                                     'origin':origin,'destination':dest,'travel_date':travel_date,
+                                     'baggage_included':baggage})
+                    continue
+                match = re.match(r'([\d\s]+)\s*руб(?:\.|\b)',value)
+                unit_repair = False
+                if not match and source['id']=='ator-august-2025' and value in (
+                    '20 057 «Уральские авиалинии»','9 675 «Победа»'):
+                    # Two inspected cells omit the unit; all surrounding fares
+                    # in the same route table explicitly state RUB.
+                    match = re.match(r'([\d\s]+)',value)
+                    unit_repair = True
+                if not match and re.fullmatch(r'[\d\s]+«[^»]+»',value):
+                    rejected.append({'source':source['id'],'reason':'missing_currency_unit',
+                                     'origin':origin,'destination':dest,'travel_date':travel_date,
+                                     'baggage_included':baggage,'value':value})
+                    continue
                 if not match: raise ValueError('Unrecognized RUB price: '+value)
                 price = int(re.sub(r'\s','',match[1]))
                 if not 100 <= price <= 1000000: raise ValueError('Price out of validation bounds')
@@ -92,6 +151,8 @@ def route_quotes(html, source):
                           'source_id':source['id'],'source_sha256':source['sha256'],
                           'retrieved_at':source['retrieved_at'],
                           'carrier':value[match.end():].strip()}
+                if unit_repair: record['currency_method'] = 'surrounding_table_RUB'
+                if caption_repair: record['date_method'] = 'section_heading_2025_08_01'
                 record['id'] = hashlib.sha256(json.dumps({k:v for k,v in record.items() if k!='retrieved_at'},ensure_ascii=False,sort_keys=True).encode()).hexdigest()
                 records.append(record)
     return records, rejected
@@ -181,9 +242,23 @@ def main():
                         'year':int(period[:4]),'method':'year_over_year_reference_date_change',
                         'scope':'individual_route',
                         'limitation':'Reference departure dates may differ; not a monthly transaction average.'})
+    coverage = {
+        'retrieved_at': max((s['retrieved_at'] for s in sources),default=None),
+        'grain': 'one-way reference-date fare, route and baggage variant; not monthly mean',
+        'observation_note': 'Travel month can follow retrieval date: these are published advance fares.',
+        'months': [
+            {'month':f'{year}-{month:02d}',
+             'quotes':sum(r['travel_month']==f'{year}-{month:02d}' for r in ordered),
+             'unambiguous_quotes':sum(r['travel_month']==f'{year}-{month:02d}' for r in comparison_rows),
+             'matched_yoy':sum(r['year']==year and r['month']==month for r in yoy)}
+            for year in (2025,2026) for month in range(1,13)],
+        'rejection_reasons': dict(sorted(Counter(r['reason'] for r in rejected).items())),
+        'comparison_exclusions': len(excluded),
+    }
     for filename, content in [('ator-quotes.json',ordered),('sources.json',sources),('rejections.json',rejected),
                               ('ator-pooled-yoy.json',indices),('ator-reference-changes.json',reference_changes(ordered)),
-                              ('ator-route-yoy.json',yoy),('comparison-exclusions.json',excluded)]:
+                              ('ator-route-yoy.json',yoy),('comparison-exclusions.json',excluded),
+                              ('coverage.json',coverage)]:
         (args.out/filename).write_text(json.dumps(content,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'quotes':len(ordered),'sources':len(sources),'rejected':len(rejected),
                       'excluded_from_comparisons':len(excluded),'route_yoy':len(yoy),

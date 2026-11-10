@@ -23,7 +23,7 @@ try {
     $paramsPlan.Range('O6').Value2 = 2
     $actualPlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','авиа, поезд, автобус','ДА',$calendarPlan,$catalogPlan,'price')
     $recordsPlan = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot '../data/planning.json') | ConvertFrom-Json
-    $matchedPlan = @($recordsPlan.records | Where-Object { $_.origin -eq 'Москва' -and $_.destination -eq 'Санкт-Петербург' -and $_.baggage_included })
+    $matchedPlan = @($recordsPlan.records | Where-Object { $_.origin -eq 'Москва' -and $_.destination -eq 'Санкт-Петербург' -and $_.baggage_included -and $_.month -in 5,6 })
     $expectedPlan = [Math]::Round((($matchedPlan | ForEach-Object { $_.price * [Math]::Pow(1+$_.annual_rate,2) } | Measure-Object -Average).Average),2)
     Assert-Plan ([Math]::Abs($actualPlan-$expectedPlan) -lt 0.01) '2028 compound forecast matches independent source calculation'
     $otherOriginPlan = $excelPlan.Run($macroPlan,'Екатеринбург','Казань',2027,'1 год набора','2 семестр','авиа','ДА',$calendarPlan,$catalogPlan,'price')

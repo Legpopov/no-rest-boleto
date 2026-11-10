@@ -37,7 +37,48 @@ class ResearchTests(unittest.TestCase):
         with self.assertRaises(ValueError): route_quotes(HTML.replace('руб.','USD'),SOURCE)
 
     def test_summary_without_route_caption_is_not_a_route(self):
-        self.assertEqual(route_quotes(HTML[HTML.index('<table>'):],SOURCE),([],[]))
+        rows,rejected=route_quotes(HTML[HTML.index('<table>'):],SOURCE)
+        self.assertEqual(rows,[])
+        self.assertEqual(rejected[0]['reason'],'unresolved_route_caption')
+
+    def test_departure_caption_and_missing_quote(self):
+        html=HTML.replace('на 4 мая','с вылетом 4 мая').replace('4 876 руб. Carrier A','')
+        rows,rejected=route_quotes(html,SOURCE)
+        self.assertEqual(len(rows),1)
+        self.assertTrue(rows[0]['baggage_included'])
+        self.assertEqual(rejected[0]['reason'],'missing_quote')
+
+    def test_uppercase_headers_and_source_bound_footnote(self):
+        html=HTML.replace(' в крупнейшие аэропорты России на 4 мая 2026 года:', '')
+        html=html.replace('С багажом','С БАГАЖОМ').replace('Без багажа','БЕЗ БАГАЖА')
+        html=html.replace('Санкт-Петербург (3 мая)','Санкт-Петербург*')
+        rows,_=route_quotes(html,{**SOURCE,'id':'ator-december-2026'})
+        self.assertEqual({r['travel_date'] for r in rows},{'2026-12-02'})
+        self.assertEqual(route_quotes(html,SOURCE)[0],[])  # no global assumed date
+
+    def test_missing_currency_is_quarantined_not_guessed(self):
+        html=HTML.replace('4 876 руб. Carrier A','4 876 «Победа»')
+        rows,rejected=route_quotes(html,SOURCE)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rejected[0]['reason'],'missing_currency_unit')
+
+    def test_double_asterisk_is_baggage_not_departure_day(self):
+        html=HTML.replace('Москвы','Новосибирска').replace('Санкт-Петербург (3 мая)','Сочи**')
+        html=html.replace(' в крупнейшие аэропорты России на 4 мая 2026 года:', '')
+        rows,rejected=route_quotes(html,{**SOURCE,'id':'ator-november-2026'})
+        self.assertEqual(len(rows),1)
+        self.assertTrue(rows[0]['baggage_included'])
+        self.assertEqual(rows[0]['travel_date'],'2026-11-02')
+        self.assertEqual(rejected[0]['reason'],'fare_includes_baggage')
+
+    def test_baggage_footnote_in_price_cell(self):
+        html=HTML.replace('Москвы','Новосибирска').replace('Санкт-Петербург (3 мая)','Сочи')
+        html=html.replace(' в крупнейшие аэропорты России на 4 мая 2026 года:', '')
+        html=html.replace('4 876 руб. Carrier A','4 876 руб. «Аэрофлот»**')
+        rows,rejected=route_quotes(html,{**SOURCE,'id':'ator-november-2026'})
+        self.assertEqual(len(rows),1)
+        self.assertTrue(rows[0]['baggage_included'])
+        self.assertEqual(rejected[0]['reason'],'fare_includes_baggage')
 
     def test_pooled_index_keeps_scope_and_decimal_units(self):
         html='<table><tr><td>Категория</td><td>2025 год (руб.)</td><td>2026 год (руб.)</td></tr><tr><td>С багажом (Средняя)</td><td>10 000</td><td>9 000</td></tr></table>'
