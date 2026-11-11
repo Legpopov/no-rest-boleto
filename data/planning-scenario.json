@@ -1,0 +1,10 @@
+{
+  "annual_rate": 0.04,
+  "source": "https://www.cbr.ru/dkp/mp_dec/decision_key_rate/comment_05112026/",
+  "published_at": "2026-11-05",
+  "retrieved_at": "2026-11-10T23:09:18.842080+00:00",
+  "source_sha256": "a917a22e74fad2fc93068801d9f01ba875989acb2393b1f1a85629e000ad3bb0",
+  "official_forecast_years": [2027, 2028, 2029],
+  "method": "general_inflation_forecast_as_transport_scenario",
+  "limitation": "General inflation forecast/target, not an observed rail or bus index. Applying 4% to each future year and using flat seasonality are model assumptions. Beyond 2029 this is an extrapolation. Forecast error is unquantified."
+}

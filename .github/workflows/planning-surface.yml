@@ -1,0 +1,58 @@
+name: planning-surface-references
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: planning-surface-references
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Collect independent one-way rail and bus references
+        run: python -m collector.surface --raw-dir "${{ runner.temp }}/surface-raw"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: surface-snapshot
+          path: data/surface/latest.json
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: surface-raw-receipts
+          path: ${{ runner.temp }}/surface-raw
+          retention-days: 7
+  publish:
+    needs: collect
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: surface-snapshot
+          path: data/surface
+      - name: Rebuild catalog and publish
+        run: |
+          python -m collector.planning_catalog
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/surface/latest.json data/planning.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Refresh eight-city surface transport references"
+          git pull --rebase
+          git push

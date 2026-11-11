@@ -12,6 +12,7 @@ Public Sub RefreshPlanning(Optional ByVal source As String = "")
     Dim req As Object, root As Object, records As Variant, rec As Object
     Dim text As String, stream As Object, matrix() As Variant, i As Long, j As Long
     Dim ws As Worksheet, ps As Worksheet, fields As Variant, stamp As String
+    Dim coverage As Variant, coverageMatrix() As Variant, coverageFields As Variant
     Set ps = ThisWorkbook.Worksheets(PARAMS)
     If source = "" Then source = CStr(ps.Range("O2").Value2)
     If LCase$(Left$(source, 8)) = "https://" Then
@@ -28,20 +29,31 @@ Public Sub RefreshPlanning(Optional ByVal source As String = "")
         text = stream.ReadText: stream.Close
     End If
     Set root = JsonParse(text)
-    If root("schema_version") <> 1 Or root("currency") <> "RUB" Or root("basis") <> "one_way" Then
+    If root("schema_version") <> 2 Or root("currency") <> "RUB" Or root("basis") <> "one_way" Then
         Err.Raise 5, , "Неподдерживаемая схема плановых цен"
     End If
     records = root("records")
     If UBound(records) < 0 Then Err.Raise 5, , "Пустой набор плановых цен"
     fields = Array("origin", "destination", "mode", "month", "base_year", "price", _
                    "annual_rate", "baggage_included", "source", "previous_source", _
-                   "reference_date", "previous_date", "rate_method", "quote_id")
-    ReDim matrix(1 To UBound(records) + 1, 1 To 14)
+                   "reference_date", "previous_date", "rate_method", "quote_id", _
+                   "rail_class", "firm", "sample_count", "price_method", "uncertainty")
+    ReDim matrix(1 To UBound(records) + 1, 1 To 19)
     For i = 0 To UBound(records)
         Set rec = records(i)
         If rec("price") <= 0 Or rec("annual_rate") <= -1 Then Err.Raise 5, , "Некорректная цена или индекс"
-        For j = 0 To 13
-            matrix(i + 1, j + 1) = rec(fields(j))
+        For j = 0 To 18
+            If rec.Exists(fields(j)) Then matrix(i + 1, j + 1) = rec(fields(j))
+        Next j
+        If matrix(i + 1, 17) = "" Then matrix(i + 1, 17) = 1
+    Next i
+    coverage = root("coverage")
+    coverageFields = Array("origin", "destination", "mode", "status", "checked_at", "source")
+    ReDim coverageMatrix(1 To UBound(coverage) + 1, 1 To 6)
+    For i = 0 To UBound(coverage)
+        Set rec = coverage(i)
+        For j = 0 To 5
+            coverageMatrix(i + 1, j + 1) = rec(coverageFields(j))
         Next j
     Next i
     BackupPlan
@@ -53,18 +65,23 @@ Public Sub RefreshPlanning(Optional ByVal source As String = "")
         ws.Name = DATA
     End If
     ws.Cells.ClearContents
-    For j = 0 To 13
+    For j = 0 To 18
         ws.Cells(1, j + 1).Value2 = fields(j)
     Next j
-    ws.Range("A2").Resize(UBound(matrix, 1), 14).Value2 = matrix
+    ws.Range("A2").Resize(UBound(matrix, 1), 19).Value2 = matrix
+    For j = 0 To 5
+        ws.Cells(1, j + 21).Value2 = coverageFields(j)
+    Next j
+    ws.Range("U2").Resize(UBound(coverageMatrix, 1), 6).Value2 = coverageMatrix
     ws.Range("F2:F" & UBound(matrix, 1) + 1).NumberFormat = "#,##0.00"
     ws.Range("G2:G" & UBound(matrix, 1) + 1).NumberFormat = "0.00%"
     ws.Rows(1).Font.Bold = True
     ws.Columns("A:N").ColumnWidth = 20
     ws.Columns("I:J").ColumnWidth = 45
-    ThisWorkbook.Names.Add Name:="PlanningData", RefersTo:="='" & DATA & "'!$A$2:$N$" & UBound(matrix, 1) + 1
+    ThisWorkbook.Names.Add Name:="PlanningData", RefersTo:="='" & DATA & "'!$A$2:$S$" & UBound(matrix, 1) + 1
+    ThisWorkbook.Names.Add Name:="PlanningCoverage", RefersTo:="='" & DATA & "'!$U$2:$Z$" & UBound(coverageMatrix, 1) + 1
     ps.Range("O8").Value2 = root("retrieved_at")
-    ps.Range("O9").Value2 = "АТОР: контрольные минимумы; повтор годового индекса. Точность не оценена."
+    ps.Range("O9").Value2 = "Авиа: АТОР; ЖД/автобус: резервные ориентиры, без сезонности, макросценарий ЦБ. Точность не оценена."
     Application.CalculateFull
     Exit Sub
 Failed:
@@ -100,11 +117,15 @@ End Sub
 Public Sub InstallPlanning()
     Dim ws As Worksheet, ps As Worksheet, tbl As ListObject, headers As Variant
     Dim r As Long, c As Long, args As String, emptyRow As String, guard As String
+    Dim railCell As Range, extra As String
     Set ws = ThisWorkbook.Worksheets(TRIPS)
     Set ps = ThisWorkbook.Worksheets(PARAMS)
     Set tbl = ws.ListObjects("Таблица3")
+    Set railCell = ps.Columns(1).Find(What:="ЖД: допустимые классы", LookIn:=xlValues, LookAt:=xlWhole)
+    If railCell Is Nothing Then Err.Raise 5, , "Нет параметра ЖД: допустимые классы"
+    extra = ",'Параметры цен'!$B$" & railCell.Row & ",PlanningCoverage"
     headers = Array("Откуда", "Поездка ID", "Участок", "Остановка", "Ночей", _
-                    "Порядок транспорта", "Багаж", "Авиа, руб./чел.", "Поезд, руб./чел.", _
+                    "Порядок транспорта", "Багаж авиа", "Авиа, руб./чел.", "Поезд, руб./чел.", _
                     "Автобус, руб./чел.", "Выбранный транспорт", "Метод / причина")
     BackupPlan
     tbl.Resize ws.Range("A2:W" & tbl.Range.Row + tbl.Range.Rows.Count - 1)
@@ -132,11 +153,12 @@ Public Sub InstallPlanning()
             args = "L" & r & ",F" & r & ",'Параметры'!$C$2,B" & r & ",A" & r & ",Q" & r & ",R" & r & ",'Параметры цен'!$O$3:$O$6,PlanningData,"
             guard = "PlanRouteIssue(ROW(),$L$3:$N$" & tbl.Range.Rows.Count + 1 & ",$F$3:$F$" & tbl.Range.Rows.Count + 1 & ",$A$3:$C$" & tbl.Range.Rows.Count + 1 & ",$H$3:$H$" & tbl.Range.Rows.Count + 1 & ")"
             For c = 19 To 21
-                ws.Cells(r, c).Formula = "=IF(" & emptyRow & ","""",PlanFare(" & args & """" & Choose(c - 18, "air", "rail", "bus") & """))"
+                ws.Cells(r, c).Formula = "=IF(" & emptyRow & ","""",PlanFare(" & args & """" & Choose(c - 18, "air", "rail", "bus") & """" & extra & "))"
             Next c
-            ws.Cells(r, 22).Formula = "=IF(" & emptyRow & ","""",PlanFare(" & args & """mode""))"
-            ws.Cells(r, 23).Formula = "=IF(" & emptyRow & ","""",IF(" & guard & "<>""""," & guard & ",PlanFare(" & args & """status"")))"
-            ws.Cells(r, 10).Formula = "=IF(" & emptyRow & ","""",IF(OR(C" & r & "<=0,NOT(ISNUMBER(C" & r & "))," & guard & "<>""""),NA(),C" & r & "*PlanFare(" & args & """price"")))"
+            ws.Cells(r, 22).Formula = "=IF(" & emptyRow & ","""",PlanFare(" & args & """mode""" & extra & "))"
+            ws.Cells(r, 23).Formula = "=IF(" & emptyRow & ","""",IF(" & guard & "<>""""," & guard & ",PlanFare(" & args & """status""" & extra & ")))"
+            ws.Cells(r, 10).Formula = "=IF(" & emptyRow & ","""",IF(OR(C" & r & "<=0,NOT(ISNUMBER(C" & r & "))," & guard & "<>""""),NA(),C" & r & "*PlanFare(" & args & """price""" & extra & ")))"
+            If ws.Rows(r).RowHeight < 65 Then ws.Rows(r).RowHeight = 65
         ElseIf InStr(1, ws.Cells(r, 8).Value2, "оплата проживания", vbTextCompare) > 0 Then
             emptyRow = "AND(C" & r & "="""",F" & r & "="""",O" & r & "="""",P" & r & "="""")"
             args = "C" & r & ",F" & r & ",O" & r & ",P" & r & ",'Справочник'!$BK$4:$BR$248,"
@@ -157,6 +179,7 @@ Public Sub InstallPlanning()
     ws.Range("S3:U" & r - 1).NumberFormat = "#,##0.00"
     ws.Range("L3:R" & r - 1).Font.Color = RGB(0, 0, 255)
     ws.Range("W3:W" & r - 1).WrapText = True
+    ws.Range("V3:V" & r - 1).HorizontalAlignment = xlCenter
     With ws.Range("O3:O" & r - 1).Validation
         .Delete
         .Add xlValidateList, xlValidAlertStop, xlBetween, "пребывание,пересадка"
@@ -226,38 +249,101 @@ Invalid:
     If field = "status" Then PlanStay = Err.Description Else PlanStay = CVErr(xlErrNA)
 End Function
 
+Private Function CityKey(ByVal value As String) As String
+    CityKey = LCase$(Trim$(Replace(Replace(value, "_", " "), "ё", "е")))
+End Function
+
+Private Function ModeTitle(ByVal code As String) As String
+    ModeTitle = ""
+    Select Case code
+    Case "air": ModeTitle = "Авиа"
+    Case "rail": ModeTitle = "Поезд"
+    Case "bus": ModeTitle = "Автобус"
+    End Select
+End Function
+
+Private Function AllowedRail(ByVal cls As String, ByVal firm As Boolean, ByVal settings As String) As Boolean
+    Dim rules As Variant, rule As Variant, parts As Variant
+    rules = Split(Replace(LCase$(settings), ";", ","), ",")
+    For Each rule In rules
+        parts = Split(Trim$(CStr(rule)), ":")
+        If Trim$(parts(0)) = LCase$(cls) Then
+            If UBound(parts) = 0 Then
+                AllowedRail = True: Exit Function
+            ElseIf UBound(parts) = 1 Then
+                If Trim$(parts(1)) = "firm" And firm Then AllowedRail = True: Exit Function
+            End If
+        End If
+    Next rule
+End Function
+
+Private Function CoverageReason(ByVal origin As String, ByVal destination As String, _
+    ByVal mode As String, ByVal coverage As Range) As String
+    If coverage Is Nothing Then Exit Function
+    Dim values As Variant, i As Long
+    values = coverage.Value2
+    For i = 1 To UBound(values, 1)
+        If CityKey(CStr(values(i, 1))) = origin And CityKey(CStr(values(i, 2))) = destination And values(i, 3) = mode Then
+            Select Case CStr(values(i, 4))
+            Case "no_direct_service": CoverageReason = "источник сообщает: прямого рейса нет"
+            Case "no_priced_services": CoverageReason = "источник не опубликовал цену"
+            Case "source_page_missing": CoverageReason = "страница направления у источника отсутствует (404)"
+            Case "source_error": CoverageReason = "ошибка получения данных источника"
+            Case "no_historical_reference": CoverageReason = "нет исторического ориентира по направлению"
+            End Select
+            Exit Function
+        End If
+    Next i
+End Function
+
 Public Function PlanFare(ByVal origin As String, ByVal destination As String, _
     ByVal launch As Variant, ByVal cohort As String, ByVal semester As String, _
     ByVal preferences As String, ByVal baggage As String, ByVal calendar As Range, _
-    ByVal source As Range, ByVal field As String) As Variant
+    ByVal source As Range, ByVal field As String, Optional ByVal railClasses As String = "", _
+    Optional ByVal coverage As Range = Nothing) As Variant
     On Error GoTo Invalid
-    Dim values As Variant, months As Variant, order As Variant, mode As Variant
-    Dim seen As Object, prices As Object, reasons As String, code As String, missing As String
+    Dim values As Variant, cal As Variant, order As Variant, mode As Variant, allModes As Variant
+    Dim seen As Object, prices As Object, methods As Object, routeRows As Collection, rowIndex As Variant
+    Dim reasons As String, code As String, missing As String, label As String, reason As String
     Dim year As Long, start As Long, duration As Long, k As Long, m As Long, y As Long
-    Dim row As Long, matches As Long, baseYear As Long, price As Double, total As Double
-    Dim rate As Double, bag As Boolean, chosen As String, when As Date, allModes As Variant
-    If Trim$(origin) = "" Or Trim$(destination) = "" Then Err.Raise 5, , "Укажите откуда и куда"
-    If LCase$(Trim$(origin)) = LCase$(Trim$(destination)) Then Err.Raise 5, , "Города участка совпадают"
-    If Not IsNumeric(launch) Then Err.Raise 5, , "Нет года запуска программы"
+    Dim row As Long, matches As Long, baseYear As Long, price As Double, total As Double, sample As Double
+    Dim rate As Double, bag As Boolean, chosen As String, when As Date
+    Dim eligible As Boolean, bad As Boolean, weighted As Double, weight As Double
+    Dim knownOrigin As Boolean, knownDestination As Boolean
+    origin = CityKey(origin): destination = CityKey(destination)
+    If origin = "" Or destination = "" Then Err.Raise 5, , "Укажите откуда и куда"
+    If origin = destination Then Err.Raise 5, , "Города участка совпадают"
+    values = source.Value2
+    Set routeRows = New Collection
+    For row = 1 To UBound(values, 1)
+        If CityKey(CStr(values(row, 1))) = origin Or CityKey(CStr(values(row, 2))) = origin Then knownOrigin = True
+        If CityKey(CStr(values(row, 1))) = destination Or CityKey(CStr(values(row, 2))) = destination Then knownDestination = True
+        If CityKey(CStr(values(row, 1))) = origin And CityKey(CStr(values(row, 2))) = destination Then routeRows.Add row
+    Next row
+    If Not knownOrigin Then Err.Raise 5, , "Город отправления вне покрытия: " & origin
+    If Not knownDestination Then Err.Raise 5, , "Город прибытия вне покрытия: " & destination
+    If Not IsNumeric(launch) Then Err.Raise 5, , "Укажите год запуска программы на листе Паспорт, G23"
+    If CDbl(launch) = 0 Then Err.Raise 5, , "Укажите год запуска программы на листе Паспорт, G23"
     If CDbl(launch) <> Fix(CDbl(launch)) Or launch < 2026 Or launch > 9900 Then Err.Raise 5, , "Год запуска вне 2026..9900"
     If Val(cohort) < 1 Or Val(semester) < 1 Then Err.Raise 5, , "Нет семестра или года набора"
-    values = calendar.Value2
+    cal = calendar.Value2
     For k = 1 To 4
-        If Not IsNumeric(values(k, 1)) Then Err.Raise 5, , "Некорректный календарь"
-        If values(k, 1) < 1 Or values(k, 1) > 12 Or values(k, 1) <> Fix(values(k, 1)) Then Err.Raise 5, , "Календарь: нужны целые числа 1..12"
+        If Not IsNumeric(cal(k, 1)) Then Err.Raise 5, , "Некорректный календарь"
+        If cal(k, 1) < 1 Or cal(k, 1) > 12 Or cal(k, 1) <> Fix(cal(k, 1)) Then Err.Raise 5, , "Календарь: нужны целые числа 1..12"
     Next k
     year = CLng(launch) + CLng(Val(cohort)) - 1 + (CLng(Val(semester)) - 1) \ 2
     If CLng(Val(semester)) Mod 2 = 1 Then
-        start = values(1, 1): duration = values(2, 1)
+        start = cal(1, 1): duration = cal(2, 1)
     Else
-        start = values(3, 1): duration = values(4, 1)
-        If start < values(1, 1) Then year = year + 1
+        start = cal(3, 1): duration = cal(4, 1)
+        If start < cal(1, 1) Then year = year + 1
     End If
     baggage = UCase$(Trim$(baggage))
-    If baggage <> "ДА" And baggage <> "НЕТ" Then Err.Raise 5, , "Багаж: укажите ДА или НЕТ"
+    If baggage <> "ДА" And baggage <> "НЕТ" Then Err.Raise 5, , "Багаж авиа: укажите ДА или НЕТ"
     bag = (baggage = "ДА")
     Set seen = CreateObject("Scripting.Dictionary")
     Set prices = CreateObject("Scripting.Dictionary")
+    Set methods = CreateObject("Scripting.Dictionary")
     order = Split(preferences, ",")
     For Each mode In order
         code = ModeCode(CStr(mode))
@@ -265,38 +351,65 @@ Public Function PlanFare(ByVal origin As String, ByVal destination As String, _
         If seen.Exists(code) Then Err.Raise 5, , "В порядке транспорта есть повтор"
         seen.Add code, True
     Next mode
-    values = source.Value2
-    allModes = Array("air", "rail", "bus")
+    If field = "air" Or field = "rail" Or field = "bus" Then
+        allModes = Array(field)
+    Else
+        allModes = order
+    End If
     For Each mode In allModes
-        total = 0: missing = ""
+        code = ModeCode(CStr(mode)): total = 0: missing = "": label = ""
         For k = 0 To duration - 1
             when = DateSerial(year, start + k, 1): m = Month(when): y = VBA.Year(when)
-            matches = 0: price = 0
-            For row = 1 To UBound(values, 1)
-                If StrComp(Trim$(CStr(values(row, 1))), Trim$(origin), vbTextCompare) = 0 And _
-                   StrComp(Trim$(CStr(values(row, 2))), Trim$(destination), vbTextCompare) = 0 And _
-                   values(row, 3) = mode And values(row, 4) = m Then
-                    If mode <> "air" Or CBool(values(row, 8)) = bag Then
+            matches = 0: weighted = 0: weight = 0: price = 0: bad = False
+            For Each rowIndex In routeRows
+                row = CLng(rowIndex)
+                If values(row, 3) = code And values(row, 4) = m Then
+                    eligible = True
+                    If code = "air" Then eligible = (CBool(values(row, 8)) = bag)
+                    If code = "rail" Then
+                        eligible = False
+                        If UBound(values, 2) >= 19 Then eligible = AllowedRail(CStr(values(row, 15)), CBool(values(row, 16)), railClasses)
+                    End If
+                    If eligible Then
                         matches = matches + 1
-                        baseYear = CLng(values(row, 5))
-                        rate = CDbl(values(row, 7))
-                        If y >= baseYear And rate > -1 And values(row, 6) > 0 And values(row, 9) <> "" Then
+                        baseYear = CLng(values(row, 5)): rate = CDbl(values(row, 7))
+                        sample = 1
+                        If UBound(values, 2) >= 17 Then
+                            If IsNumeric(values(row, 17)) Then sample = CDbl(values(row, 17))
+                        End If
+                        If y < baseYear Or rate <= -1 Or values(row, 6) <= 0 Or values(row, 9) = "" Or sample <= 0 Then
+                            bad = True
+                        Else
                             price = CDbl(values(row, 6)) * (1 + rate) ^ (y - baseYear)
+                            weighted = weighted + price * sample: weight = weight + sample
+                            If code = "air" Then
+                                label = "АТОР: среднее контрольных минимумов; индекс маршрута 2025/26 повторяется; точность не оценена"
+                            Else
+                                label = "Резерв (" & ModeTitle(code) & "): среднее справочных цен; без сезонности; " & Format$(rate, "0.0%") & "/год по макросценарию ЦБ (не индекс транспорта); точность не оценена"
+                                If y > 2029 Then label = label & "; после 2029 экстраполяция"
+                            End If
                         End If
                     End If
                 End If
-            Next row
-            If matches <> 1 Or price <= 0 Then
+            Next rowIndex
+            If code <> "rail" And matches > 1 Then bad = True
+            If matches = 0 Or bad Or weight <= 0 Then
                 If missing <> "" Then missing = missing & ","
                 missing = missing & Format$(when, "yyyy-mm")
             Else
-                total = total + price
+                total = total + weighted / weight
             End If
         Next k
         If missing = "" Then
-            prices.Add CStr(mode), Application.Round(total / duration, 2)
+            prices.Add code, Application.Round(total / duration, 2)
+            methods.Add code, label
         Else
-            reasons = reasons & CStr(mode) & ": нет однозначных данных " & missing & "; "
+            reason = CoverageReason(origin, destination, code, coverage)
+            If reason = "" Then
+                reason = "нет данных за " & missing
+                If code = "rail" Then reason = reason & " для выбранных классов"
+            End If
+            reasons = reasons & ModeTitle(code) & ": " & reason & "; "
         End If
     Next mode
     For Each mode In order
@@ -304,13 +417,9 @@ Public Function PlanFare(ByVal origin As String, ByVal destination As String, _
         If prices.Exists(code) Then chosen = code: Exit For
     Next mode
     If field = "status" Then
-        If chosen <> "" Then
-            PlanFare = "АТОР: среднее контрольных минимумов; индекс маршрута 2025/26 повторяется ежегодно; точность не оценена"
-        Else
-            PlanFare = reasons
-        End If
+        If chosen <> "" Then PlanFare = methods(chosen) Else PlanFare = reasons
     ElseIf field = "mode" Then
-        PlanFare = chosen
+        PlanFare = ModeTitle(chosen)
     ElseIf prices.Exists(field) Then
         PlanFare = prices(field)
     ElseIf field = "price" And chosen <> "" Then
@@ -322,6 +431,7 @@ Public Function PlanFare(ByVal origin As String, ByVal destination As String, _
 Invalid:
     If field = "status" Then PlanFare = Err.Description Else PlanFare = CVErr(xlErrNA)
 End Function
+
 
 Public Function PlanRouteIssue(ByVal currentRow As Long, ByVal route As Range, _
     ByVal destinations As Range, ByVal groups As Range, ByVal categories As Range) As String

@@ -17,7 +17,11 @@ try {
     $dataPlan = $bookPlan.Worksheets.Item('Данные плана')
     $macroPlan = "'$($bookPlan.Name)'!PlanFare"
     $catalogPlan = $bookPlan.Names.Item('PlanningData').RefersToRange
+    $coveragePlan = $bookPlan.Names.Item('PlanningCoverage').RefersToRange
     $calendarPlan = $paramsPlan.Range('O3:O6')
+    $bookPlan.Worksheets.Item('Паспорт').Range('G23').Value2 = 2027
+    $excelPlan.CalculateFull()
+    Assert-Plan ($bookPlan.Worksheets.Item('Параметры').Range('C2').Value2 -eq 2027) 'launch-year input reaches planning formulas'
     Assert-Plan ($tripsPlan.Range('J4').Value2 -eq '') 'empty transport input is empty'
     $paramsPlan.Range('O5').Value2 = 5
     $paramsPlan.Range('O6').Value2 = 2
@@ -37,6 +41,7 @@ try {
     $tripsPlan.Range('C4').Value2 = 1
     $tripsPlan.Range('F4').Value2 = 'Санкт-Петербург'
     $tripsPlan.Range('L4').Value2 = 'Москва'
+    $tripsPlan.Range('Q4').Value2 = 'авиа'
     $excelPlan.CalculateFull()
     Assert-Plan ($tripsPlan.Range('J4').Text -match '#') 'incomplete populated row returns Excel error'
     $outputPlan = $bookPlan.Worksheets.Item('Прогноз эк.эфф-ти')
@@ -77,13 +82,16 @@ try {
         $dataPlan.Cells($endPlan,7).Value2 = -0.1
         $dataPlan.Cells($endPlan,8).Value2 = $false
         $dataPlan.Cells($endPlan,9).Value2 = 'synthetic test only'
+        $dataPlan.Cells($endPlan,15).Value2 = 'test_class'
+        $dataPlan.Cells($endPlan,16).Value2 = $true
+        $dataPlan.Cells($endPlan,17).Value2 = [double]1
     }
-    $catalogPlan = $dataPlan.Range("A2:N$endPlan")
+    $catalogPlan = $dataPlan.Range("A2:S$endPlan")
     $paramsPlan.Range('O5').Value2 = 5
     $paramsPlan.Range('O6').Value2 = 2
-    $modePlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','поезд, авиа','ДА',$calendarPlan,$catalogPlan,'mode')
-    Assert-Plan ($modePlan -eq 'rail') 'user preference chooses rail'
-    $railPlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','поезд, авиа','ДА',$calendarPlan,$catalogPlan,'price')
+    $modePlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','поезд, авиа','ДА',$calendarPlan,$catalogPlan,'mode','test_class')
+    Assert-Plan ($modePlan -eq 'Поезд') 'user preference chooses rail'
+    $railPlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','поезд, авиа','ДА',$calendarPlan,$catalogPlan,'price','test_class')
     Assert-Plan ([Math]::Abs($railPlan-81) -lt 0.01) 'negative annual rates compound correctly'
     $stayPlan = "'$($bookPlan.Name)'!PlanStay"
     $hotelSourcePlan = $bookPlan.Worksheets.Item('Справочник').Range('BK4:BR248')
@@ -95,6 +103,41 @@ try {
     Assert-Plan ($hotelPricePlan -gt 0) 'explicit hotel nights can be charged during transit'
     $hotelStatusPlan = $excelPlan.Run($stayPlan,2,'Санкт-Петербург','пребывание',3,$hotelSourcePlan,'status')
     Assert-Plan ($hotelStatusPlan -match 'без индексации') 'hotel forecasting limitation is visible'
+    # Real rail/bus references, independently recomputed from source snapshot.
+    $catalogPlan = $bookPlan.Names.Item('PlanningData').RefersToRange
+    $surfacePlan = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot '../data/surface/latest.json') | ConvertFrom-Json
+    $paramsPlan.Range('O5').Value2 = 2
+    $paramsPlan.Range('O6').Value2 = 5
+    $rawRailPlan = @($surfacePlan.routes | Where-Object { $_.mode -eq 'rail' -and $_.origin -eq 'Москва' -and $_.destination -eq 'Санкт-Петербург' })[0]
+    $coupePlan = @($rawRailPlan.items | Where-Object { $_.firm -and $_.classes.coupe } | ForEach-Object { $_.classes.coupe })
+    $expectedRailPlan = [Math]::Round((($coupePlan | Measure-Object -Average).Average)*[Math]::Pow(1.04,2),2)
+    $actualRailPlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','поезд','ДА',$calendarPlan,$catalogPlan,'price','coupe:firm',$coveragePlan)
+    Assert-Plan ([Math]::Abs($actualRailPlan-$expectedRailPlan) -lt .02) 'firm-coupe filter and real rail forecast'
+    $rawBusPlan = @($surfacePlan.routes | Where-Object { $_.mode -eq 'bus' -and $_.origin -eq 'Москва' -and $_.destination -eq 'Санкт-Петербург' })[0]
+    $expectedBusPlan = [Math]::Round((($rawBusPlan.items.price | Measure-Object -Average).Average)*[Math]::Pow(1.04,2),2)
+    $actualBusPlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','автобус','ДА',$calendarPlan,$catalogPlan,'price','coupe',$coveragePlan)
+    Assert-Plan ([Math]::Abs($actualBusPlan-$expectedBusPlan) -lt .02) 'real bus forecast'
+    $surfaceStatusPlan = $excelPlan.Run($macroPlan,'Москва','Санкт-Петербург',2027,'1 год набора','2 семестр','автобус','ДА',$calendarPlan,$catalogPlan,'status','coupe',$coveragePlan)
+    Assert-Plan ($surfaceStatusPlan -match 'без сезонности' -and $surfaceStatusPlan -match 'не индекс транспорта') 'reserve limitations are visible'
+    $noDirectPlan = $excelPlan.Run($macroPlan,'Калининград','Москва',2027,'1 год набора','2 семестр','автобус','ДА',$calendarPlan,$catalogPlan,'status','coupe',$coveragePlan)
+    Assert-Plan ($noDirectPlan -match 'прямого рейса нет') 'no-direct status differs from missing historical months'
+    $outsidePlan = $excelPlan.Run($macroPlan,'Воронеж','Москва',2027,'1 год набора','2 семестр','авиа, поезд, автобус','ДА',$calendarPlan,$catalogPlan,'status','coupe',$coveragePlan)
+    Assert-Plan ($outsidePlan -match 'Город отправления вне покрытия') 'outside origin is not substituted with Moscow'
+    $outsideDestPlan = $excelPlan.Run($macroPlan,'Москва','Воронеж',2027,'1 год набора','2 семестр','авиа, поезд, автобус','ДА',$calendarPlan,$catalogPlan,'status','coupe',$coveragePlan)
+    Assert-Plan ($outsideDestPlan -match 'Город прибытия вне покрытия') 'outside destination is explicit'
+    $tripsPlan.Range('M4:N4').ClearContents()
+    $tripsPlan.Range('M9:N9').ClearContents()
+    $tripsPlan.Range('L4').Value2 = 'Воронеж'
+    $tripsPlan.Range('F4').Value2 = 'Москва'
+    $excelPlan.CalculateFull()
+    Assert-Plan ($tripsPlan.Range('J4').Text -match '#' -and $tripsPlan.Range('W4').Text -match 'Город отправления вне покрытия') 'actual worksheet blocks unsupported origin and explains it'
+    $tripsPlan.Range('L4').Value2 = 'Москва'
+    $tripsPlan.Range('F4').Value2 = 'Санкт-Петербург'
+    $tripsPlan.Range('Q4').Value2 = 'поезд, автобус, авиа'
+    $excelPlan.CalculateFull()
+    Assert-Plan ($tripsPlan.Range('J4').Value2 -is [double] -and $tripsPlan.Range('J4').Value2 -gt 0 -and $tripsPlan.Range('V4').Value2 -eq 'Поезд') 'actual populated worksheet calculates rail budget'
+    $expectedTotalPlan = [double]$tripsPlan.Range('J4').Value2 + [double]$tripsPlan.Range('J9').Value2
+    Assert-Plan ([Math]::Abs([double]$outputPlan.Range('D27').Value2-$expectedTotalPlan) -lt .01) 'native forecast SUMIFS includes both transport legs'
     "PASS: $passedPlan native Excel checks; workbook was not saved"
 } finally {
     if ($null -ne $bookPlan) { $bookPlan.Close($false) }

@@ -33,8 +33,20 @@ Run checks with `python -m unittest discover -s tests -v`.
 The Excel scenario repeats the individual route/month 2025–2026 reference rate
 in each year after 2026. This explicit scenario is distinct from the primitive
 API, which accepts an independently sourced index for each year. The catalog
-contains only matched, unambiguous one-way RUB references with source links.
-There is currently no calibrated peer/official fallback in the Excel catalog.
+keeps matched, unambiguous one-way RUB air references with source links;
+surface reserve estimates are explicitly labelled separately.
+There is currently no calibrated peer/official transport-index fallback for air.
+Rail/bus have a distinct reserve method: mean undated/timetable reference prices,
+flat seasonality, and a 4% general-inflation scenario sourced to the Bank of Russia
+forecast of 5 November 2026. This is not historical transport inflation. Beyond
+2029 it extrapolates the scenario. Quantitative forecast error is unknown.
+Each rail class/firm group retains its sample count; Excel applies the workbook's
+existing class rules and weights groups by their counts. No organization-specific
+class restrictions are embedded in the published data. A bus is checked
+independently of whether a train is available. Source errors, missing price,
+missing page and source-confirmed absence of a direct bus have distinct statuses.
+Unknown endpoints return an explicit outside-coverage message and `#N/A`, never
+an automatically substituted Moscow or neighboring-city fare.
 Unknown semester months propagate `#N/A` into dependent budget sums rather than
 being silently treated as zero or averaged away. Known zero hotel nights are a
 valid zero expense; missing prices are not.
