@@ -80,6 +80,10 @@ def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
         d = datetime.fromisoformat(o["depart"]).date()
         weeks.setdefault((d - timedelta(days=d.weekday())).isoformat(), []).append(o["price"])
     by_week = [[w, q["n"], q["median"], q["p90"]] for w, q in sorted((w, quantiles(p)) for w, p in weeks.items())]
+    # Calendar-month statistics keep actual departure months, unlike weeks crossing a month boundary.
+    by_month = {}
+    for o in trips:
+        by_month.setdefault(o["depart"][:7], []).append(o["price"])
     direct = [o["price"] for o in trips if (o["transfers"] or 0) == 0 and (o["return_transfers"] or 0) == 0]
     le1 = [o["price"] for o in trips if (o["transfers"] or 0) <= 1 and (o["return_transfers"] or 0) <= 1]
     return {
@@ -89,6 +93,7 @@ def collect_air(s: PoliteSession, c: dict, months: list[str]) -> dict:
         "max1transfer": quantiles(le1),
         "direct": quantiles(direct),
         "by_week": by_week,
+        "by_month": {m: quantiles(prices) for m, prices in sorted(by_month.items())},
         "airlines": sorted({o["airline"] for o in trips if o["airline"]}),
     }
 

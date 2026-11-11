@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ator-july-2026-tables",
+    "url": "https://www.atorus.ru/article/v-kakie-goroda-budet-deshevle-letat-v-iyule-2026-goda-68339",
+    "retrieved_at": "2026-11-10T22:38:33.220717+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/v-kakie-goroda-budet-deshevle-letat-v-iyule-2026-goda-68339",
+    "bytes": 122199,
+    "sha256": "843bf4cb4cd1b9095f9d07dfdcbeadb47c11497f8b2afa33cc2d27a15c278240",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-august-2026",
+    "url": "https://www.atorus.ru/article/konec-ery-deshevykh-biletov-avgust-2026-niveliroval-letnee-padenie-cen-68784",
+    "retrieved_at": "2026-11-10T22:37:14.994229+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/konec-ery-deshevykh-biletov-avgust-2026-niveliroval-letnee-padenie-cen-68784",
+    "bytes": 132021,
+    "sha256": "e6fee6046eed705888e1c58defefd874bf676f6ab738bc04bbed0acba2dc2581",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-april-2025",
+    "url": "https://www.atorus.ru/article/vnutrennie-perelety-vesnoy-podorozhali-na-176-61056",
+    "retrieved_at": "2026-11-10T22:36:17.070144+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/vnutrennie-perelety-vesnoy-podorozhali-na-176-61056",
+    "bytes": 208411,
+    "sha256": "597cfdd31781688a492ec91f3a6f4c387be8f6b4c6bc803bcc89b54608886949",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-july-2026",
+    "url": "https://www.atorus.ru/article/ceny-na-perelety-po-rossii-v-iyule-2026-goda-okazalis-nizhe-chem-god-nazad-68348",
+    "retrieved_at": "2026-11-10T22:35:30.157978+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/ceny-na-perelety-po-rossii-v-iyule-2026-goda-okazalis-nizhe-chem-god-nazad-68348",
+    "bytes": 106443,
+    "sha256": "c95cf1e1d16c28a52f8be05fc7322b44d95dcb9cb5da84aac32dc4067c96d7f2",
+    "extracted_quotes": 0
+  },
+  {
+    "id": "ator-september-2025",
+    "url": "https://www.atorus.ru/article/vyletay-podeshevelo-ceny-na-aviabilety-po-rossii-snizhayutsya-63435",
+    "retrieved_at": "2026-11-10T22:33:20.792687+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/vyletay-podeshevelo-ceny-na-aviabilety-po-rossii-snizhayutsya-63435",
+    "bytes": 128087,
+    "sha256": "8abed0cc611871377fb31a7ee344dc6c86864b599631887503f36dfac96206d9",
+    "extracted_quotes": 104
+  },
+  {
+    "id": "ator-august-2025",
+    "url": "https://www.atorus.ru/article/neveroyatno-no-fakt-rost-stoimosti-aviabiletov-po-rossii-zamedlilsya-na-pike-sezona-62869",
+    "retrieved_at": "2026-11-10T22:33:21.088831+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/neveroyatno-no-fakt-rost-stoimosti-aviabiletov-po-rossii-zamedlilsya-na-pike-sezona-62869",
+    "bytes": 240755,
+    "sha256": "c3fbbba25624055235de5824c1eeedb747d5c0a767ecd492be7eb7a0f0f968d1",
+    "extracted_quotes": 104
+  },
+  {
+    "id": "ator-november-2026",
+    "url": "https://www.atorus.ru/article/bilety-po-rossii-uperlis-v-potolok-uletet-v-sochi-iz-krupnogo-goroda-mozhno-za-26-tys-70417",
+    "retrieved_at": "2026-11-10T22:31:07.332392+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/bilety-po-rossii-uperlis-v-potolok-uletet-v-sochi-iz-krupnogo-goroda-mozhno-za-26-tys-70417",
+    "bytes": 122806,
+    "sha256": "4df31fa3d0c92ec7af89f952a94fafab045f9bdd5a17f040ca5c06cf30a7ef57",
+    "extracted_quotes": 99
+  },
+  {
+    "id": "ator-november-2025",
+    "url": "https://www.atorus.ru/article/aviabilety-v-rossii-ispugalis-shkolnykh-kanikul-i-rezko-vzleteli-v-cene-64483",
+    "retrieved_at": "2026-11-10T22:31:07.625146+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviabilety-v-rossii-ispugalis-shkolnykh-kanikul-i-rezko-vzleteli-v-cene-64483",
+    "bytes": 125721,
+    "sha256": "f5913e877c1687320df203aeff93d5478d52ae5844577558775471da6244104c",
+    "extracted_quotes": 104
+  },
+  {
+    "id": "ator-september-2025-reprice",
+    "url": "https://www.atorus.ru/article/aviabilety-na-populyarnyy-kurort-ekstremalno-podesheveli-63629",
+    "retrieved_at": "2026-11-10T22:31:51.709691+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviabilety-na-populyarnyy-kurort-ekstremalno-podesheveli-63629",
+    "bytes": 108642,
+    "sha256": "dd7a2ad865a905ae98ff0e953f106846736967e15aa3619e629592e2e2379402",
+    "extracted_quotes": 0
+  },
+  {
+    "id": "ator-october-2025",
+    "url": "https://www.atorus.ru/article/naletalis-stoimost-aviabiletov-po-rossii-padaet-po-mere-sezonnogo-snizheniya-sprosa-63881",
+    "retrieved_at": "2026-11-10T22:32:28.930619+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/naletalis-stoimost-aviabiletov-po-rossii-padaet-po-mere-sezonnogo-snizheniya-sprosa-63881",
+    "bytes": 126665,
+    "sha256": "83465a6e3691c737d4bb9756ead33bd5a3ce9d481a648596f461e4fa574af5e9",
+    "extracted_quotes": 104
+  },
+  {
+    "id": "ator-september-2026",
+    "url": "https://www.atorus.ru/article/aviakompanii-snizhayut-ceny-na-osen-gde-bilety-podesheveli-do-61-69300",
+    "retrieved_at": "2026-11-10T22:31:51.790443+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviakompanii-snizhayut-ceny-na-osen-gde-bilety-podesheveli-do-61-69300",
+    "bytes": 126171,
+    "sha256": "62128d06aa53cc63d39ed86c8c1d5adff6c4a1df4c4c4f642843da6609911275",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-october-2026",
+    "url": "https://www.atorus.ru/article/aviabilety-po-rossii-v-oktyabre-za-god-podorozhali-na-9-11-69878",
+    "retrieved_at": "2026-11-10T22:30:27.035989+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviabilety-po-rossii-v-oktyabre-za-god-podorozhali-na-9-11-69878",
+    "bytes": 132767,
+    "sha256": "835ecffb7a8c75c1d96026c33291984361eb8cfdcfb7aa399928fb027279f17f",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-december-2026",
+    "url": "https://www.atorus.ru/article/aviabilety-po-rossii-rekordno-podesheveli-k-dekabryu-70969",
+    "retrieved_at": "2026-11-10T22:29:32.376972+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviabilety-po-rossii-rekordno-podesheveli-k-dekabryu-70969",
+    "bytes": 122627,
+    "sha256": "0b4723802642651da5914293105c0c4cdcccd7caa6da440f9228932999ba4898",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-december-2025",
+    "url": "https://www.atorus.ru/article/sletat-v-sochi-po-cene-uzhina-v-restorane-zima-zamorozila-stoimost-aviabiletov-po-rossii-64976",
+    "retrieved_at": "2026-11-10T22:29:32.461795+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/sletat-v-sochi-po-cene-uzhina-v-restorane-zima-zamorozila-stoimost-aviabiletov-po-rossii-64976",
+    "bytes": 118914,
+    "sha256": "3a5d64efb4b8a522486c942f41735dd7341c6b633b29594e357ef7dee38c6986",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-march-2025",
+    "url": "https://www.atorus.ru/article/tri-samye-byudzhetnye-aviakompanii-rossii-skolko-stoyat-aviabilety-na-mart-60607",
+    "retrieved_at": "2026-11-10T22:28:22.228531+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/tri-samye-byudzhetnye-aviakompanii-rossii-skolko-stoyat-aviabilety-na-mart-60607",
+    "bytes": 206626,
+    "sha256": "46299890167fea3ec3597d706cee90205e2c2102d2e49aee77b206af59964045",
+    "extracted_quotes": 98
+  },
+  {
+    "id": "ator-january-2026",
+    "url": "https://www.atorus.ru/article/letat-po-rossii-v-2026-godu-budet-dorozhe-sravnivaem-ceny-na-aviabilety-65480",
+    "retrieved_at": "2026-11-10T22:28:27.581931+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/letat-po-rossii-v-2026-godu-budet-dorozhe-sravnivaem-ceny-na-aviabilety-65480",
+    "bytes": 132478,
+    "sha256": "4d0647b2f43c1fd22a8f0b12abc5b45aae49254228bc8e03efc6e4118e40033c",
+    "extracted_quotes": 200
+  },
+  {
+    "id": "ator-february-2026",
+    "url": "https://www.atorus.ru/article/rossiyane-naletalis-ceny-na-aviabilety-prikhodyat-v-normu-65909",
+    "retrieved_at": "2026-11-10T22:28:27.871237+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/rossiyane-naletalis-ceny-na-aviabilety-prikhodyat-v-normu-65909",
+    "bytes": 255866,
+    "sha256": "706d67c6e69aad04ca02b11d350ffd4a2dff2ece3b40bff97e24ac0411935153",
+    "extracted_quotes": 96
+  },
+  {
+    "id": "ator-march-2026",
+    "url": "https://www.atorus.ru/article/samye-deshevye-napravleniya-dlya-poletov-po-rossii-v-marte-66303",
+    "retrieved_at": "2026-11-10T22:28:28.202137+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/samye-deshevye-napravleniya-dlya-poletov-po-rossii-v-marte-66303",
+    "bytes": 118187,
+    "sha256": "77a54baa9e2a266626f7c05072c9951ba0c093902fecc30f49ee5868fcf7a8c9",
+    "extracted_quotes": 96
+  },
+  {
+    "id": "ator-year-review-2026",
+    "url": "https://www.atorus.ru/article/perelety-po-rossii-podorozhali-v-srednem-na-15-za-god-no-est-odin-nyuans-66344",
+    "retrieved_at": "2026-11-10T22:28:28.477943+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/perelety-po-rossii-podorozhali-v-srednem-na-15-za-god-no-est-odin-nyuans-66344",
+    "bytes": 119102,
+    "sha256": "5af5cfb6a68187f466fdd0bc432a002a929a9abba3fffaddd48b30d58ee68551",
+    "extracted_quotes": 0
+  },
+  {
+    "id": "ator-may-2025",
+    "url": "https://www.atorus.ru/article/kak-izmenilas-stoimost-pereletov-po-rossii-za-mesyac-61604",
+    "retrieved_at": "2026-11-10T21:54:56.040133+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/kak-izmenilas-stoimost-pereletov-po-rossii-za-mesyac-61604",
+    "bytes": 120484,
+    "sha256": "a53a5f1443de739c4bfcfa235dcc93c6183df27ec684fcb1111cbded6fc88434",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-june-2025",
+    "url": "https://www.atorus.ru/article/aviabilety-na-yug-podorozhali-na-tret-k-nachalu-vysokogo-sezona-61997",
+    "retrieved_at": "2026-11-10T21:54:56.122329+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/aviabilety-na-yug-podorozhali-na-tret-k-nachalu-vysokogo-sezona-61997",
+    "bytes": 241617,
+    "sha256": "c2321e844fed541fb4ba83d2012a8a1871d5da4b446d1104e71674c8685ccd6f",
+    "extracted_quotes": 104
+  },
+  {
+    "id": "ator-may-2026",
+    "url": "https://www.atorus.ru/article/prervannyy-vzlet-ceny-na-aviabilety-pikiruyut-67291",
+    "retrieved_at": "2026-11-10T21:39:59.949062+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/prervannyy-vzlet-ceny-na-aviabilety-pikiruyut-67291",
+    "bytes": 124388,
+    "sha256": "9612f82feab8c4ba08531879e15803af640fe990add0a8494aa98f97a3211d3d",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-june-2026",
+    "url": "https://www.atorus.ru/article/turisticheskiy-spros-ne-opravdal-ozhidaniy-aviakompanii-snizhayut-tarify-67860",
+    "retrieved_at": "2026-11-10T21:40:05.518251+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/turisticheskiy-spros-ne-opravdal-ozhidaniy-aviakompanii-snizhayut-tarify-67860",
+    "bytes": 125103,
+    "sha256": "52baea103980853f8d054937f084f7e18536c079b058ae415edf060d7f2b6bf8",
+    "extracted_quotes": 100
+  },
+  {
+    "id": "ator-july-2025",
+    "url": "https://www.atorus.ru/article/skolko-stoyat-aviabilety-po-rossii-etim-letom-62426",
+    "retrieved_at": "2026-11-10T21:40:05.916335+00:00",
+    "status": 200,
+    "final_url": "https://www.atorus.ru/article/skolko-stoyat-aviabilety-po-rossii-etim-letom-62426",
+    "bytes": 119765,
+    "sha256": "29f55a4b39dd2132a0f0deb9bc2e6e93c67ea643e554417617ba1fe0934d9ed5",
+    "extracted_quotes": 104
+  }
+]

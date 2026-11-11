@@ -1,0 +1,157 @@
+{
+  "retrieved_at": "2026-11-10T22:38:33.220717+00:00",
+  "grain": "one-way reference-date fare, route and baggage variant; not monthly mean",
+  "observation_note": "Travel month can follow retrieval date: these are published advance fares.",
+  "months": [
+    {
+      "month": "2025-01",
+      "quotes": 0,
+      "unambiguous_quotes": 0,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-02",
+      "quotes": 0,
+      "unambiguous_quotes": 0,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-03",
+      "quotes": 98,
+      "unambiguous_quotes": 98,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-04",
+      "quotes": 104,
+      "unambiguous_quotes": 98,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-05",
+      "quotes": 102,
+      "unambiguous_quotes": 94,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-06",
+      "quotes": 100,
+      "unambiguous_quotes": 96,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-07",
+      "quotes": 104,
+      "unambiguous_quotes": 104,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-08",
+      "quotes": 102,
+      "unambiguous_quotes": 102,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-09",
+      "quotes": 104,
+      "unambiguous_quotes": 104,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-10",
+      "quotes": 104,
+      "unambiguous_quotes": 104,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-11",
+      "quotes": 104,
+      "unambiguous_quotes": 104,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2025-12",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2026-01",
+      "quotes": 198,
+      "unambiguous_quotes": 2,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2026-02",
+      "quotes": 96,
+      "unambiguous_quotes": 96,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2026-03",
+      "quotes": 96,
+      "unambiguous_quotes": 96,
+      "matched_yoy": 94
+    },
+    {
+      "month": "2026-04",
+      "quotes": 0,
+      "unambiguous_quotes": 0,
+      "matched_yoy": 0
+    },
+    {
+      "month": "2026-05",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 94
+    },
+    {
+      "month": "2026-06",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 94
+    },
+    {
+      "month": "2026-07",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 100
+    },
+    {
+      "month": "2026-08",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 100
+    },
+    {
+      "month": "2026-09",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 100
+    },
+    {
+      "month": "2026-10",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 100
+    },
+    {
+      "month": "2026-11",
+      "quotes": 99,
+      "unambiguous_quotes": 99,
+      "matched_yoy": 99
+    },
+    {
+      "month": "2026-12",
+      "quotes": 100,
+      "unambiguous_quotes": 100,
+      "matched_yoy": 100
+    }
+  ],
+  "rejection_reasons": {
+    "fare_includes_baggage": 1,
+    "missing_quote": 2,
+    "unresolved_route_caption": 6
+  },
+  "comparison_exclusions": 214
+}

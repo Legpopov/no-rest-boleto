@@ -1,0 +1,858 @@
+[
+  {
+    "quote_id": "dfce74edcd0e2c5ca6182df36383411e46d60a37a13642ee584eb379d05d1556",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "90688e8dbe9f6ad6e746bac162c048a08e7898acd5d57777634ecbc67060e2a3",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0d48c7d94ebf1b53e8931e5d1ebdf601e85ed5d54f710df874233e2ffbad87ab",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ea5f64c8aa0ade965901e81d03dbe67fbabdfbc9c5c8f0cb27da52043fc491e8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "26bc5b8c3fb1cd33aeeaa3083d276766def30eb5495f952e980aaab590495886",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f135f2efee2e8c88921c0143862dad82a1d8039c484fa05c2bbf7adad0164d40",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d6c1b9c2883b2706e24fe607c357c68c74043a4861917e1bdbf83684c0d57a7f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d6b19d3381ebd1eafaf87e23618cc8628e098ec769822b8a8c7a4abf2b66f342",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "88a5991a4c9217180e8696690228b296407cdefc563f287ed8fb397bdeb46561",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "19ec69f2e27e795c1163387c85000df60fbf35f03428406a1af36efa0f9e3a67",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e8fdd4fb3eb0718fab0de5f136171669a8ae019298bac899fdc25299ebb943ce",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a81146526ea4288e086ea42cf5e7c02a4d47504a1621d8d5445304ec4df6efe8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1e61f6d51ea56de65a4d35a11b0eba8348601a148c4c31e457ba211278a79313",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "059da871df7f3207606a6e8b0e141a776ee4c4c04a101009e05e874508734e7f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "7666b7ef7780a86fc9b64445bc6de51a4de977cb9deda45ed1a49f99ed8add04",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "7aab72edd8449eb96558ee36356d17ce75aba715ae485bd176eded4c212c0c1d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e1294708d150abcdbc246ce321fda43cc7ffa2f6dc4eee72360aa9820a8aaa43",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "37ead99d4d5196f4e12d99c3ca9e8121384a53c0993a00be3e366cf08e6460fd",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d095460a815b175f3f3f75ac7cfa86b10df469ef201fa311e29a0e9273061cc8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "bfb30487f925873330eb0225d9911fc32a2b2437816c2719ffb1bf7d58be7bee",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "7324dabdf10fa52ad5d4fde2304b94e6075198bcb62f1880acde76bde835994a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "7ed212a84a35f7c550c91a563b02d267a9ce9c57d4adf927da06864086b9ca60",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "19b13b88ad1da3d16d498a76e174a6282eaea7c38a9a805daa9136ee630ecbbc",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9c519b7c68287731b0077610690292b291e9f031501e0ad86e8fddc6e43a620d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ff1420e66f5ca8d19375504d9a8543a36b35b811536c4c6dc265131441e82344",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "791e6014cb9a37f13bf0c96bdad23fb401641af1558e36d6806e84f283702453",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1e32f783b650d82b98e18dc78584f96c352f68deffea4021974a1cd2ce4a8195",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ff6636d559853edc9b0f12694cb4af3e7749cafb51d9ce8b099ac37f4d35273a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "010e894e5c38407fcfbc291a649cf30614a46c136adf13c49dda3acdff810b15",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d71a2b562510a6c0f91ba65b5f1716330ea6b5af0a1eaba8174fd5da7ed417b1",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "765ab6879c2c102b033439f136fdaa18e0d7ed5fb8bea1897b9f07e60030f194",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ae22781978aa1387465c29257a3580cb822f8d8b5d41934c77139a9f845ccae5",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b7e5a86d17b29518935037eeec4675d187bd98d63379610b8e5edc6781c748b9",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e9d4d36fd884caee22ae8ad064d6a9b68a94033cc4473a5dfec7c23a94562077",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "49e8913da6a204cea716aad2a1fdabfbfd179a4bb4b130fe3ac0cda6b157c4a9",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4e04e61811b37720e050ceedacf62172efd276d9c3029892868371e7eb9fb084",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1b5d10848e31f25830530385606fddff89c8244092199d5d43ce166a3abc4736",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2ed1a755ce32d28a49d284582b98a5b2629a28184c7f3fb5234e554990062a6c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "773a5303ed37db6ec5e378f34bde5ce58bf526b0715557d5d7d5525254e54f6e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "861696d54db0f02ce78e0bc0458c70666a15696f46a87424be0b3e190b7c4859",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "10b7868dd0e2ff27d626c177d664f7ce1cd92592e58fc0e8a15f5b8a9a8c80df",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "581e36e452bb4ee2ce388f65338cb3c4ceef8ee455e5683a6e362267366ba57f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d1ed6e8a364ee5411a952b77cfe5ffb5658d40f6161cad299a3a555fb95342a1",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ec68b73ab3c3b104dd2d9739f9a933d7e3fedd7ce321418eabf053a859d391ea",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "75ace7559dcf0548386c86581977f5b05283bb77ac02523c96e84a89e2a601d5",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "092a1802aac7a3450709ff142e0c7c2d6b8c33941ed37b27644d70be6b92bfd2",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "6c9ef5cc33eb16811861e3dc2a19133f920c6568568bd897794414ab1a98224f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "79025a1bf434b61ceb5d5a7fc06af8f680d7b710e17ac036d398e35830939a30",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a5a3a86073ffc10e9fc45563fc3528f61c12f2ff98a5f0c85ca0020fc73d2ead",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "c60a535f6774fe6910ce61473d15ba58f2a690ae381ea2ceffa14b10c293fe0b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9a0d5b031763cdf7131f95c2f29832576cc602fe15cb2e2128ab6e1a8000adf8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5a11adbecc92b6dd79a91aab7a8a5ca90a86594d779ecb2073c79214c951005d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d94e2a892c0747289bc897df83f4ccdceaa749b6eb63a393596cc809d785cadd",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "96175c5baa01cc4317768ab2e5250877060485325e6ca14fc57df878d79c53e9",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "7005b55f70630deae1d2a90a1b2b5b1fb428b49f294f946c48c18c0f23cd956f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "972f352b0b24bca6a0c35b65a8a1a9af1558c56d0031e0876af92d12a8395747",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2480387ef78e6b2f91c4fb89f6bd6ec7911aefea454c8cc3585db963b2d2d9ba",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b7cdea5490261e5a85be563290cb78e6de31df3600af638fa9bf1077f52f0190",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "6a557f10cadcd1542d0ea3af6a881d3b1dc8ead0344c671ab5233b271fe4e039",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "c5f71d337458b3a2b5ed27f8a32d7960dae239cfa3cfe4f1a576e27a14a26834",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0c42e0476a2d541f066a0b08d34533996fe10c8ccb5b21435cd4a06694364a9d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "512e6d22a9ce680d13abcd5032da6ee1cab4eb45b3844de9371026ff2853106d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f4d0cde558ab683888111d2b72f40ad50fdf0715eec6f2298fe1fa3129a1b908",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0fecfcb5bd305ac8af78062ee0d44af071449c530f761a182d2e13f79e399975",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "66144180689e9e039213768a8e39913f90a21acd2715bafc81d82e8052aef7bf",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0ab6d03cd0182f2832a740645b0d413e9d02a4cd83dcc291eb6c2d740bf0951b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "00a0f2439ded79ba3ccfa1b0ba1e3f881c00429990ad135974d9df311d8ffcab",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e1fdb3c4ce95347d68eb79fb1014805fd04c8d15f9f26800fefb382537f97ce4",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1fe9962c96ab7ae1cba32593dc1883278d9793680c5f2cf959e2e90896623bff",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "8ea52b634ee2b059e3517901413a9e186a341b2c31b974d441e8fda9932ec75e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f183eb04b8015e6039c7a5797ae89d786184cad6c559e12cd545b45e73f072fb",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "219fc0aa544ed3a8453376903ffc8571660dbf552305e2667668e3dca86932bc",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1718d722eadce983d5e647744c8c463712c3dd188a604cd584af13cd114bf38e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "94acd4f1960043eb805bd38a2708dad7a08f92cc77e4d6f3555369cdb111ce6e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f6c4e2c0ba4eb94fe6b02fda2238344adcd39fd8913101d6f3333139ff83fea1",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "fd44b17e70ce2ecb55ee0c2ca4cb9f79cadef8ea2372297bfc7f09382839440f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "c2f9df642c0a39b2c7dab207a6a410ba474282e23ea515f7f95a98adf85d3271",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "8daab6d801d43f5835a3920486f7c4ae12bf62c08029a984c1343cffa3b1ac95",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2c3388bf7511a82568b88d8bf7d9a8da7c5c6cc2faaf7ea75ced89eb03b2b694",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "429fcbf62b4337ff1075202d3ee845c94abbbf86ec21e8da420ca66f832dc002",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "75bb8231acbebbfa007b744181b1a2bd1b7b7c0e73f957b937d7561fa0e36a82",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b540eaf0456b4f970a32bc5c27da5d99703eeb0903ee615b4a7275e2728b0015",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "3a6258eca46ae299305c4a65c4111387d38f1a319b74b7f4c42dc05e229b4179",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5ec64772aa1e3f9bd7ac131122908b9bc436c8d744d25ae16ebc4434704c492b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "964e953dcaf2fc1368c2ebead6724969cc1efb2010496e1dfd8bf61ce5b0057d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a5f16376a27b73d4ec44a32b01215c857eecfc26358ce00a1c4d0b24ed267849",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1300c3c6a6a63765321b3fd3ae97b78acea902ad870c67f80c734dc933ecd102",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "dc5fe0a7ab28ad44db56189d2acca888a23a033ba1acc1584ccfa8872706dbbf",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2df806d84e0b801de62682105a6cc499ab10fb70055431919340bf412e9f37ac",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9e3a96fac580cf10308e2c301bf2f202de39766e1e73ebb85df1b9177283156a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5fd1749001b4934ade784b6f1e58af6e1b0987f7a3652af1ea80296ee085aed0",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0f8fb8e705505674def011db54e4eeee6e5215a23678fa3dce4bbcf499fcd3db",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b250077bce83ae3c918c6d99329a769401d606a69693feacec363aa772b73abd",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "45d3e4670834d56885dbbebda0d5f6da548492fcb84964b59f49fed4b6356022",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2747c122fe5cc73564eaecb0fff1675ae3d934ef6e036ae2882896dbea0d6f10",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "87fed3539f7a822363a8ad348abf6fe57ddb3b6afc50058ebb3916e75363f5d1",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ec5a0b13b2ae7d9f6576c94ab38aaaeff9023ce5ae3b07488bf43a1bc0015b34",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "46ae5e8827e6cd070e7e46d2a93e02549d1a61d36052f2d1c126975ad6a1fdea",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f72beea01001147a8a45d8b6fd172181d460f632aa82e56528fb27105918d65a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "bbb0638f798d2b393b2ab5a28dc826e2518ba631e73009890cf4f9d5a542aa3a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9399eb1c32425143f97278c98790b85393fba8167fbbf23be327ac39b1af7700",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2240257203219d1a152a2fef6e913602a11260d28dd5b79c7eaa5f6f7552405e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "607eebc0af237545210a88402274d27af941791d29cea78f09eb37ae7171860c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ca336dbfc1d063d928a3db2b2245010f2f2cced2d0dd34dd487d179f0d2feb58",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9d6df72edec757095cb14b0f79b3b9e433b03bad5ed25b21fcb6a82290dfe8e7",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "be0da3aaf4fb1f6997371f5617fdbacd0ab0d44276aae1ed5760e438f0942d3b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f04ba94a10ef7cb0b2fec66742668e29b203bf192a4af8efb4b661bebc6fc9c8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "1aac6d0790d1589f876358c7e745394ec4e56cfe1b4da7dc71335a4849212a58",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "357b1ca900c4bac4fa52560383efcb8d780751e4b4c6a5a801a1ee4be717d56a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "c6b1242f674721ed0722b1c1f27f2a2b938175a959474e8fb963ebd015069383",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e642f7e02b2ab40174e412740fd0e0bc73a5854abe33305a1f0daebb8e58946e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "32d7511515d63fe53caf47a00ce76b0ca58500e8145f8b303104cd1b71354564",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "3fcdd8201d212aa63e85ed78f97d12a703d2127a27445467de239a92b5df7f3c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "c5bffbd5c7692edfaafb5a9e3b197e44d5009b38b32f28bc0e3ddfa3428c8593",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a0e6e491ec442c45922b7ec33557e7fd27add983b4c51aca076efec328537458",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a2c3a64e82893d571183b7508abf5842c447f0e977bf5c575e3b7f05a209d48b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ed881c96c0cc970c96b45467644d7abad3427f46f752629430903fe7eb1a6f1d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0c280a08810dee8eb6644aff43830e9ee57b2c9fa854a004f46a83f3a16d86e8",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e4bfbe22424b3d948155ee61114b295fab1578b7d84329f9829006a49af93353",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9b3601c94f6d504e315871a26fa462362770b78cf204b0c7a0de0f36c85507cd",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4a2712681f3daa1d81931f893f8dba790ea4bc13338dbb65334876541fb5c559",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "17ff4f79038e4947e2b9b20b4c460b064da21dc7a4fa49bd6c71f8b272fb9db0",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2e955147379b87423f530d599bbf805656c1f6facdf2d3a3baf5100470efbdb7",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9316b799a3f536a27527962fe69c89a8acb2e7f2cf13821dfd276cb18c842a16",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ff250cfcf8f6474950dedf17d2d16a151378c3dfd1550c450ecf989b766273bc",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0e5c88e74f850bd16225c54656497993a850c9a128905b9ce9b2f2fb0894db5e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b64f9266ef090131810837fd16620789ff03b44205ac7e8676601fb6ac5f0565",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e332d91925da12c11a6d256f260908948a5b955eeaefdcbebf219542cfd9d475",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "8c0d8fd6551b7bfce9826046a7c69a4d33d234aa8082cc95fd58f4039edc0752",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "50a6cc9ae74611f04161396af983931954809206769141e4e8c17f06d5bcaa97",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4a2ffa256196fed94d9a7b8d866280b54fc3ec7139f661a31a9a337976d609df",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b52e8c295a1752d747be4539a96f5bc7f860f6f4deae8d970c10fbb3711c7d6e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a41c40e095ef63f7012b6354415cdf48e36c06b5f5b7b17bd5b92d1ace1ab561",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "163f5d19e68ceae61111abfd723300d093e3c068a716054ef7deecfb3a8c03b2",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "fa08deb2572f6bae123f6a3d8bfc856f89151b50fe477e18cac7f7e2790bb5e7",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "794315a2bea8e50b71a9f0558987c2eeace12332e4dfa643817ab1e75d361a4e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "95eb752ac5f301f8cdedb83fc46942b85ce24ada8a68a92d2bf2695c7878492e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0ac3df9e33d692f11d81e1aa2e94000815d04a6469a29fdce2b17dc61c95bea1",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f5f5603ad4d0889f4719584b24aa04934208ff43c6d5423fda290815f4d0152f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "6e42271159148b4c45677897b1a4877adc024dd03a54742b36656c0f256bfc83",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "36ac7dfe56b860e899b731751319a22a16c70909deea7fc2920a877f2454137c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "caf7501ad413d98dfe6c2e9429a48faf7c2958cb597c4dd6ef508495d8851c33",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "25779408b2cfe0680923d1f553b57ce029cf0ba8ab280acc661dc21d5f7541c0",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a9390f809879e38a30f6aa1cda8e442df9526ecb4fea451f0dcc50479f2dc1bd",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0f7ece3ff9fc0a669554ff57545ddcaf276366c08960bde6dcdd25a127d8f6db",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "503992090340baeaec4844ddd95550442609ffa36aab5edd71c6b5e945b18ced",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "2d8f4a4d0c04114c82af3c9c2fbe616c24a2e133b26dcbd4bc43f96eae87958d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4c518257a1732a5691d44e9d6612e276675f966b428ac3b76f239091f41a8583",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "88c77f82881268b4e730345c13c4837e0fb165f5a7651e3c4f681679415dca31",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d8d9f594f05190b77995b3bd2c6795787a96274b63cf3c0d8dd2bf98e338c5e7",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5a1c54e3cd4e0987f56b86fc9243f1c9034da3fc2c422d23c12f22924f093684",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "fac9fc94f68972956423ca6ae0d94f18549f0dce5734121d76eabca84db2f544",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "8267761aa3c37afb9c4186f363193945ef3e8fbbb3d58d016421fb4808bf676c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "55b62fb5a0697f937c1ced856f482279cf1ccb54a0965b3fe6de812072374911",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ad9c492fa01b2f24b533d4b7da8e09e675eac27e1f358df5f3305a8a649e094b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5ab1e440abc6ec248c5573261b094e8142874ba5a5b045bd413fb32ba21a2477",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "37b637e6584a41a8e51929f301ecaade2c9d3dfea3e9605d99329ca0d6b51200",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f0ba778c021a8262ae973d54e9230e91fc82cc29dae037ae3e55530135873f9c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "57b30e6326fc215f52a6cde90233591d7e41f15b79f2f9cf7c7f07bae9e01155",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "7eecf9952fa7dec51a66dc4c301ba8969544a127d3e8095dc68c242a30662a81",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5949793bac9a81a998aec365f443a8a3bf01694740c76675e3e9343bc2b7566b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "20b5e3a670da7469872c2e3626f425dea9bdca40175c49c48ef3dacc18100e95",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "321e9be5d6fb6e79f80935b255498bb61702a4301a1e565e0b46775a8cd2b5cc",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9e72f9869b9c7cbcc1360eb2556de06220216c27916ae889740ce48fafa1cc64",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "cc9ce1bbab94658aaf91099eb3e6b301aae6f579f90013737652a9a20922e9dd",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "51616df1ff161fa3c75459fba314384a8ec91ef4c9aac6a61da0eaa5bac6d55a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "11cc546c2caedb75a207137792d4635dc8362fe537710e59cd026e8084720aed",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d708d37e289a3ee0bbb9d49282c0cf11b541385ca22fa174ffd496e8ba6de3d6",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f8dd67f915e9941b0ca5619347dfba62731cf45884760115774f62b2029e5472",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d1c0ae8cfe8125b335d20127649f1ad420d7b515f2e328fd60c48d198c7140df",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9720832ceba7984698f3c99daa57432a83085c69df7fe7309b47b6024cc9ccb0",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "623dcab99917e3943fc97a3a7df2f401e24578ea66a38b782aabcfc77aa8d32b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "d572795d96bae4e422da3d10fefc3bb54bff21a7ef75685130dee9a41a024304",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "10477b87447d15694920674ba7592741ecbdfe88ead1dda39f60e709e71f4402",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "3e3dd67469a92be3cd69ad65441e57448a57bb354b021ef9a830a49d2e938b94",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "fc25bca3a4d9a58c5a93f899fd54a2ea5b0a4d0f64a13d821dedf0e35de550f3",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0e1228e4904294493deee8054ee27c264822f9fe0d4852d4dcb98b3f27fa06ea",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "99c370279c7750af7f6b3f9c302b0bc6f769918fc5008022388141bf2ed37d80",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "66f4fc1dfa6d9268b7b8bb31042b03aac8e6376fd986dc4c6150f85924f22740",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "8b311959fb63e9e6bcca4db8f6d51e060f9a2a192553b474d6c25e0b39949726",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "0b990755032844d16f0dd8ced39842b20c16028ea5c9b8e6ed8dc4a6407f416e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ade0fd8fef611c67ae7df0646b178b9ace61333a5b533674c81f98192d31e040",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "fad94240e867f7efa346d397e58c94930146f92ef37c82a75da282d6a2ce98e3",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "c17119dcd51ab5b17de15c7c98d89ad45c8bc79628d6879cfb34f3c7d9a4251b",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "e9180d719e2e13898eef7af6ea05e669f9d92da33848977e44461def2274df49",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "6758179ee3d6e24eb0f2bda058537628951ac02d9185313473d2ec09180645cc",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "3bf6e27b535684019b61937b42d190ebc27cee3e8737958e12b859d7ccb8c2fc",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b6c6f98df7eaa7df6f3accd654065c917d0f96fc5aebc682204231f7fecbb1ec",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "61e2fb38517113ec57b89ba69cb454bccf31f6fb412e2f0e9dae8fe91d26a6d0",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "9cfbd30d260c4f48372e1c773647fa7a98e1e6c09978536e115978e5eb80cb92",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "8a58cabf76a8c74fe37d0e08d7aa586fb6433e0c8b3e7a79b3c29f5b8aab474a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "cb238ed359238b1e2211ea1928d733568b6d0f3b7677c891a70b3f59e601516e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "6b740584c5f882bd0415bff0a80d84c1a492e00205713a0b808bc8ab5977acca",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "a3edf702b3c0c72cbb3505493007cb458050d6a9721fd3101c076b4493ce9ee0",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4cfac0a73447ea668aa936acf365a8088ff2242635173f3ab68ce20f0edec24f",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "120832a0a72499da3511105ffac800abeca3f438d80533bbd70a7ad5d1d9cec7",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f1adedce3b0f15297af8eb7f404666198797f083f6c40f11f917bdead175d978",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4296319b011034c3ef82df768fb4eef468c4691deef41dde6061f3b4bd18e95a",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "fcb9bc39b7e96f6a8b6835d56972a0b262c8f9978c7efbdd55f78427be81d022",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5cb885a27a90c344ad624f5fffecdc83f91c7c45af2803d489b54b9998db41a2",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "26a0af3592da191743f7e41e14f25d54e572606810d4fcb911bb1fd7b3813788",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "33eda58fd7a03918abc9c8fed59b85b7947a99847609523c4afa73eb2091fc48",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "cb13fd09117aa57d3c516112ada44c443406dec0b3252b206e8e27d4f213c27d",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "26e94bf1ac2b2176b5d8e109b38bd28dc12d651bb2cce7585a2e932c047fae0c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f2e5197829ab9edc41b7002174651002c71c9ac67eb4c7197c41484efe8d985e",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "382276610dbd844f8362843424d4c2a610227f7ea2a738da59865c508ee5c582",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "876127e5da2076f52bd020590d66146f8a9b18c864a78b60544060255a678c70",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "b7f9463e4d9323be6529f805e11caaac7c652da4081427fb92a5914da2174231",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "5cd309b6203180aadd21b98c2c24a7ef06f581ba0976f0b0134ca3093368ebe3",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "224b982bd91091578b8ea9709a39ed3817f21ae0f143ca6004a8fc31326e2faf",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "f11a44448fcfec0d1c14cdc39d04305bc5cc48ff829a42eda5d620c2970dcb6c",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "414eafaf4907b138a3ef32ba16224029dd7a9685ccb60fe47042e5c732a64459",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "4a8e1b5c8b0adba335b093694a8027d1462a6dea3460350ae95b57adc7b75f60",
+    "reason": "multiple_reference_quotes_in_month"
+  },
+  {
+    "quote_id": "ed31d485f4a63eac5fdbd3ccf1511a0b4c5cfb56c2b8777d7b7914fbbce58219",
+    "reason": "multiple_reference_quotes_in_month"
+  }
+]

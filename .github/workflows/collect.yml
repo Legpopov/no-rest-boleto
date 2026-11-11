@@ -76,11 +76,12 @@ jobs:
           mkdir -p data/hotels
           cp -f parts/hotels/*.json data/hotels/ 2>/dev/null || true
           python -m collector.merge parts/*.json
+          python -m collector.history data/prices.json
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/prices.json data/hotels/
+          git add data/prices.json data/hotels/ data/history/
           git diff --cached --quiet && exit 0
           git commit -m "Данные: снимок $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase -X theirs  # при rebase «theirs» = наш свежий снимок
