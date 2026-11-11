@@ -12,6 +12,11 @@ function Assert-Plan($Condition, [string]$Message) {
 }
 try {
     $bookPlan = $excelPlan.Workbooks.Open((Resolve-Path -LiteralPath $WorkbookPath).Path,0,$true)
+    # Test-only module is imported into the unsaved session, never the delivered book.
+    $bookPlan.VBProject.VBComponents.Import((Join-Path $PSScriptRoot 'tests/modPlanningRegression.bas')) | Out-Null
+    $regressionPlan = $excelPlan.Run("'$($bookPlan.Name)'!RunPlanningRegression", (Join-Path $PSScriptRoot '../tests/fixtures/planning-contract.json'), (Join-Path $PSScriptRoot '../data/planning.json'))
+    if ($regressionPlan -is [string]) { throw $regressionPlan }
+    $passedPlan += [int]$regressionPlan
     $tripsPlan = $bookPlan.Worksheets.Item('Командировки и выезды')
     $paramsPlan = $bookPlan.Worksheets.Item('Параметры цен')
     $dataPlan = $bookPlan.Worksheets.Item('Данные плана')

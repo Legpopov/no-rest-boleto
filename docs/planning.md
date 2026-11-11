@@ -5,6 +5,14 @@
 `excel/modPlanning.bas` connects these to the existing trip sheet. Workbook
 installation and present coverage limitations are documented in `excel/README.md`.
 
+The VBA integration has three boundaries: `modPlanning` adapts ranges and worksheet
+errors, `modPlanningCore` evaluates ordinary arrays/scalars without Excel I/O, and
+`modPlanningStorage` validates the catalog and handles safe writes/backups. Column
+positions have shared names in `PlanningColumn`. Existing worksheet function
+signatures remain compatible. Both Python and native Excel execute the cases in
+`tests/fixtures/planning-contract.json`; the implementations remain independent
+because recipients need an offline workbook without a Python runtime.
+
 - `semester_months(year, cohort, semester, Calendar(...))` resolves calendar months.
   The editable calendar defaults to September–January and February–June.
 - `annual_index(current, previous)` calculates a decimal annual change. The caller

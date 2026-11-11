@@ -3,7 +3,7 @@ on:
   pull_request:
     paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning*.json', 'data/surface/**', 'data/research/**', '.github/workflows/**']
   push:
-    branches: ['fix/sem-route-planning']
+    branches: ['main', 'fix/sem-route-planning']
     paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning*.json', 'data/surface/**', 'data/research/**', '.github/workflows/**']
 permissions:
   contents: read
