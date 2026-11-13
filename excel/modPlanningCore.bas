@@ -51,14 +51,14 @@ Public Function PlanningSemesterMonths(ByVal launch As Variant, ByVal cohort As 
     PlanningSemesterMonths = months
 End Function
 
-Private Function PlanningRound(ByVal value As Double, ByVal digits As Long) As Double
+Public Function PlanningRound(ByVal value As Double, ByVal digits As Long) As Double
     ' Excel-style rounding, without Excel objects or VBA's banker's rounding.
     Dim decimalFactor As Double
     decimalFactor = 10 ^ digits
     PlanningRound = Sgn(value) * CDbl(Fix(CDec(Abs(value)) * CDec(decimalFactor) + CDec(0.5))) / decimalFactor
 End Function
 
-Private Function PlanningModeCode(ByVal value As String) As String
+Public Function PlanningModeCode(ByVal value As String) As String
     Select Case LCase$(Trim$(value))
     Case "авиа", "air": PlanningModeCode = "air"
     Case "поезд", "rail": PlanningModeCode = "rail"
@@ -101,7 +101,7 @@ Public Function PlanningStay(ByVal people As Variant, ByVal city As String, _
     Exit Function
 End Function
 
-Private Function PlanningCityKey(ByVal value As String) As String
+Public Function PlanningCityKey(ByVal value As String) As String
     PlanningCityKey = LCase$(Trim$(Replace(Replace(value, "_", " "), "ё", "е")))
 End Function
 
@@ -260,6 +260,9 @@ Public Function PlanningEstimate(ByVal origin As String, ByVal destination As St
                                 monthLabel = PlanningModeTitle(code) & ": среднее справочных цен; без сезонности; общий индекс пассажирского транспорта как сценарий"
                             Else
                                 monthLabel = PlanningModeTitle(code) & ": среднее справочных цен; без сезонности; макросценарий ЦБ, не индекс вида транспорта"
+                            End If
+                            If InStr(1, CStr(values(row, pcPriceMethod)), "secondary", vbTextCompare) > 0 Then
+                                monthLabel = monthLabel & "; ВНИМАНИЕ: резерв из сообщения сообщества, тариф не подтверждён перевозчиком"
                             End If
                             monthLabel = monthLabel & "; " & Format$(rate, "0.00%") & "/год; точность не оценена"
                         End If

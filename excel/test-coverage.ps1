@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$WorkbookPath,[string]$PreviewPath='')
+﻿param([Parameter(Mandatory=$true)][string]$WorkbookPath,[string]$PreviewPath='')
 $ErrorActionPreference='Stop'
 $app=New-Object -ComObject Excel.Application
 $app.Visible=$false
@@ -14,12 +14,14 @@ try {
     # Scenario inputs are written in batches; each assertion below follows an
     # explicit CalculateFull, avoiding incidental recalculation after every cell.
     $app.Calculation=-4135
-    foreach ($name in 'modPlanningRegression','modCoverageRegression') {
+    foreach ($name in 'modPlanningRegression','modCoverageRegression','modRoutingRegression') {
         $book.VBProject.VBComponents.Import((Join-Path $PSScriptRoot "tests/$name.bas")) | Out-Null
     }
     $n=$app.Run("'$($book.Name)'!RunPlanningRegression",(Join-Path $PSScriptRoot '../tests/fixtures/planning-contract.json'),(Join-Path $PSScriptRoot '../tests/fixtures/planning-catalog-boundary.json'))
     if ($n -is [string]) { throw $n }; $passed += [int]$n
     $n=$app.Run("'$($book.Name)'!RunCoverageRegression")
+    if ($n -is [string]) { throw $n }; $passed += [int]$n
+    $n=$app.Run("'$($book.Name)'!RunRoutingRegression",(Join-Path $PSScriptRoot '../tests/fixtures/routing-contract.json'))
     if ($n -is [string]) { throw $n }; $passed += [int]$n
     $trips=$book.Worksheets.Item('Командировки и выезды')
     $output=$book.Worksheets.Item('Прогноз эк.эфф-ти')
@@ -78,6 +80,33 @@ try {
     $trips.Range('P5').Value2=3
     $app.CalculateFull()
     Check ($trips.Range('J5').Value2 -is [double] -and $trips.Range('J5').Value2 -gt 0) 'hotel expense formula recalculates'
+    # A single input row must find its own priced chain, matching the independent
+    # Python report for this exact semester and catalog snapshot.
+    "PASS: $passed existing and routing-contract native Excel checks"
+    $railSetting=$params.Columns.Item(1).Find('ЖД: допустимые классы')
+    if ($null -eq $railSetting) {throw 'Missing rail class parameter'}
+    $params.Cells.Item($railSetting.Row,2).Value2='coupe'
+    $book.Worksheets.Item('Паспорт').Range('G23').Value2=2026
+    $trips.Range('C4').Value2=1
+    $trips.Range('A4').Value2='2 семестр'
+    $trips.Range('B4').Value2='1 год набора'
+    $trips.Range('L4').Value2='Москва'
+    $trips.Range('F4').Value2='Красноармейск'
+    $trips.Range('R4').Value2='НЕТ'
+    $app.CalculateFull()
+    $routingReport=Get-Content (Join-Path $PSScriptRoot '../data/route-coverage/routing.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+    $routeExpected=$routingReport.routes | Where-Object { $_.origin -eq 'Москва' -and $_.destination -eq 'Красноармейск' }
+    Check ($routeExpected.status -eq 'ok' -and $routeExpected.cities.Count -gt 2) 'independent report has a connecting route'
+    Check ([Math]::Abs([double]$trips.Range('J4').Value2-[double]$routeExpected.price) -lt .01) 'automatic chain matches Python semester ticket sum'
+    Check ($trips.Range('W4').Text -match 'Саратов' -and $trips.Range('W4').Text -match 'пересадок: 1') 'intermediate city and joined transfer are shown'
+    Check ($trips.Range('W4').Text -match 'расходы на пересадку и ночёвку не оценены') 'unknown additional expenses are visibly labelled'
+    # Editing an endpoint must invalidate any graph retained during calculation.
+    $trips.Range('F4').Value2='Несуществующий тестовый город'
+    $app.CalculateFull()
+    Check ($trips.Range('J4').Text -match '#' -and $trips.Range('W4').Text -match 'вне покрытия') 'endpoint edit does not reuse a stale route'
+    $trips.Range('F4').Value2='Красноармейск'
+    $app.CalculateFull()
+    Check ([Math]::Abs([double]$trips.Range('J4').Value2-[double]$routeExpected.price) -lt .01) 'restoring endpoint recalculates the route'
     $trips.PageSetup.PrintArea='$L$2:$W$5'
     $trips.PageSetup.Orientation=2
     $trips.PageSetup.Zoom=$false

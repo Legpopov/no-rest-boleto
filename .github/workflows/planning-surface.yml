@@ -55,6 +55,13 @@ jobs:
         env:
           TRAVELPAYOUTS_TOKEN: ${{ secrets.TRAVELPAYOUTS_TOKEN }}
         run: python -m collector.planning_air_extra --state-dir "${{ runner.temp }}/air-extra"
+      - name: Collect published connector tariffs
+        run: python -m collector.connecting_surface --raw-dir "${{ runner.temp }}/connector-raw"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: connector-snapshot
+          path: data/surface/connecting.json
+          retention-days: 7
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: air-snapshot
@@ -66,6 +73,7 @@ jobs:
           path: |
             ${{ runner.temp }}/air-raw
             ${{ runner.temp }}/air-extra
+            ${{ runner.temp }}/connector-raw
           retention-days: 7
   publish:
     needs: [collect, air]
@@ -86,16 +94,21 @@ jobs:
         with:
           name: air-snapshot
           path: data/air-current
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: connector-snapshot
+          path: data/surface
       - run: pip install -r requirements.txt
       - name: Rebuild catalog and publish
         run: |
-          python -m collector.planning_update --surface data/surface/parts/*.json
+          python -m collector.planning_update --surface data/surface/parts/*.json data/surface/connecting.json
           python -m collector.planning_catalog
           python -m collector.route_coverage
+          python -m collector.routing_report
           python -m unittest discover -s tests -q
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/surface/latest.json data/air-current/latest.json data/planning-hotels.json data/planning.json data/planning-excel.json data/planning-coverage.json data/route-coverage
+          git add data/surface/latest.json data/surface/connecting.json data/air-current/latest.json data/planning-hotels.json data/planning.json data/planning-excel.json data/planning-coverage.json data/route-coverage
           git diff --cached --quiet && exit 0
           git commit -m "Refresh branch-origin planning references"
           git pull --rebase

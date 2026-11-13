@@ -2,7 +2,7 @@
   "schema_version": 2,
   "complete": true,
   "started_at": "2026-11-10T23:07:10.636824+00:00",
-  "updated_at": "2026-11-13T12:08:38.252389+00:00",
+  "updated_at": "2026-11-13T15:10:04.235801+00:00",
   "scope": [
     "Алматы",
     "Астрахань",
@@ -89881,46 +89881,116 @@
       "origin": "Донецк",
       "destination": "Москва",
       "mode": "bus",
-      "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-11T15:30:51.543268+00:00",
-      "price_period": "undated_reference_not_monthly_history",
-      "ambiguous_atlas_endpoint": false,
-      "source": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
-      "status": "source_page_missing",
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
-      "items": [],
-      "source_attempts": [
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:50.261112+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://autoflotbus.ru/avtobus-doneck-moskva",
+      "status": "ok",
+      "items": [
         {
-          "source": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
-          "status": "source_page_missing",
-          "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/"
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Кр. рынок",
+          "arrival_stop": "АС Новоясеневская",
+          "operating_days": "Ежедневно",
+          "departure": "9:30",
+          "reference_kind": "published_carrier_timetable"
         },
         {
-          "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
-          "status": "no_priced_services"
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Кр. рынок",
+          "arrival_stop": "АС Новоясеневская",
+          "operating_days": "Ежедневно",
+          "departure": "10:50",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Грин Плаза",
+          "arrival_stop": "АС Щелковская",
+          "operating_days": "Ежедневно",
+          "departure": "10:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3000,
+          "provider": "АвтоФлот",
+          "departure_stop": "Грин Плаза",
+          "arrival_stop": "АС Красногвардейская",
+          "operating_days": "Пн. Чт.",
+          "departure": "14:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Кр. рынок",
+          "arrival_stop": "АС Новоясеневская",
+          "operating_days": "Ежедневно",
+          "departure": "15:30",
+          "reference_kind": "published_carrier_timetable"
         }
       ],
+      "statistic": "mean_published_reference_fares",
       "receipts": [
         {
-          "url": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
-          "retrieved_at": "2026-11-11T15:30:57.760255+00:00",
-          "status": 404,
-          "sha256": "709a93f174fd2dac5faf650db697e86d923f64f2218d7b35bc72651c702871ed",
-          "bytes": 75279,
-          "server_date": "Wed, 11 Nov 2026 15:30:57 GMT",
-          "last_modified": null
-        },
-        {
-          "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
-          "retrieved_at": "2026-11-11T15:31:01.811709+00:00",
+          "url": "https://autoflotbus.ru/avtobus-doneck-moskva",
+          "retrieved_at": "2026-11-13T15:09:50.520041+00:00",
           "status": 200,
-          "sha256": "ad103abd157a0e01d57e74fe27b78198312c204e321cef9f7fb9e4e88a798f55",
-          "bytes": 389918,
-          "server_date": "Wed, 11 Nov 2026 15:31:00 GMT",
-          "last_modified": null
+          "sha256": "569f835da0b68963b33e7210feea316786a9356dd29e1bb85a5f095938364d29",
+          "bytes": 50807,
+          "server_date": "Fri, 13 Nov 2026 15:09:50 GMT",
+          "last_modified": "Sat, 24 Oct 2026 15:26:23 GMT"
         }
-      ]
+      ],
+      "previous_source_check": {
+        "origin": "Донецк",
+        "destination": "Москва",
+        "mode": "bus",
+        "currency": "RUB",
+        "basis": "one_way",
+        "checked_at": "2026-11-11T15:30:51.543268+00:00",
+        "price_period": "undated_reference_not_monthly_history",
+        "ambiguous_atlas_endpoint": false,
+        "source": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
+        "status": "source_page_missing",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
+        "items": [],
+        "source_attempts": [
+          {
+            "source": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
+            "status": "source_page_missing",
+            "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/"
+          },
+          {
+            "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
+            "status": "no_priced_services"
+          }
+        ],
+        "receipts": [
+          {
+            "url": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Moskva/",
+            "retrieved_at": "2026-11-11T15:30:57.760255+00:00",
+            "status": 404,
+            "sha256": "709a93f174fd2dac5faf650db697e86d923f64f2218d7b35bc72651c702871ed",
+            "bytes": 75279,
+            "server_date": "Wed, 11 Nov 2026 15:30:57 GMT",
+            "last_modified": null
+          },
+          {
+            "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
+            "retrieved_at": "2026-11-11T15:31:01.811709+00:00",
+            "status": 200,
+            "sha256": "ad103abd157a0e01d57e74fe27b78198312c204e321cef9f7fb9e4e88a798f55",
+            "bytes": 389918,
+            "server_date": "Wed, 11 Nov 2026 15:31:00 GMT",
+            "last_modified": null
+          }
+        ]
+      }
     },
     {
       "origin": "Донецк",
@@ -91774,42 +91844,79 @@
       "origin": "Донецк",
       "destination": "Ясиноватая",
       "mode": "bus",
-      "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-11T15:31:21.292417+00:00",
-      "price_period": "undated_reference_not_monthly_history",
-      "ambiguous_atlas_endpoint": false,
-      "source": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Yasinovataya/",
-      "status": "source_page_missing",
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Yasinovataya/",
-      "items": [],
-      "source_attempts": [
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:10:04.231513+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://ok.ru/group/54563669540864/topic/165683371116544",
+      "status": "ok",
+      "items": [
         {
-          "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%AF%D1%81%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D0%B0%D1%8F",
-          "status": "source_error",
-          "error_type": "HTTPError"
+          "price": 120,
+          "provider": "Опубликованный местный ориентир",
+          "number": "106 Б",
+          "tariff_effective_from": "2026-07-06",
+          "reference_kind": "secondary_community_tariff_reference",
+          "uncertainty": "Community publication; price not independently confirmed by operator",
+          "departure_stop": "Донецк (ДС Центр)",
+          "arrival_stop": "Ясиноватая (АС)",
+          "direction_method": "published_route_wide_tariff"
         }
       ],
+      "statistic": "secondary_community_tariff_reference",
       "receipts": [
         {
-          "url": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Yasinovataya/",
-          "retrieved_at": "2026-11-11T15:31:26.288087+00:00",
-          "status": 404,
-          "sha256": "457c891b980db26526e70a05ac85ba96af2d3f6906675eba7559b0c92bdddded",
-          "bytes": 75279,
-          "server_date": "Wed, 11 Nov 2026 15:31:26 GMT",
-          "last_modified": null
-        },
-        {
-          "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%AF%D1%81%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D0%B0%D1%8F",
-          "retrieved_at": "2026-11-11T15:31:26.769315+00:00",
-          "status": 404,
-          "sha256": "f758382ecae78c076d3dd3481fe2a847a7d964b0a3d65d2d0ad551353cfa872f",
-          "bytes": 273719,
-          "server_date": "Wed, 11 Nov 2026 15:31:26 GMT",
+          "url": "https://ok.ru/group/54563669540864/topic/165683371116544",
+          "retrieved_at": "2026-11-13T15:10:04.226096+00:00",
+          "status": 200,
+          "sha256": "62d2ca0ddb918766256bf943dcac4ffc87ea7c6051427eb8e563603200513a0b",
+          "bytes": 283093,
+          "server_date": "Fri, 13 Nov 2026 15:10:03 GMT",
           "last_modified": null
         }
-      ]
+      ],
+      "confidence": "secondary_reserve_not_operator_confirmed",
+      "previous_source_check": {
+        "origin": "Донецк",
+        "destination": "Ясиноватая",
+        "mode": "bus",
+        "currency": "RUB",
+        "basis": "one_way",
+        "checked_at": "2026-11-11T15:31:21.292417+00:00",
+        "price_period": "undated_reference_not_monthly_history",
+        "ambiguous_atlas_endpoint": false,
+        "source": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Yasinovataya/",
+        "status": "source_page_missing",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Yasinovataya/",
+        "items": [],
+        "source_attempts": [
+          {
+            "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%AF%D1%81%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D0%B0%D1%8F",
+            "status": "source_error",
+            "error_type": "HTTPError"
+          }
+        ],
+        "receipts": [
+          {
+            "url": "https://bus.tutu.ru/raspisanie/gorod_Donetsk/gorod_Yasinovataya/",
+            "retrieved_at": "2026-11-11T15:31:26.288087+00:00",
+            "status": 404,
+            "sha256": "457c891b980db26526e70a05ac85ba96af2d3f6906675eba7559b0c92bdddded",
+            "bytes": 75279,
+            "server_date": "Wed, 11 Nov 2026 15:31:26 GMT",
+            "last_modified": null
+          },
+          {
+            "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA/%D0%AF%D1%81%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D0%B0%D1%8F",
+            "retrieved_at": "2026-11-11T15:31:26.769315+00:00",
+            "status": 404,
+            "sha256": "f758382ecae78c076d3dd3481fe2a847a7d964b0a3d65d2d0ad551353cfa872f",
+            "bytes": 273719,
+            "server_date": "Wed, 11 Nov 2026 15:31:26 GMT",
+            "last_modified": null
+          }
+        ]
+      }
     },
     {
       "origin": "Донецк",
@@ -126122,42 +126229,89 @@
       "origin": "Красногорск",
       "destination": "Москва",
       "mode": "bus",
-      "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-11T15:38:37.505033+00:00",
-      "price_period": "undated_reference_not_monthly_history",
-      "ambiguous_atlas_endpoint": false,
-      "source": "https://bus.tutu.ru/raspisanie/gorod_Krasnogorsk/gorod_Moskva/",
-      "status": "source_page_missing",
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Krasnogorsk/gorod_Moskva/",
-      "items": [],
-      "source_attempts": [
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:52.345136+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://transport.mos.ru/mostrans/all_news/128678",
+      "status": "ok",
+      "items": [
         {
-          "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
-          "status": "source_error",
-          "error_type": "HTTPError"
-        }
-      ],
-      "receipts": [
-        {
-          "url": "https://bus.tutu.ru/raspisanie/gorod_Krasnogorsk/gorod_Moskva/",
-          "retrieved_at": "2026-11-11T15:38:39.237801+00:00",
-          "status": 404,
-          "sha256": "3e2694c96ae69d30f112af34bb1721315d3e6131943f6f84aa11843d23d1e0f3",
-          "bytes": 75279,
-          "server_date": "Wed, 11 Nov 2026 15:38:38 GMT",
-          "last_modified": null
+          "price": 78,
+          "provider": "Мосгортранс",
+          "number": "1542",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "ЖК Изумрудные холмы",
+          "arrival_stop": "метро Тушинская",
+          "direction_method": "published_route_wide_tariff"
         },
         {
-          "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
-          "retrieved_at": "2026-11-11T15:38:39.974355+00:00",
-          "status": 404,
-          "sha256": "187017b4d1f5c81ae157fd8e60c08f1e63686f25012ded5e9d622d4ff30e8706",
-          "bytes": 273725,
-          "server_date": "Wed, 11 Nov 2026 15:38:39 GMT",
+          "price": 90,
+          "provider": "Мосгортранс",
+          "number": "1566",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "микрорайон Чернево",
+          "arrival_stop": "метро Тушинская",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "published_official_bank_card_route_tariffs",
+      "receipts": [
+        {
+          "url": "https://transport.mos.ru/mostrans/all_news/128678",
+          "retrieved_at": "2026-11-13T15:09:58.414064+00:00",
+          "status": 200,
+          "sha256": "0e446fe4523296386ec1751c5a4b2e5b3881c5157a18e22293eda618929a5d40",
+          "bytes": 186995,
+          "server_date": "Fri, 13 Nov 2026 15:09:57 GMT",
           "last_modified": null
         }
-      ]
+      ],
+      "previous_source_check": {
+        "origin": "Красногорск",
+        "destination": "Москва",
+        "mode": "bus",
+        "currency": "RUB",
+        "basis": "one_way",
+        "checked_at": "2026-11-11T15:38:37.505033+00:00",
+        "price_period": "undated_reference_not_monthly_history",
+        "ambiguous_atlas_endpoint": false,
+        "source": "https://bus.tutu.ru/raspisanie/gorod_Krasnogorsk/gorod_Moskva/",
+        "status": "source_page_missing",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Krasnogorsk/gorod_Moskva/",
+        "items": [],
+        "source_attempts": [
+          {
+            "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
+            "status": "source_error",
+            "error_type": "HTTPError"
+          }
+        ],
+        "receipts": [
+          {
+            "url": "https://bus.tutu.ru/raspisanie/gorod_Krasnogorsk/gorod_Moskva/",
+            "retrieved_at": "2026-11-11T15:38:39.237801+00:00",
+            "status": 404,
+            "sha256": "3e2694c96ae69d30f112af34bb1721315d3e6131943f6f84aa11843d23d1e0f3",
+            "bytes": 75279,
+            "server_date": "Wed, 11 Nov 2026 15:38:38 GMT",
+            "last_modified": null
+          },
+          {
+            "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0",
+            "retrieved_at": "2026-11-11T15:38:39.974355+00:00",
+            "status": 404,
+            "sha256": "187017b4d1f5c81ae157fd8e60c08f1e63686f25012ded5e9d622d4ff30e8706",
+            "bytes": 273725,
+            "server_date": "Wed, 11 Nov 2026 15:38:39 GMT",
+            "last_modified": null
+          }
+        ]
+      }
     },
     {
       "origin": "Красногорск",
@@ -140812,51 +140966,130 @@
       "origin": "Москва",
       "destination": "Донецк",
       "mode": "bus",
-      "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-11T15:51:25.965001+00:00",
-      "price_period": "undated_reference_not_monthly_history",
-      "ambiguous_atlas_endpoint": false,
-      "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
-      "status": "source_page_missing",
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
-      "items": [],
-      "source_attempts": [
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:50.526238+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://autoflotbus.ru/moskva-doneck",
+      "status": "ok",
+      "items": [
         {
-          "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
-          "status": "source_page_missing",
-          "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/"
+          "price": 3000,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Щелковская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "11:30",
+          "reference_kind": "published_carrier_timetable"
         },
         {
-          "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA",
-          "status": "no_priced_services"
+          "price": 3750,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "14:30",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3750,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "18:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "19:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "20:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3000,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Красногвардейская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Вт. Пт.",
+          "departure": "21:15",
+          "reference_kind": "published_carrier_timetable"
         }
       ],
+      "statistic": "mean_published_reference_fares",
       "receipts": [
         {
-          "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
-          "retrieved_at": "2026-11-11T15:51:30.993857+00:00",
-          "status": 404,
-          "sha256": "106227c06ea08bfe003fc66ef1c0add68178e302c1abcef8cdc36b1dd4e6eb56",
-          "bytes": 75249,
-          "server_date": "Wed, 11 Nov 2026 15:51:30 GMT",
-          "last_modified": null
-        },
-        {
-          "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA",
-          "retrieved_at": "2026-11-11T15:51:33.375899+00:00",
+          "url": "https://autoflotbus.ru/moskva-doneck",
+          "retrieved_at": "2026-11-13T15:09:52.339677+00:00",
           "status": 200,
-          "sha256": "2777f7bea646e27c9e286589d4fd81f95877473dd157e9d8a5d2b415433193fe",
-          "bytes": 386829,
-          "server_date": "Wed, 11 Nov 2026 15:51:31 GMT",
-          "last_modified": null
+          "sha256": "7d400ec26f1f3c279e3c489fb01fd82cb6930ab61a4166289fd1c741d0987158",
+          "bytes": 47128,
+          "server_date": "Fri, 13 Nov 2026 15:09:52 GMT",
+          "last_modified": "Sat, 24 Oct 2026 15:26:44 GMT"
         }
       ],
-      "previous_attempt": {
-        "status": "source_error",
-        "error": "ContentDecodingError: ('Received response with content-encoding: gzip,gzip, but failed to decode it.', error('Error -3 while decompressing data: incorrect header check'))",
+      "previous_source_check": {
+        "origin": "Москва",
+        "destination": "Донецк",
+        "mode": "bus",
+        "currency": "RUB",
+        "basis": "one_way",
+        "checked_at": "2026-11-11T15:51:25.965001+00:00",
+        "price_period": "undated_reference_not_monthly_history",
+        "ambiguous_atlas_endpoint": false,
         "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
-        "checked_at": "2026-11-11T15:41:22.467977+00:00"
+        "status": "source_page_missing",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
+        "items": [],
+        "source_attempts": [
+          {
+            "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
+            "status": "source_page_missing",
+            "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/"
+          },
+          {
+            "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA",
+            "status": "no_priced_services"
+          }
+        ],
+        "receipts": [
+          {
+            "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
+            "retrieved_at": "2026-11-11T15:51:30.993857+00:00",
+            "status": 404,
+            "sha256": "106227c06ea08bfe003fc66ef1c0add68178e302c1abcef8cdc36b1dd4e6eb56",
+            "bytes": 75249,
+            "server_date": "Wed, 11 Nov 2026 15:51:30 GMT",
+            "last_modified": null
+          },
+          {
+            "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA",
+            "retrieved_at": "2026-11-11T15:51:33.375899+00:00",
+            "status": 200,
+            "sha256": "2777f7bea646e27c9e286589d4fd81f95877473dd157e9d8a5d2b415433193fe",
+            "bytes": 386829,
+            "server_date": "Wed, 11 Nov 2026 15:51:31 GMT",
+            "last_modified": null
+          }
+        ],
+        "previous_attempt": {
+          "status": "source_error",
+          "error": "ContentDecodingError: ('Received response with content-encoding: gzip,gzip, but failed to decode it.', error('Error -3 while decompressing data: incorrect header check'))",
+          "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Donetsk/",
+          "checked_at": "2026-11-11T15:41:22.467977+00:00"
+        }
       }
     },
     {
@@ -142520,42 +142753,89 @@
       "origin": "Москва",
       "destination": "Красногорск",
       "mode": "bus",
-      "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-11T15:41:32.199376+00:00",
-      "price_period": "undated_reference_not_monthly_history",
-      "ambiguous_atlas_endpoint": false,
-      "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Krasnogorsk/",
-      "status": "source_page_missing",
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Krasnogorsk/",
-      "items": [],
-      "source_attempts": [
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:58.417058+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://transport.mos.ru/mostrans/all_news/128678",
+      "status": "ok",
+      "items": [
         {
-          "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA",
-          "status": "source_error",
-          "error_type": "HTTPError"
-        }
-      ],
-      "receipts": [
-        {
-          "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Krasnogorsk/",
-          "retrieved_at": "2026-11-11T15:41:33.218955+00:00",
-          "status": 404,
-          "sha256": "f7fa726f619be8be96c1efa5875c20eb410fa985706e5ffb98cadd75e1f7fe2b",
-          "bytes": 75279,
-          "server_date": "Wed, 11 Nov 2026 15:41:33 GMT",
-          "last_modified": null
+          "price": 78,
+          "provider": "Мосгортранс",
+          "number": "1542",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "метро Тушинская",
+          "arrival_stop": "ЖК Изумрудные холмы",
+          "direction_method": "published_route_wide_tariff"
         },
         {
-          "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA",
-          "retrieved_at": "2026-11-11T15:41:33.629121+00:00",
-          "status": 404,
-          "sha256": "785d7983f1ae89e54d45157250de7cc7c21fc71bc3a8ad0098c600a25279d02d",
-          "bytes": 273725,
-          "server_date": "Wed, 11 Nov 2026 15:41:33 GMT",
+          "price": 90,
+          "provider": "Мосгортранс",
+          "number": "1566",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "метро Тушинская",
+          "arrival_stop": "микрорайон Чернево",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "published_official_bank_card_route_tariffs",
+      "receipts": [
+        {
+          "url": "https://transport.mos.ru/mostrans/all_news/128678",
+          "retrieved_at": "2026-11-13T15:09:58.414064+00:00",
+          "status": 200,
+          "sha256": "0e446fe4523296386ec1751c5a4b2e5b3881c5157a18e22293eda618929a5d40",
+          "bytes": 186995,
+          "server_date": "Fri, 13 Nov 2026 15:09:57 GMT",
           "last_modified": null
         }
-      ]
+      ],
+      "previous_source_check": {
+        "origin": "Москва",
+        "destination": "Красногорск",
+        "mode": "bus",
+        "currency": "RUB",
+        "basis": "one_way",
+        "checked_at": "2026-11-11T15:41:32.199376+00:00",
+        "price_period": "undated_reference_not_monthly_history",
+        "ambiguous_atlas_endpoint": false,
+        "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Krasnogorsk/",
+        "status": "source_page_missing",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Krasnogorsk/",
+        "items": [],
+        "source_attempts": [
+          {
+            "source": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA",
+            "status": "source_error",
+            "error_type": "HTTPError"
+          }
+        ],
+        "receipts": [
+          {
+            "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Krasnogorsk/",
+            "retrieved_at": "2026-11-11T15:41:33.218955+00:00",
+            "status": 404,
+            "sha256": "f7fa726f619be8be96c1efa5875c20eb410fa985706e5ffb98cadd75e1f7fe2b",
+            "bytes": 75279,
+            "server_date": "Wed, 11 Nov 2026 15:41:33 GMT",
+            "last_modified": null
+          },
+          {
+            "url": "https://atlasbus.ru/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0/%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA",
+            "retrieved_at": "2026-11-11T15:41:33.629121+00:00",
+            "status": 404,
+            "sha256": "785d7983f1ae89e54d45157250de7cc7c21fc71bc3a8ad0098c600a25279d02d",
+            "bytes": 273725,
+            "server_date": "Wed, 11 Nov 2026 15:41:33 GMT",
+            "last_modified": null
+          }
+        ]
+      }
     },
     {
       "origin": "Москва",
@@ -277960,26 +278240,63 @@
       "origin": "Ясиноватая",
       "destination": "Донецк",
       "mode": "bus",
-      "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-13T12:06:11.330846+00:00",
-      "price_period": "undated_reference_not_monthly_history",
-      "ambiguous_atlas_endpoint": true,
-      "source": "https://bus.tutu.ru/raspisanie/gorod_Yasinovataya/gorod_Donetsk/",
-      "status": "source_page_missing",
-      "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Yasinovataya/gorod_Donetsk/",
-      "items": [],
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:58.420060+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://ok.ru/group/54563669540864/topic/165683371116544",
+      "status": "ok",
+      "items": [
+        {
+          "price": 120,
+          "provider": "Опубликованный местный ориентир",
+          "number": "106 Б",
+          "tariff_effective_from": "2026-07-06",
+          "reference_kind": "secondary_community_tariff_reference",
+          "uncertainty": "Community publication; price not independently confirmed by operator",
+          "departure_stop": "Ясиноватая (АС)",
+          "arrival_stop": "Донецк (ДС Центр)",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "secondary_community_tariff_reference",
       "receipts": [
         {
-          "url": "https://bus.tutu.ru/raspisanie/gorod_Yasinovataya/gorod_Donetsk/",
-          "retrieved_at": "2026-11-13T12:06:13.064898+00:00",
-          "status": 404,
-          "sha256": "dc922385b0008fb5148336936ec7a963bcc9a91ac23763234a18e44465a9d9aa",
-          "bytes": 61695,
-          "server_date": "Fri, 13 Nov 2026 12:06:12 GMT",
+          "url": "https://ok.ru/group/54563669540864/topic/165683371116544",
+          "retrieved_at": "2026-11-13T15:10:04.226096+00:00",
+          "status": 200,
+          "sha256": "62d2ca0ddb918766256bf943dcac4ffc87ea7c6051427eb8e563603200513a0b",
+          "bytes": 283093,
+          "server_date": "Fri, 13 Nov 2026 15:10:03 GMT",
           "last_modified": null
         }
-      ]
+      ],
+      "confidence": "secondary_reserve_not_operator_confirmed",
+      "previous_source_check": {
+        "origin": "Ясиноватая",
+        "destination": "Донецк",
+        "mode": "bus",
+        "currency": "RUB",
+        "basis": "one_way",
+        "checked_at": "2026-11-13T12:06:11.330846+00:00",
+        "price_period": "undated_reference_not_monthly_history",
+        "ambiguous_atlas_endpoint": true,
+        "source": "https://bus.tutu.ru/raspisanie/gorod_Yasinovataya/gorod_Donetsk/",
+        "status": "source_page_missing",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://bus.tutu.ru/raspisanie/gorod_Yasinovataya/gorod_Donetsk/",
+        "items": [],
+        "receipts": [
+          {
+            "url": "https://bus.tutu.ru/raspisanie/gorod_Yasinovataya/gorod_Donetsk/",
+            "retrieved_at": "2026-11-13T12:06:13.064898+00:00",
+            "status": 404,
+            "sha256": "dc922385b0008fb5148336936ec7a963bcc9a91ac23763234a18e44465a9d9aa",
+            "bytes": 61695,
+            "server_date": "Fri, 13 Nov 2026 12:06:12 GMT",
+            "last_modified": null
+          }
+        ]
+      }
     },
     {
       "origin": "Ясиноватая",

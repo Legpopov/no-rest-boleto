@@ -179,6 +179,9 @@ def build_catalog(quotes, changes, surface=None, scenario=None, current_air=None
         for a,b in sorted(current_pairs):
             coverage.append(dict(origin=a,destination=b,mode='air',status='partial_current_reference',
                                  checked_at=current_air['updated_at'],source=current_air['source']))
+    records = sorted(records, key=lambda r: (r['origin'], r['destination'],r['mode'],
+                                            r['month'],r['baggage_included'],
+                                            r.get('rail_class',''),r.get('firm',False)))
     return {
         'schema_version': 3, 'currency': 'RUB', 'basis': 'one_way',
         'cities':list(registry or CITIES),'coverage':coverage,
@@ -192,9 +195,8 @@ def build_catalog(quotes, changes, surface=None, scenario=None, current_air=None
         'retrieved_at': max([q['retrieved_at'] for q in quotes]+
                             ([surface['updated_at']] if surface else [])+
                             ([current_air['updated_at']] if current_air else []), default=None),
-        'records': sorted(records, key=lambda r: (r['origin'], r['destination'],r['mode'],
-                                                 r['month'],r['baggage_included'],
-                                                 r.get('rail_class',''),r.get('firm',False))),
+        'transfer_counts': [r.get('transfers') if r['mode']=='air' else 0 for r in records],
+        'records': records,
     }
 
 

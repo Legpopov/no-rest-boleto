@@ -1,0 +1,363 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "started_at": "2026-11-13T15:09:50.261112+00:00",
+  "updated_at": "2026-11-13T15:10:04.235801+00:00",
+  "requested_routes": [
+    [
+      "Донецк",
+      "Москва",
+      "bus"
+    ],
+    [
+      "Москва",
+      "Донецк",
+      "bus"
+    ],
+    [
+      "Красногорск",
+      "Москва",
+      "bus"
+    ],
+    [
+      "Москва",
+      "Красногорск",
+      "bus"
+    ],
+    [
+      "Ясиноватая",
+      "Донецк",
+      "bus"
+    ],
+    [
+      "Донецк",
+      "Ясиноватая",
+      "bus"
+    ]
+  ],
+  "scope": [
+    "Донецк",
+    "Красногорск",
+    "Москва",
+    "Ясиноватая"
+  ],
+  "routes": [
+    {
+      "origin": "Донецк",
+      "destination": "Москва",
+      "mode": "bus",
+      "basis": "one_way",
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:50.261112+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://autoflotbus.ru/avtobus-doneck-moskva",
+      "status": "ok",
+      "items": [
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Кр. рынок",
+          "arrival_stop": "АС Новоясеневская",
+          "operating_days": "Ежедневно",
+          "departure": "9:30",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Кр. рынок",
+          "arrival_stop": "АС Новоясеневская",
+          "operating_days": "Ежедневно",
+          "departure": "10:50",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Грин Плаза",
+          "arrival_stop": "АС Щелковская",
+          "operating_days": "Ежедневно",
+          "departure": "10:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3000,
+          "provider": "АвтоФлот",
+          "departure_stop": "Грин Плаза",
+          "arrival_stop": "АС Красногвардейская",
+          "operating_days": "Пн. Чт.",
+          "departure": "14:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "Кр. рынок",
+          "arrival_stop": "АС Новоясеневская",
+          "operating_days": "Ежедневно",
+          "departure": "15:30",
+          "reference_kind": "published_carrier_timetable"
+        }
+      ],
+      "statistic": "mean_published_reference_fares",
+      "receipts": [
+        {
+          "url": "https://autoflotbus.ru/avtobus-doneck-moskva",
+          "retrieved_at": "2026-11-13T15:09:50.520041+00:00",
+          "status": 200,
+          "sha256": "569f835da0b68963b33e7210feea316786a9356dd29e1bb85a5f095938364d29",
+          "bytes": 50807,
+          "server_date": "Fri, 13 Nov 2026 15:09:50 GMT",
+          "last_modified": "Sat, 24 Oct 2026 15:26:23 GMT"
+        }
+      ]
+    },
+    {
+      "origin": "Москва",
+      "destination": "Донецк",
+      "mode": "bus",
+      "basis": "one_way",
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:50.526238+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://autoflotbus.ru/moskva-doneck",
+      "status": "ok",
+      "items": [
+        {
+          "price": 3000,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Щелковская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "11:30",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3750,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "14:30",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3750,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "18:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "19:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3500,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Новоясеневская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Ежедневно",
+          "departure": "20:00",
+          "reference_kind": "published_carrier_timetable"
+        },
+        {
+          "price": 3000,
+          "provider": "АвтоФлот",
+          "departure_stop": "АС Красногвардейская",
+          "arrival_stop": "АВ Южный",
+          "operating_days": "Вт. Пт.",
+          "departure": "21:15",
+          "reference_kind": "published_carrier_timetable"
+        }
+      ],
+      "statistic": "mean_published_reference_fares",
+      "receipts": [
+        {
+          "url": "https://autoflotbus.ru/moskva-doneck",
+          "retrieved_at": "2026-11-13T15:09:52.339677+00:00",
+          "status": 200,
+          "sha256": "7d400ec26f1f3c279e3c489fb01fd82cb6930ab61a4166289fd1c741d0987158",
+          "bytes": 47128,
+          "server_date": "Fri, 13 Nov 2026 15:09:52 GMT",
+          "last_modified": "Sat, 24 Oct 2026 15:26:44 GMT"
+        }
+      ]
+    },
+    {
+      "origin": "Красногорск",
+      "destination": "Москва",
+      "mode": "bus",
+      "basis": "one_way",
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:52.345136+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://transport.mos.ru/mostrans/all_news/128678",
+      "status": "ok",
+      "items": [
+        {
+          "price": 78,
+          "provider": "Мосгортранс",
+          "number": "1542",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "ЖК Изумрудные холмы",
+          "arrival_stop": "метро Тушинская",
+          "direction_method": "published_route_wide_tariff"
+        },
+        {
+          "price": 90,
+          "provider": "Мосгортранс",
+          "number": "1566",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "микрорайон Чернево",
+          "arrival_stop": "метро Тушинская",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "published_official_bank_card_route_tariffs",
+      "receipts": [
+        {
+          "url": "https://transport.mos.ru/mostrans/all_news/128678",
+          "retrieved_at": "2026-11-13T15:09:58.414064+00:00",
+          "status": 200,
+          "sha256": "0e446fe4523296386ec1751c5a4b2e5b3881c5157a18e22293eda618929a5d40",
+          "bytes": 186995,
+          "server_date": "Fri, 13 Nov 2026 15:09:57 GMT",
+          "last_modified": null
+        }
+      ]
+    },
+    {
+      "origin": "Москва",
+      "destination": "Красногорск",
+      "mode": "bus",
+      "basis": "one_way",
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:58.417058+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://transport.mos.ru/mostrans/all_news/128678",
+      "status": "ok",
+      "items": [
+        {
+          "price": 78,
+          "provider": "Мосгортранс",
+          "number": "1542",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "метро Тушинская",
+          "arrival_stop": "ЖК Изумрудные холмы",
+          "direction_method": "published_route_wide_tariff"
+        },
+        {
+          "price": 90,
+          "provider": "Мосгортранс",
+          "number": "1566",
+          "payment": "bank_card",
+          "tariff_effective_from": "2026-03-14",
+          "reference_kind": "published_official_route_tariff",
+          "departure_stop": "метро Тушинская",
+          "arrival_stop": "микрорайон Чернево",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "published_official_bank_card_route_tariffs",
+      "receipts": [
+        {
+          "url": "https://transport.mos.ru/mostrans/all_news/128678",
+          "retrieved_at": "2026-11-13T15:09:58.414064+00:00",
+          "status": 200,
+          "sha256": "0e446fe4523296386ec1751c5a4b2e5b3881c5157a18e22293eda618929a5d40",
+          "bytes": 186995,
+          "server_date": "Fri, 13 Nov 2026 15:09:57 GMT",
+          "last_modified": null
+        }
+      ]
+    },
+    {
+      "origin": "Ясиноватая",
+      "destination": "Донецк",
+      "mode": "bus",
+      "basis": "one_way",
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:09:58.420060+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://ok.ru/group/54563669540864/topic/165683371116544",
+      "status": "ok",
+      "items": [
+        {
+          "price": 120,
+          "provider": "Опубликованный местный ориентир",
+          "number": "106 Б",
+          "tariff_effective_from": "2026-07-06",
+          "reference_kind": "secondary_community_tariff_reference",
+          "uncertainty": "Community publication; price not independently confirmed by operator",
+          "departure_stop": "Ясиноватая (АС)",
+          "arrival_stop": "Донецк (ДС Центр)",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "secondary_community_tariff_reference",
+      "receipts": [
+        {
+          "url": "https://ok.ru/group/54563669540864/topic/165683371116544",
+          "retrieved_at": "2026-11-13T15:10:04.226096+00:00",
+          "status": 200,
+          "sha256": "62d2ca0ddb918766256bf943dcac4ffc87ea7c6051427eb8e563603200513a0b",
+          "bytes": 283093,
+          "server_date": "Fri, 13 Nov 2026 15:10:03 GMT",
+          "last_modified": null
+        }
+      ],
+      "confidence": "secondary_reserve_not_operator_confirmed"
+    },
+    {
+      "origin": "Донецк",
+      "destination": "Ясиноватая",
+      "mode": "bus",
+      "basis": "one_way",
+      "currency": "RUB",
+      "checked_at": "2026-11-13T15:10:04.231513+00:00",
+      "price_period": "undated_published_reference_not_monthly_history",
+      "source": "https://ok.ru/group/54563669540864/topic/165683371116544",
+      "status": "ok",
+      "items": [
+        {
+          "price": 120,
+          "provider": "Опубликованный местный ориентир",
+          "number": "106 Б",
+          "tariff_effective_from": "2026-07-06",
+          "reference_kind": "secondary_community_tariff_reference",
+          "uncertainty": "Community publication; price not independently confirmed by operator",
+          "departure_stop": "Донецк (ДС Центр)",
+          "arrival_stop": "Ясиноватая (АС)",
+          "direction_method": "published_route_wide_tariff"
+        }
+      ],
+      "statistic": "secondary_community_tariff_reference",
+      "receipts": [
+        {
+          "url": "https://ok.ru/group/54563669540864/topic/165683371116544",
+          "retrieved_at": "2026-11-13T15:10:04.226096+00:00",
+          "status": 200,
+          "sha256": "62d2ca0ddb918766256bf943dcac4ffc87ea7c6051427eb8e563603200513a0b",
+          "bytes": 283093,
+          "server_date": "Fri, 13 Nov 2026 15:10:03 GMT",
+          "last_modified": null
+        }
+      ],
+      "confidence": "secondary_reserve_not_operator_confirmed"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "retrieved_at": "2026-11-13T12:08:38.252389+00:00",
+  "retrieved_at": "2026-11-13T15:10:04.235801+00:00",
   "origin_count": 50,
   "catalog_city_count": 1644,
-  "transport_records": 82980,
+  "transport_records": 83052,
   "current_air_pairs": 11970,
   "air_spring_months_complete": 1126,
   "air_autumn_months_complete": 743,
@@ -140,7 +140,7 @@
       "priced_destinations": {
         "air": 1344,
         "rail": 47,
-        "bus": 15
+        "bus": 17
       }
     },
     {
@@ -364,7 +364,7 @@
       "priced_destinations": {
         "air": 0,
         "rail": 0,
-        "bus": 0
+        "bus": 2
       }
     },
     {
@@ -388,7 +388,7 @@
       "priced_destinations": {
         "air": 0,
         "rail": 0,
-        "bus": 0
+        "bus": 1
       }
     },
     {
@@ -404,7 +404,7 @@
       "priced_destinations": {
         "air": 0,
         "rail": 0,
-        "bus": 0
+        "bus": 1
       }
     }
   ],

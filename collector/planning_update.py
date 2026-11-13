@@ -13,7 +13,18 @@ def merge_surface(snapshots, scenario):
         surface_records(snapshot,scenario)  # Validate scope, duplicates and receipts first.
         for row in snapshot['routes']:
             key=(row['origin'],row['destination'],row['mode'])
-            if key not in rows or row['checked_at'] >= rows[key]['checked_at']:rows[key]=row
+            previous=rows.get(key)
+            # Dedicated, dated published tariffs can fill a failed directory
+            # lookup. Keep the failed lookup as evidence, not as a zero fare.
+            dedicated=lambda r:r.get('statistic') in (
+                'published_official_bank_card_route_tariffs',
+                'secondary_community_tariff_reference','mean_published_reference_fares') and r.get('status')=='ok'
+            if previous and dedicated(previous) and row['status']!='ok':
+                rows[key]={**previous,'previous_source_check':{k:v for k,v in row.items() if k!='previous_source_check'}}
+            elif previous and dedicated(row) and previous['status']!='ok':
+                rows[key]={**row,'previous_source_check':{k:v for k,v in previous.items() if k!='previous_source_check'}}
+            elif previous is None or row['checked_at'] >= previous['checked_at']:
+                rows[key]=row
     return dict(schema_version=2,complete=True,
                 started_at=min(s['started_at'] for s in snapshots),
                 updated_at=max(s['updated_at'] for s in snapshots),

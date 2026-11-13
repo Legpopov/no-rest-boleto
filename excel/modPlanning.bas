@@ -35,6 +35,8 @@ Public Sub RefreshPlanning(Optional ByVal source As String = "")
     fields = PlanningCatalogFields()
     coverageFields = PlanningCoverageFields()
     matrix = PlanningCatalogMatrix(root)
+    Dim transferMatrix As Variant
+    transferMatrix = RoutingTransfersMatrix(root, matrix)
     coverageMatrix = PlanningCoverageMatrix(root)
     hotelMatrix = PlanningHotelMatrix(root)
     cities = root("cities")
@@ -51,6 +53,7 @@ Public Sub RefreshPlanning(Optional ByVal source As String = "")
         Next n
     End If
     stamp = PlanningText(root, "retrieved_at", True)
+    RoutingClearCache
     CreatePlanningBackup
     On Error Resume Next
     Set ws = ThisWorkbook.Worksheets(DATA)
@@ -89,6 +92,9 @@ Public Sub RefreshPlanning(Optional ByVal source As String = "")
         ws.Range("AB2:AE" & UBound(hotelMatrix, 1) + 1).NumberFormat = "General"
         ThisWorkbook.Names.Add Name:="PlanningHotels", RefersTo:="='" & DATA & "'!$AA$2:$AJ$" & UBound(hotelMatrix, 1) + 1
     End If
+    ws.Range("AO1").Value2 = "quote_id": ws.Range("AP1").Value2 = "internal_transfers_unknown_minus_one"
+    WritePlanningValues ws.Range("AO2").Resize(UBound(transferMatrix, 1), 2), transferMatrix
+    ThisWorkbook.Names.Add Name:="PlanningTransfers", RefersTo:="='" & DATA & "'!$AO$2:$AP$" & UBound(transferMatrix, 1) + 1
     WritePlanningValues ps.Range("O8"), stamp
     ps.Range("O9").Value2 = "Авиа: текущие односторонние минимумы / АТОР; индексы категорий РФ как сценарии, за рубежом макросценарий RUB. ЖД/автобус/отели без сезонности. Точность не оценена."
     Application.CalculateFull
@@ -112,7 +118,7 @@ Public Sub InstallPlanning()
     If bagRU Is Nothing Or bagAB Is Nothing Then Err.Raise 5, , "Нет параметров надбавки за багаж"
     extra = ",'Параметры цен'!$B$" & railCell.Row & ",PlanningCoverage,PlanningCities," & _
         "IF('Параметры цен'!$C$" & bagRU.Row & "=""ДА"",'Параметры цен'!$B$" & bagRU.Row & ",-1)," & _
-        "IF('Параметры цен'!$C$" & bagAB.Row & "=""ДА"",'Параметры цен'!$B$" & bagAB.Row & ",-1)"
+        "IF('Параметры цен'!$C$" & bagAB.Row & "=""ДА"",'Параметры цен'!$B$" & bagAB.Row & ",-1)" & ",PlanningTransfers"
     headers = Array("Откуда", "Поездка ID", "Участок", "Остановка", "Ночей", _
                     "Порядок транспорта", "Багаж авиа", "Авиа, руб./чел.", "Поезд, руб./чел.", _
                     "Автобус, руб./чел.", "Выбранный транспорт", "Метод / причина")
@@ -207,30 +213,28 @@ Public Function PlanFare(ByVal origin As String, ByVal destination As String, _
     ByVal preferences As String, ByVal baggage As String, ByVal calendar As Range, _
     ByVal source As Range, ByVal field As String, Optional ByVal railClasses As String = "", _
     Optional ByVal coverage As Range = Nothing, Optional ByVal cityRegistry As Range = Nothing, _
-    Optional ByVal allowanceRU As Double = -1, Optional ByVal allowanceAB As Double = -1) As Variant
+    Optional ByVal allowanceRU As Double = -1, Optional ByVal allowanceAB As Double = -1, Optional ByVal transferInfo As Range = Nothing) As Variant
     On Error GoTo Invalid
     Dim result As Object, prices As Object, methods As Object, chosen As String, coverageValues As Variant, requestedMode As String
-    If Not coverage Is Nothing Then coverageValues = coverage.Value2
     If field = "air" Or field = "rail" Or field = "bus" Then requestedMode = field
-    Dim allowance As Double, countries As Variant, i As Long, originCountry As String, destinationCountry As String
-    allowance = -1
-    If Not cityRegistry Is Nothing Then
-        countries = cityRegistry.Value2
-        For i = 1 To UBound(countries, 1)
-            If LCase$(Replace(CStr(countries(i, 1)), "ё", "е")) = LCase$(Replace(Trim$(origin), "ё", "е")) Then originCountry = CStr(countries(i, 2))
-            If LCase$(Replace(CStr(countries(i, 1)), "ё", "е")) = LCase$(Replace(Trim$(destination), "ё", "е")) Then destinationCountry = CStr(countries(i, 2))
-        Next i
-        If originCountry <> "" And destinationCountry <> "" Then
-            If originCountry = "RU" And destinationCountry = "RU" Then allowance = allowanceRU Else allowance = allowanceAB
-        End If
-    End If
-    Set result = PlanningEstimate(origin, destination, launch, cohort, semester, _
-                                  preferences, baggage, calendar.Value2, source.Value2, railClasses, coverageValues, requestedMode, allowance, countries)
+    Dim countries As Variant, transferValues As Variant
+    If Not cityRegistry Is Nothing Then countries = cityRegistry.Value2
+    If Not transferInfo Is Nothing Then transferValues = transferInfo.Value2
+    Dim routingCacheKey As String
+    routingCacheKey = source.Address(External:=True)
+    If Not cityRegistry Is Nothing Then routingCacheKey = routingCacheKey & "|" & cityRegistry.Address(External:=True)
+    If Not transferInfo Is Nothing Then routingCacheKey = routingCacheKey & "|" & transferInfo.Address(External:=True)
+    Set result = RoutingEstimate(origin, destination, launch, cohort, semester, preferences, baggage, _
+                                 calendar.Value2, source.Value2, railClasses, countries, allowanceRU, allowanceAB, transferValues, requestedMode, routingCacheKey)
     Set prices = result("prices"): Set methods = result("methods"): chosen = result("chosen")
     If field = "status" Then
         If chosen <> "" Then PlanFare = methods(chosen) Else PlanFare = result("reasons")
     ElseIf field = "mode" Then
-        PlanFare = PlanningModeTitle(chosen)
+        If result.Exists("mode_title") Then
+            PlanFare = result("mode_title")
+        Else
+            PlanFare = PlanningModeTitle(chosen)
+        End If
     ElseIf prices.Exists(field) Then
         PlanFare = prices(field)
     ElseIf field = "price" And chosen <> "" Then

@@ -1,3 +1,4 @@
 # VBA exports must retain Windows-1251 bytes and CRLF for Excel import.
 excel/*.bas -text whitespace=cr-at-eol
+excel/*.cls -text whitespace=cr-at-eol
 excel/tests/*.bas -text whitespace=cr-at-eol
