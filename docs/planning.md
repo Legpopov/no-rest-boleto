@@ -38,23 +38,35 @@ the integration layer, and must not be inferred from transport prices.
 
 Run checks with `python -m unittest discover -s tests -v`.
 
-The Excel scenario repeats the individual route/month 2025–2026 reference rate
-in each year after 2026. This explicit scenario is distinct from the primitive
-API, which accepts an independently sourced index for each year. The catalog
-keeps matched, unambiguous one-way RUB air references with source links;
-surface reserve estimates are explicitly labelled separately.
-There is currently no calibrated peer/official transport-index fallback for air.
-Rail/bus have a distinct reserve method: mean undated/timetable reference prices,
-flat seasonality, and a 4% general-inflation scenario sourced to the Bank of Russia
-forecast of 5 November 2026. This is not historical transport inflation. Beyond
-2029 it extrapolates the scenario. Quantitative forecast error is unknown.
-Each rail class/firm group retains its sample count; Excel applies the workbook's
-existing class rules and weights groups by their counts. No organization-specific
-class restrictions are embedded in the published data. A bus is checked
-independently of whether a train is available. Source errors, missing price,
-missing page and source-confirmed absence of a direct bus have distinct statuses.
-Unknown endpoints return an explicit outside-coverage message and `#N/A`, never
-an automatically substituted Moscow or neighboring-city fare.
-Unknown semester months propagate `#N/A` into dependent budget sums rather than
-being silently treated as zero or averaged away. Known zero hotel nights are a
-valid zero expense; missing prices are not.
+The Excel catalog is schema 3. `data/planning.json` keeps inspectable records;
+`data/planning-excel.json` losslessly encodes the same worksheet fields with a string
+dictionary and fixed columns. `PlanningCatalogMatrix` validates decoded types before
+any write. Python verifies equality for every published record.
+
+Current cached one-way air references take precedence over matched ATOR references
+for the same route/month when their travel year does not exceed the target year.
+Unknown baggage requires the workbook's explicit one-way allowance; without it a
+known-baggage historical reference or an unavailable estimate is used. A future
+departure-year reference is never backdated as an earlier observation. Through fares
+may already include connections; separately entered legs must not double count them.
+
+For geographically eligible domestic routes the national all-passenger-transport
+YoY index is a broad proxy repeated as an explicit scenario, not a mode/route index
+or an official forecast. Foreign/excluded routes retain the sourced RUB macro
+scenario, with no separate FX/local-price model. Historical ATOR route/month rates
+remain explicit repeated scenarios. Surface seasonality is still flat.
+
+Hotel bases are calculated from fresh source items with the workbook's existing
+filters, not from potentially retained BR cells. Their observation year/month,
+price/index sources and method are saved offline. Hotel forecasts compound the
+annual scenario by elapsed calendar months and average over the semester, then
+multiply by people and explicit nights. Russian hotel indices are not applied to
+foreign or excluded destinations. Transit without nights remains zero.
+
+The official branch-city selector defines 50 origins including Moscow. Destinations
+also include source-returned city codes resolved against the provider's city
+dictionary; no nearest airport is silently substituted. Geographic scope is distinct
+from fare and semester coverage. Source failures and an unconfirmed station do not
+prove that a route does not operate. Coverage is recorded per directed route/mode;
+surface snapshot completeness is checked against its explicit requested-route set,
+not a fixed number of cities. Missing prices/months propagate as `#N/A` into totals.

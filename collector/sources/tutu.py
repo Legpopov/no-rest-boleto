@@ -12,6 +12,10 @@ SUGGEST = "https://www.tutu.ru/suggest/railway_simple/"
 MOSCOW = "2000000"
 
 
+class NoPricedServices(ValueError):
+    """The source returned a route link, without a fare payload."""
+
+
 def _norm(s: str) -> str:
     return s.lower().replace("ё", "е").replace("-", " ").strip()
 
@@ -40,6 +44,10 @@ def trips(session: PoliteSession, from_code: str, to_code: str) -> list[dict]:
     resp = session.get(TRIPS, params={"service": "tutu_trains", "term": from_code, "term2": to_code})
     resp.raise_for_status()
     body = resp.json()
+    if body == {'url': f'/poezda/rasp_d.php?nnst1={from_code}&nnst2={to_code}'}:
+        raise NoPricedServices('schedule_link_only')
+    if not (body == [] or isinstance(body, dict) and isinstance(body.get('trips'), list)):
+        raise ValueError('Unexpected railway response; not evidence of missing fares')
     out = []
     # если поездов нет, сервис отвечает пустым списком вместо объекта
     for t in (body.get("trips") if isinstance(body, dict) else None) or []:

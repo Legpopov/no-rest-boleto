@@ -14,7 +14,7 @@ def offer(price=1200, name='Москва – Санкт-Петербург'):
 
 
 class SurfaceTests(unittest.TestCase):
-    def test_directed_registry_has_56_pairs(self):
+    def test_legacy_reference_registry_has_56_pairs(self):
         self.assertEqual(len(CITIES)*(len(CITIES)-1),56)
         self.assertEqual(CITIES['Казань'][0],'2060615')
         self.assertEqual(CITIES['Минеральные Воды'][1],'Mineralnye-Vody')
