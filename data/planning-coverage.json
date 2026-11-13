@@ -140,7 +140,7 @@
       "priced_destinations": {
         "air": 1344,
         "rail": 47,
-        "bus": 13
+        "bus": 15
       }
     },
     {
@@ -252,7 +252,7 @@
       "priced_destinations": {
         "air": 957,
         "rail": 38,
-        "bus": 4
+        "bus": 5
       }
     },
     {
@@ -268,7 +268,7 @@
       "priced_destinations": {
         "air": 683,
         "rail": 32,
-        "bus": 2
+        "bus": 1
       }
     },
     {
@@ -308,7 +308,7 @@
       "priced_destinations": {
         "air": 635,
         "rail": 27,
-        "bus": 7
+        "bus": 6
       }
     },
     {

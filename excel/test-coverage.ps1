@@ -11,6 +11,9 @@ function Check($condition,[string]$message) {
 }
 try {
     $book=$app.Workbooks.Open((Resolve-Path -LiteralPath $WorkbookPath).Path,0,$true)
+    # Scenario inputs are written in batches; each assertion below follows an
+    # explicit CalculateFull, avoiding incidental recalculation after every cell.
+    $app.Calculation=-4135
     foreach ($name in 'modPlanningRegression','modCoverageRegression') {
         $book.VBProject.VBComponents.Import((Join-Path $PSScriptRoot "tests/$name.bas")) | Out-Null
     }

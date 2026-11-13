@@ -452,14 +452,14 @@
     "matrix_statuses": {
       "ambiguous_endpoint": 102,
       "endpoint_unresolved": 30600,
-      "no_direct_service": 13430,
+      "no_direct_service": 13804,
       "no_fare": 13896,
-      "no_priced_services": 57902,
+      "no_priced_services": 58072,
       "not_checked": 44375,
       "priced": 7829,
-      "reference_only": 33830,
+      "reference_only": 33864,
       "source_error": 170,
-      "source_page_missing": 79560,
+      "source_page_missing": 78982,
       "source_unsupported": 3600,
       "unresolved_station": 15606
     },
@@ -467,11 +467,11 @@
     "surface_completed_checks": 5900,
     "surface_statuses": {
       "ambiguous_endpoint": 3,
-      "no_direct_service": 395,
-      "no_priced_services": 1703,
-      "ok": 995,
+      "no_direct_service": 406,
+      "no_priced_services": 1708,
+      "ok": 996,
       "source_error": 5,
-      "source_page_missing": 2340,
+      "source_page_missing": 2323,
       "unresolved_station": 459
     },
     "air_origin_month_statuses": {
@@ -486,7 +486,7 @@
     "scoped_priced_air_pairs": 1149,
     "scoped_surface_pairs": {
       "rail": 846,
-      "bus": 149
+      "bus": 150
     },
     "spring_2027_complete": 333,
     "autumn_2026_complete": 38,
@@ -603,7 +603,7 @@
         "priced_destinations": {
           "air": 39,
           "rail": 32,
-          "bus": 2
+          "bus": 1
         }
       },
       {
@@ -619,7 +619,7 @@
         "priced_destinations": {
           "air": 39,
           "rail": 27,
-          "bus": 7
+          "bus": 6
         }
       },
       {
@@ -683,7 +683,7 @@
         "priced_destinations": {
           "air": 39,
           "rail": 47,
-          "bus": 13
+          "bus": 15
         }
       },
       {
@@ -787,7 +787,7 @@
         "priced_destinations": {
           "air": 39,
           "rail": 38,
-          "bus": 4
+          "bus": 5
         }
       },
       {
