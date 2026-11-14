@@ -1,0 +1,132 @@
+{
+  "railway": [
+    {
+      "city": "Донецк",
+      "http_status": 200,
+      "candidates": [
+        {
+          "id": "2214000",
+          "value": "Донецк (Донец.)"
+        },
+        {
+          "id": "2210799",
+          "value": "Николаевка-Донецкая"
+        }
+      ],
+      "receipts": [
+        {
+          "url": "https://www.tutu.ru/suggest/railway_simple/?name=%D0%94%D0%BE%D0%BD%D0%B5%D1%86%D0%BA",
+          "retrieved_at": "2026-11-11T15:13:31.698306+00:00",
+          "status": 200,
+          "sha256": "a826b5cc5c0160b79b8c953f8d5eb657ba427b5b1c53027d4f0f0e1a19a0b2f7",
+          "bytes": 120,
+          "server_date": "Wed, 11 Nov 2026 15:13:31 GMT",
+          "last_modified": null
+        }
+      ]
+    },
+    {
+      "city": "Красноармейск",
+      "http_status": 200,
+      "candidates": [
+        {
+          "id": "2020802",
+          "value": "Красноармейск (Карамыш)"
+        },
+        {
+          "id": "2064065",
+          "value": "Красноармейский (Куберле)"
+        },
+        {
+          "id": "2214050",
+          "value": "Покровск (Донец.)"
+        }
+      ],
+      "receipts": [
+        {
+          "url": "https://www.tutu.ru/suggest/railway_simple/?name=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B0%D1%80%D0%BC%D0%B5%D0%B9%D1%81%D0%BA",
+          "retrieved_at": "2026-11-11T15:13:37.508071+00:00",
+          "status": 200,
+          "sha256": "10646dc981040889b3ab30a5f15ddc16344dc6eacfa68adb62ac877a733932f2",
+          "bytes": 205,
+          "server_date": "Wed, 11 Nov 2026 15:13:37 GMT",
+          "last_modified": null
+        }
+      ]
+    },
+    {
+      "city": "Красногорск",
+      "http_status": 200,
+      "candidates": [],
+      "receipts": [
+        {
+          "url": "https://www.tutu.ru/suggest/railway_simple/?name=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA",
+          "retrieved_at": "2026-11-11T15:13:38.876997+00:00",
+          "status": 200,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "bytes": 2,
+          "server_date": "Wed, 11 Nov 2026 15:13:38 GMT",
+          "last_modified": null
+        }
+      ]
+    },
+    {
+      "city": "Ясиноватая",
+      "http_status": 200,
+      "candidates": [
+        {
+          "id": "2214010",
+          "value": "Ясиноватая (Ясиноватая Пасс.)"
+        },
+        {
+          "id": "2214034",
+          "value": "Ясиноватая"
+        }
+      ],
+      "receipts": [
+        {
+          "url": "https://www.tutu.ru/suggest/railway_simple/?name=%D0%AF%D1%81%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D0%B0%D1%8F",
+          "retrieved_at": "2026-11-11T15:14:07.747481+00:00",
+          "status": 200,
+          "sha256": "70f198d7dffc7d3349dcbe064fd66da8c02a21cbeb43da7dc2977c0aa336c0e8",
+          "bytes": 130,
+          "server_date": "Wed, 11 Nov 2026 15:14:00 GMT",
+          "last_modified": null
+        }
+      ]
+    }
+  ],
+  "air": [
+    {
+      "name_translations": {
+        "en": "Donetsk"
+      },
+      "cases": {
+        "da": "Донецку",
+        "pr": "Донецке",
+        "ro": "Донецка",
+        "su": "Донецк",
+        "tv": "Донецком",
+        "vi": "в Донецк"
+      },
+      "country_code": "UA",
+      "code": "DOK",
+      "time_zone": "Europe/Kyiv",
+      "name": "Донецк",
+      "coordinates": {
+        "lat": 48.015883,
+        "lon": 37.80285
+      },
+      "has_flightable_airport": false
+    }
+  ],
+  "city_metadata_receipt": {
+    "url": "https://api.travelpayouts.com/data/ru/cities.json",
+    "retrieved_at": "2026-11-11T15:14:15.389693+00:00",
+    "status": 200,
+    "sha256": "37cfadd659072569eefe8340e7efd306c7106b1d6f6ddb318ba5e6660832b0ed",
+    "bytes": 3546786,
+    "server_date": "Wed, 11 Nov 2026 15:14:09 GMT",
+    "last_modified": "Wed, 11 Nov 2026 06:01:43 GMT"
+  }
+}

@@ -1,10 +1,10 @@
 name: tests
 on:
   pull_request:
-    paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning*.json', 'data/surface/**', 'data/research/**', '.github/workflows/**']
+    paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning*.json', 'data/air-current/**', 'data/surface/**', 'data/research/**', 'data/route-coverage/**', '.github/workflows/**']
   push:
-    branches: ['main', 'fix/sem-route-planning']
-    paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning*.json', 'data/surface/**', 'data/research/**', '.github/workflows/**']
+    branches: ['main', 'fix/sem-route-planning', 'feat/branch-route-coverage']
+    paths: ['collector/**', 'tests/**', 'excel/**', 'data/planning*.json', 'data/air-current/**', 'data/surface/**', 'data/research/**', 'data/route-coverage/**', '.github/workflows/**']
 permissions:
   contents: read
 jobs:

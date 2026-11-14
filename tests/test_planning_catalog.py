@@ -3,6 +3,7 @@ from pathlib import Path
 import unittest
 
 from collector.planning_catalog import build_catalog, surface_records
+from collector.branch_scope import endpoints
 from statistics import mean
 
 
@@ -14,13 +15,17 @@ class CatalogTests(unittest.TestCase):
         cls.changes = json.loads((base/'research/ator-route-yoy.json').read_text(encoding='utf-8'))
         cls.surface = json.loads((base/'surface/latest.json').read_text(encoding='utf-8'))
         cls.scenario = json.loads((base/'planning-scenario.json').read_text(encoding='utf-8'))
+        cls.indices = json.loads((base/'planning-indices.json').read_text(encoding='utf-8'))
+        cls.current = json.loads((base/'air-current/latest.json').read_text(encoding='utf-8'))
+        cls.hotels = json.loads((base/'planning-hotels.json').read_text(encoding='utf-8'))
 
     def test_published_catalog_reproduces_sources(self):
-        actual = build_catalog(self.quotes, self.changes, self.surface, self.scenario)
+        actual = build_catalog(self.quotes, self.changes, self.surface, self.scenario,
+                               self.current,self.indices,endpoints(),self.hotels)
         published = Path(__file__).resolve().parents[1]/'data/planning.json'
         self.assertEqual(actual, json.loads(published.read_text(encoding='utf-8')))
-        self.assertEqual(len([r for r in actual['records'] if r['mode']=='air']), 881)
-        self.assertEqual(sorted({r['month'] for r in actual['records'] if r['mode']=='air'}),
+        self.assertEqual(len([r for r in actual['records'] if r['rate_method']=='route_reference_yoy_repeated_scenario']), 881)
+        self.assertEqual(sorted({r['month'] for r in actual['records'] if r['rate_method']=='route_reference_yoy_repeated_scenario'}),
                          [3,5,6,7,8,9,10,11,12])
         self.assertEqual({r['mode'] for r in actual['records']},{'air','rail','bus'})
 
@@ -58,7 +63,7 @@ class CatalogTests(unittest.TestCase):
         self.assertGreater(coverage['comparison_exclusions'],0)
 
     def test_partial_surface_collection_is_not_published(self):
-        with self.assertRaisesRegex(ValueError,'112'):
+        with self.assertRaisesRegex(ValueError,'requested'):
             surface_records({**self.surface,'routes':self.surface['routes'][:-1]},self.scenario)
 
     def test_surface_mean_is_weighted_by_samples_and_keeps_class_rules(self):
@@ -76,10 +81,19 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(all(r['rate_method']=='surface_macro_scenario' for r in rows))
 
     def test_no_direct_bus_is_not_replaced_by_train_or_reverse_fare(self):
-        rows = surface_records(self.surface,self.scenario)
-        self.assertFalse(any(r['origin']=='Калининград' and r['destination']=='Москва'
-                             and r['mode']=='bus' for r in rows))
-        bus = next(r for r in rows if r['origin']=='Москва' and
-                   r['destination']=='Санкт-Петербург' and r['mode']=='bus')
+        common=dict(currency='RUB',basis='one_way',checked_at='2026-11-11T00:00:00Z',
+                    source='https://example.org/fixed-test-reference',
+                    statistic='test_reference',receipts=[dict(status=200,sha256='test')])
+        snapshot=dict(complete=True,scope=['A','B'],
+            requested_routes=[['A','B','bus'],['A','B','rail'],['B','A','bus']],routes=[
+                dict(common,origin='A',destination='B',mode='bus',status='no_direct_service',items=[]),
+                dict(common,origin='A',destination='B',mode='rail',status='ok',
+                     items=[dict(classes={'coupe':2000},firm=False)]),
+                dict(common,origin='B',destination='A',mode='bus',status='ok',items=[dict(price=1000)])])
+        rows = surface_records(snapshot,self.scenario)
+        self.assertFalse(any(r['origin']=='A' and r['destination']=='B' and r['mode']=='bus' for r in rows))
+        self.assertTrue(any(r['origin']=='A' and r['destination']=='B' and r['mode']=='rail' for r in rows))
+        bus = next(r for r in rows if r['origin']=='B' and r['destination']=='A' and r['mode']=='bus')
+        self.assertEqual(bus['price'],1000)
         self.assertEqual(bus['annual_rate'],.04)
         self.assertIn('cbr.ru',bus['previous_source'])

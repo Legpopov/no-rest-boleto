@@ -28,6 +28,7 @@ node_modules/
 
 # промежуточные файлы потоков сбора
 data/parts/
+data/surface/issue-2*.json
 
 # Локальные секреты wrangler (Cloudflare Pages)
 .dev.vars

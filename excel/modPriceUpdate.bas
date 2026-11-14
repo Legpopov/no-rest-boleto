@@ -1191,3 +1191,23 @@ Private Sub SetOut(ws As Worksheet, ByVal k As String, ByVal v As Variant)
     Set f = ws.Columns(1).Find(What:=k, LookIn:=xlValues, LookAt:=xlWhole)
     If Not f Is Nothing Then f.Offset(0, 1).Value = v
 End Sub
+
+' Same workbook filters as the ordinary price updater; no internal rules in JSON.
+Public Function PlanningFilteredHotelMean(ByVal record As Object) As Variant
+    Dim items As Variant, item As Variant, total As Double, count As Long
+    Dim abroad As Boolean, noStar As Boolean
+    PlanningFilteredHotelMean = Null
+    LoadParams ThisWorkbook.Worksheets(SH_PAR)
+    If PEnabled(K_FRESH) Then
+        If SnapshotAgeDays(CStr(record("retrieved_at"))) > PNum(K_FRESH) Then Exit Function
+    End If
+    abroad = CBool(record("abroad"))
+    noStar = CityInParam(CStr(record("city")), K_H_NOSTAR)
+    items = record("items")
+    For Each item In items
+        If HotelPasses(item, abroad, noStar) Then
+            total = total + CDbl(item(0)): count = count + 1
+        End If
+    Next item
+    If count > 0 Then PlanningFilteredHotelMean = Round(total / count, 2)
+End Function

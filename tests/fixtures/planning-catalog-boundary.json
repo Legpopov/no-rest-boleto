@@ -1,0 +1,18 @@
+{
+  "schema_version": 3,
+  "currency": "RUB",
+  "basis": "one_way",
+  "retrieved_at": "2026-11-11T00:00:00Z",
+  "records": [
+    {
+      "origin": "A", "destination": "B", "mode": "air", "month": 2,
+      "base_year": 2027, "price": 100, "annual_rate": 0.1,
+      "baggage_included": false, "source": "synthetic boundary fixture",
+      "previous_source": "synthetic index", "reference_date": "2027-02-01",
+      "previous_date": "", "rate_method": "air_current_official_category_scenario",
+      "quote_id": "fixture-1", "rail_class": "", "firm": false,
+      "sample_count": 1, "price_method": "fixture", "uncertainty": "fixture",
+      "retrieved_at": "2026-11-11T00:00:00Z"
+    }
+  ]
+}

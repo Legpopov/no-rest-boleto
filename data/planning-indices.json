@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "https://www.rosstat.gov.ru/storage/mediabank/157_09-10-2026.html",
+  "title": "Об индексе потребительских цен в сентябре 2026 года",
+  "published_on": "2026-10-09",
+  "reference_period": "2026-09",
+  "comparison_period": "2025-09",
+  "retrieved_on": "2026-11-11",
+  "retrieval_method": "full_indexed_document_text; direct HTTPS download failed certificate verification",
+  "unit": "percent_of_same_month_previous_year",
+  "excluded_territories": ["Донецк", "Луганск", "Торез", "Ясиноватая"],
+  "indices": {
+    "passenger_transport": {
+      "label": "Пассажирского транспорта",
+      "index": 111.89,
+      "scope": "RU aggregate passenger transport, includes multiple modes; proxy, not route or rail/bus/air-specific index"
+    },
+    "hotels": {
+      "label": "Гостиниц и прочих мест проживания",
+      "index": 105.87,
+      "scope": "RU aggregate hotels and other accommodation; not city, star class or foreign-country index"
+    }
+  },
+  "forecast_method": "repeat_observed_category_yoy_as_explicit_scenario",
+  "uncertainty": "These observed indices are not official forecasts. Future repetition, national-to-route transfer and flat surface seasonality remain assumptions. Not applied to foreign or excluded territories."
+}

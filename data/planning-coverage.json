@@ -1,0 +1,412 @@
+{
+  "retrieved_at": "2026-11-14T02:54:03.433199+00:00",
+  "origin_count": 50,
+  "catalog_city_count": 1644,
+  "transport_records": 83052,
+  "current_air_pairs": 11970,
+  "air_spring_months_complete": 1126,
+  "air_autumn_months_complete": 743,
+  "origins": [
+    {
+      "city": "Барнаул",
+      "priced_destinations": {
+        "air": 303,
+        "rail": 11,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Астрахань",
+      "priced_destinations": {
+        "air": 284,
+        "rail": 12,
+        "bus": 7
+      }
+    },
+    {
+      "city": "Брянск",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 12,
+        "bus": 8
+      }
+    },
+    {
+      "city": "Владимир",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 23,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Волгоград",
+      "priced_destinations": {
+        "air": 387,
+        "rail": 26,
+        "bus": 9
+      }
+    },
+    {
+      "city": "Вологда",
+      "priced_destinations": {
+        "air": 100,
+        "rail": 15,
+        "bus": 3
+      }
+    },
+    {
+      "city": "Воронеж",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 27,
+        "bus": 6
+      }
+    },
+    {
+      "city": "Чита",
+      "priced_destinations": {
+        "air": 249,
+        "rail": 11,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Иваново",
+      "priced_destinations": {
+        "air": 161,
+        "rail": 10,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Калининград",
+      "priced_destinations": {
+        "air": 453,
+        "rail": 0,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Калуга",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 11,
+        "bus": 3
+      }
+    },
+    {
+      "city": "Петропавловск-Камчатский",
+      "priced_destinations": {
+        "air": 176,
+        "rail": 0,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Киров",
+      "priced_destinations": {
+        "air": 205,
+        "rail": 25,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Курган",
+      "priced_destinations": {
+        "air": 130,
+        "rail": 18,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Выборг",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 4,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Липецк",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 13,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Москва",
+      "priced_destinations": {
+        "air": 1344,
+        "rail": 47,
+        "bus": 17
+      }
+    },
+    {
+      "city": "Мурманск",
+      "priced_destinations": {
+        "air": 266,
+        "rail": 9,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Дзержинск",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 23,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Нижний Новгород",
+      "priced_destinations": {
+        "air": 416,
+        "rail": 30,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Великий Новгород",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 5,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Новосибирск",
+      "priced_destinations": {
+        "air": 732,
+        "rail": 30,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Омск",
+      "priced_destinations": {
+        "air": 406,
+        "rail": 29,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Оренбург",
+      "priced_destinations": {
+        "air": 318,
+        "rail": 13,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Орел",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 12,
+        "bus": 2
+      }
+    },
+    {
+      "city": "Пермь",
+      "priced_destinations": {
+        "air": 459,
+        "rail": 27,
+        "bus": 2
+      }
+    },
+    {
+      "city": "Владивосток",
+      "priced_destinations": {
+        "air": 565,
+        "rail": 11,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Петрозаводск",
+      "priced_destinations": {
+        "air": 135,
+        "rail": 8,
+        "bus": 2
+      }
+    },
+    {
+      "city": "Ростов-на-Дону",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 33,
+        "bus": 3
+      }
+    },
+    {
+      "city": "Самара",
+      "priced_destinations": {
+        "air": 563,
+        "rail": 27,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Санкт-Петербург",
+      "priced_destinations": {
+        "air": 957,
+        "rail": 38,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Саратов",
+      "priced_destinations": {
+        "air": 338,
+        "rail": 31,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Екатеринбург",
+      "priced_destinations": {
+        "air": 683,
+        "rail": 32,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Смоленск",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 14,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Пятигорск",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 30,
+        "bus": 2
+      }
+    },
+    {
+      "city": "Ставрополь",
+      "priced_destinations": {
+        "air": 267,
+        "rail": 4,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Тамбов",
+      "priced_destinations": {
+        "air": 116,
+        "rail": 18,
+        "bus": 4
+      }
+    },
+    {
+      "city": "Казань",
+      "priced_destinations": {
+        "air": 635,
+        "rail": 27,
+        "bus": 6
+      }
+    },
+    {
+      "city": "Тверь",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 31,
+        "bus": 2
+      }
+    },
+    {
+      "city": "Тула",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 16,
+        "bus": 7
+      }
+    },
+    {
+      "city": "Ульяновск",
+      "priced_destinations": {
+        "air": 236,
+        "rail": 19,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Хабаровск",
+      "priced_destinations": {
+        "air": 428,
+        "rail": 11,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Челябинск",
+      "priced_destinations": {
+        "air": 448,
+        "rail": 30,
+        "bus": 5
+      }
+    },
+    {
+      "city": "Чебоксары",
+      "priced_destinations": {
+        "air": 210,
+        "rail": 3,
+        "bus": 11
+      }
+    },
+    {
+      "city": "Донецк",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 0,
+        "bus": 2
+      }
+    },
+    {
+      "city": "Балаково",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 12,
+        "bus": 7
+      }
+    },
+    {
+      "city": "Красноармейск",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 8,
+        "bus": 0
+      }
+    },
+    {
+      "city": "Красногорск",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 0,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Торез",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 0,
+        "bus": 1
+      }
+    },
+    {
+      "city": "Ясиноватая",
+      "priced_destinations": {
+        "air": 0,
+        "rail": 0,
+        "bus": 1
+      }
+    }
+  ],
+  "limitations": "At least one month/class reference is not complete semester coverage or guaranteed ticket availability. Class/baggage filters are applied in Excel."
+}

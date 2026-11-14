@@ -33,7 +33,7 @@ Public Function RunPlanningRegression(ByVal fixturePath As String, ByVal catalog
         For Each fare In fares
             Set f = fare: expected = f("months"): count = count + UBound(expected) + 1
         Next fare
-        ReDim matrix(1 To count, 1 To pcUncertainty): n = 0
+        ReDim matrix(1 To count, 1 To pcFieldCount): n = 0
         For Each fare In fares
             Set f = fare: expected = f("months")
             For Each m In expected
@@ -82,7 +82,7 @@ Public Function RunPlanningRegression(ByVal fixturePath As String, ByVal catalog
     badNumber = PlanningCatalogMatrix(root)
     Set scratch = ThisWorkbook.Worksheets.Add
     On Error GoTo CleanFailed
-    WritePlanningValues scratch.Range("A1").Resize(UBound(badNumber, 1), pcUncertainty), badNumber
+    WritePlanningValues scratch.Range("A1").Resize(UBound(badNumber, 1), pcFieldCount), badNumber
     Check Not scratch.Cells(1, pcSource).HasFormula, "catalog source cannot become formula", passed
     Check scratch.Cells(1, pcSource).Value2 = "=1+1", "catalog source preserved literally", passed
     values(1, 1) = "=1+1": values(1, 2) = 123.45: values(1, 3) = True

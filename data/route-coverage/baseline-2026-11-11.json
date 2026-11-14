@@ -1,0 +1,454 @@
+{
+  "air_updated_at": "2026-11-11T09:23:59.777366+00:00",
+  "surface_updated_at": "2026-11-11T09:17:02.743240+00:00",
+  "scope_sha256": "0aa28f749a99759c12dc8924c7091ce6afe2faafd45ede9564423a0a08ba3172",
+  "sha256": {
+    "baseline-air-current-latest.json": "200fe7d72926f7cc11eb67a3edf4421bb5d8573701d8f856e716aad5c08b1d89",
+    "baseline-data-planning-coverage.json": "bc9fc4653f703b5d592785a52025583db3ed60b81612a6994ff5b4aba8fe6452",
+    "baseline-surface-latest.json": "174ca407142469e94ae3cf45dd6d7e89f80ace150ef304a11eafcedcd5557edf"
+  },
+  "summary": {
+    "origin_count": 50,
+    "directed_pairs": 2950,
+    "checked_origins": 50,
+    "matrix_statuses": {
+      "endpoint_unresolved": 30600,
+      "no_direct_service": 612,
+      "no_fare": 13966,
+      "no_priced_services": 1190,
+      "not_checked": 236135,
+      "priced": 7759,
+      "reference_only": 5474,
+      "source_error": 3600,
+      "source_page_missing": 1292,
+      "unresolved_station": 272
+    },
+    "surface_expected_checks": 5900,
+    "surface_completed_checks": 260,
+    "surface_statuses": {
+      "no_direct_service": 18,
+      "no_priced_services": 35,
+      "ok": 161,
+      "source_page_missing": 38,
+      "unresolved_station": 8
+    },
+    "air_origin_month_statuses": {
+      "no_cached_fares": 136,
+      "ok": 284,
+      "source_error": 72
+    },
+    "air_supplement_statuses": {},
+    "scoped_priced_air_pairs": 1149,
+    "scoped_surface_pairs": {
+      "rail": 106,
+      "bus": 55
+    },
+    "spring_2027_complete": 326,
+    "autumn_2026_complete": 38,
+    "all_source_air_pairs": 11749,
+    "all_source_spring_month_numbers_complete": 1086,
+    "all_source_autumn_month_numbers_complete": 711,
+    "origins": [
+      {
+        "city": "Астрахань",
+        "priced_destinations": {
+          "air": 38,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Балаково",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Барнаул",
+        "priced_destinations": {
+          "air": 38,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Брянск",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Великий Новгород",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Владивосток",
+        "priced_destinations": {
+          "air": 38,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Владимир",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Волгоград",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Вологда",
+        "priced_destinations": {
+          "air": 35,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Воронеж",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Выборг",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Дзержинск",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Донецк",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 0,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Екатеринбург",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 6,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Иваново",
+        "priced_destinations": {
+          "air": 38,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Казань",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 6,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Калининград",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 0,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Калуга",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Киров",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Красноармейск",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 0,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Красногорск",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 0,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Курган",
+        "priced_destinations": {
+          "air": 35,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Липецк",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Москва",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 44,
+          "bus": 28
+        }
+      },
+      {
+        "city": "Мурманск",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Нижний Новгород",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Новосибирск",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 6,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Омск",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Орел",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Оренбург",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Пермь",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Петрозаводск",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Петропавловск-Камчатский",
+        "priced_destinations": {
+          "air": 35,
+          "rail": 0,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Пятигорск",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Ростов-на-Дону",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Самара",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Санкт-Петербург",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 6,
+          "bus": 2
+        }
+      },
+      {
+        "city": "Саратов",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Смоленск",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Ставрополь",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Тамбов",
+        "priced_destinations": {
+          "air": 36,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Тверь",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Торез",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 0,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Тула",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Ульяновск",
+        "priced_destinations": {
+          "air": 38,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Хабаровск",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Чебоксары",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 1
+        }
+      },
+      {
+        "city": "Челябинск",
+        "priced_destinations": {
+          "air": 39,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Чита",
+        "priced_destinations": {
+          "air": 38,
+          "rail": 1,
+          "bus": 0
+        }
+      },
+      {
+        "city": "Ясиноватая",
+        "priced_destinations": {
+          "air": 0,
+          "rail": 0,
+          "bus": 0
+        }
+      }
+    ]
+  }
+}
