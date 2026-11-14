@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-13T15:10:04.235801+00:00",
+  "snapshot_at": "2026-11-14T02:54:03.433199+00:00",
   "months": [
     "2027-02",
     "2027-03",
@@ -7838,7 +7838,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 12656.87,
+      "price": 12649.12,
       "legs": [
         {
           "origin": "Барнаул",
@@ -7862,7 +7862,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -14368,7 +14368,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 8511.9,
+      "price": 8504.15,
       "legs": [
         {
           "origin": "Великий Новгород",
@@ -14392,7 +14392,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -17595,7 +17595,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": true,
       "status": "ok",
-      "price": 17898.35,
+      "price": 17890.6,
       "legs": [
         {
           "origin": "Владивосток",
@@ -17619,7 +17619,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -18345,7 +18345,7 @@
       "destination": "Санкт-Петербург",
       "direct_complete": true,
       "status": "ok",
-      "price": 16936.47,
+      "price": 16936.19,
       "legs": [
         {
           "origin": "Владивосток",
@@ -18369,7 +18369,7 @@
           "origin": "Москва",
           "destination": "Санкт-Петербург",
           "mode": "rail",
-          "price": 4051.22,
+          "price": 4050.94,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -38941,7 +38941,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 8549.1,
+      "price": 8541.35,
       "legs": [
         {
           "origin": "Донецк",
@@ -38965,7 +38965,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -44958,7 +44958,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 7241.95,
+      "price": 7234.2,
       "legs": [
         {
           "origin": "Иваново",
@@ -44982,7 +44982,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -48183,13 +48183,13 @@
       "destination": "Новосибирск",
       "direct_complete": true,
       "status": "ok",
-      "price": 9090.17,
+      "price": 9463.66,
       "legs": [
         {
           "origin": "Казань",
           "destination": "Новосибирск",
           "mode": "rail",
-          "price": 9090.17,
+          "price": 9463.66,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -49300,13 +49300,13 @@
       "destination": "Чита",
       "direct_complete": false,
       "status": "ok",
-      "price": 16044.5,
+      "price": 16417.99,
       "legs": [
         {
           "origin": "Казань",
           "destination": "Новосибирск",
           "mode": "rail",
-          "price": 9090.17,
+          "price": 9463.66,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -50984,7 +50984,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": true,
       "status": "ok",
-      "price": 12362.3,
+      "price": 12354.55,
       "legs": [
         {
           "origin": "Калининград",
@@ -51012,7 +51012,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -60656,7 +60656,7 @@
       "destination": "Новосибирск",
       "direct_complete": false,
       "status": "ok",
-      "price": 13716.82,
+      "price": 14090.31,
       "legs": [
         {
           "origin": "Красноармейск",
@@ -60680,7 +60680,7 @@
           "origin": "Казань",
           "destination": "Новосибирск",
           "mode": "rail",
-          "price": 9090.17,
+          "price": 9463.66,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -63725,7 +63725,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 5107.09,
+      "price": 5099.34,
       "legs": [
         {
           "origin": "Красногорск",
@@ -63749,7 +63749,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -72836,13 +72836,13 @@
       "destination": "Минеральные Воды",
       "direct_complete": true,
       "status": "ok",
-      "price": 5013.1,
+      "price": 5005.35,
       "legs": [
         {
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -73360,13 +73360,13 @@
       "destination": "Санкт-Петербург",
       "direct_complete": true,
       "status": "ok",
-      "price": 4051.22,
+      "price": 4050.94,
       "legs": [
         {
           "origin": "Москва",
           "destination": "Санкт-Петербург",
           "mode": "rail",
-          "price": 4051.22,
+          "price": 4050.94,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -75622,7 +75622,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 12942.52,
+      "price": 12934.77,
       "legs": [
         {
           "origin": "Мурманск",
@@ -75646,7 +75646,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -110008,13 +110008,13 @@
       "destination": "Баку",
       "direct_complete": true,
       "status": "ok",
-      "price": 18263.32,
+      "price": 18271.27,
       "legs": [
         {
           "origin": "Санкт-Петербург",
           "destination": "Москва",
           "mode": "rail",
-          "price": 3947.52,
+          "price": 3955.47,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -110128,13 +110128,13 @@
       "destination": "Барнаул",
       "direct_complete": false,
       "status": "ok",
-      "price": 11810.03,
+      "price": 11817.98,
       "legs": [
         {
           "origin": "Санкт-Петербург",
           "destination": "Москва",
           "mode": "rail",
-          "price": 3947.52,
+          "price": 3955.47,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -110281,13 +110281,13 @@
       "destination": "Владивосток",
       "direct_complete": true,
       "status": "ok",
-      "price": 16354.44,
+      "price": 16362.39,
       "legs": [
         {
           "origin": "Санкт-Петербург",
           "destination": "Москва",
           "mode": "rail",
-          "price": 3947.52,
+          "price": 3955.47,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -110699,13 +110699,13 @@
       "destination": "Ереван",
       "direct_complete": true,
       "status": "ok",
-      "price": 14727.72,
+      "price": 14735.67,
       "legs": [
         {
           "origin": "Санкт-Петербург",
           "destination": "Москва",
           "mode": "rail",
-          "price": 3947.52,
+          "price": 3955.47,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -111295,13 +111295,13 @@
       "destination": "Москва",
       "direct_complete": true,
       "status": "ok",
-      "price": 3947.52,
+      "price": 3955.47,
       "legs": [
         {
           "origin": "Санкт-Петербург",
           "destination": "Москва",
           "mode": "rail",
-          "price": 3947.52,
+          "price": 3955.47,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -112205,13 +112205,13 @@
       "destination": "Хабаровск",
       "direct_complete": true,
       "status": "ok",
-      "price": 22086.57,
+      "price": 22094.52,
       "legs": [
         {
           "origin": "Санкт-Петербург",
           "destination": "Москва",
           "mode": "rail",
-          "price": 3947.52,
+          "price": 3955.47,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -129233,7 +129233,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 8965.1,
+      "price": 8957.35,
       "legs": [
         {
           "origin": "Торез",
@@ -129257,7 +129257,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -138671,7 +138671,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": true,
       "status": "ok",
-      "price": 26512.76,
+      "price": 26505.01,
       "legs": [
         {
           "origin": "Хабаровск",
@@ -138695,7 +138695,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -141999,7 +141999,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 7216.21,
+      "price": 7208.46,
       "legs": [
         {
           "origin": "Чебоксары",
@@ -142023,7 +142023,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
@@ -151535,7 +151535,7 @@
       "destination": "Минеральные Воды",
       "direct_complete": false,
       "status": "ok",
-      "price": 8673.9,
+      "price": 8666.15,
       "legs": [
         {
           "origin": "Ясиноватая",
@@ -151577,7 +151577,7 @@
           "origin": "Москва",
           "destination": "Минеральные Воды",
           "mode": "rail",
-          "price": 5013.1,
+          "price": 5005.35,
           "transfers": 0,
           "transfers_unknown": false,
           "sources": [
