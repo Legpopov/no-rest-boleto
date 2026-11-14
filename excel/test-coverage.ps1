@@ -1,4 +1,4 @@
-﻿param([Parameter(Mandatory=$true)][string]$WorkbookPath,[string]$PreviewPath='')
+﻿param([Parameter(Mandatory=$true)][string]$WorkbookPath,[string]$PreviewPath='',[switch]$RoutingScenarioOnly)
 $ErrorActionPreference='Stop'
 $app=New-Object -ComObject Excel.Application
 $app.Visible=$false
@@ -14,6 +14,10 @@ try {
     # Scenario inputs are written in batches; each assertion below follows an
     # explicit CalculateFull, avoiding incidental recalculation after every cell.
     $app.Calculation=-4135
+    $trips=$book.Worksheets.Item('Командировки и выезды')
+    $output=$book.Worksheets.Item('Прогноз эк.эфф-ти')
+    $params=$book.Worksheets.Item('Параметры цен')
+    if (-not $RoutingScenarioOnly) {
     foreach ($name in 'modPlanningRegression','modCoverageRegression','modRoutingRegression') {
         $book.VBProject.VBComponents.Import((Join-Path $PSScriptRoot "tests/$name.bas")) | Out-Null
     }
@@ -80,6 +84,7 @@ try {
     $trips.Range('P5').Value2=3
     $app.CalculateFull()
     Check ($trips.Range('J5').Value2 -is [double] -and $trips.Range('J5').Value2 -gt 0) 'hotel expense formula recalculates'
+    }
     # A single input row must find its own priced chain, matching the independent
     # Python report for this exact semester and catalog snapshot.
     "PASS: $passed existing and routing-contract native Excel checks"
@@ -87,6 +92,7 @@ try {
     if ($null -eq $railSetting) {throw 'Missing rail class parameter'}
     $params.Cells.Item($railSetting.Row,2).Value2='coupe'
     $book.Worksheets.Item('Паспорт').Range('G23').Value2=2026
+    $trips.Range('Q4').Value2='поезд, авиа, автобус'
     $trips.Range('C4').Value2=1
     $trips.Range('A4').Value2='2 семестр'
     $trips.Range('B4').Value2='1 год набора'
@@ -99,7 +105,7 @@ try {
     Check ($routeExpected.status -eq 'ok' -and $routeExpected.cities.Count -gt 2) 'independent report has a connecting route'
     Check ([Math]::Abs([double]$trips.Range('J4').Value2-[double]$routeExpected.price) -lt .01) 'automatic chain matches Python semester ticket sum'
     Check ($trips.Range('W4').Text -match 'Саратов' -and $trips.Range('W4').Text -match 'пересадок: 1') 'intermediate city and joined transfer are shown'
-    Check ($trips.Range('W4').Text -match 'расходы на пересадку и ночёвку не оценены') 'unknown additional expenses are visibly labelled'
+    Check ($trips.Range('W4').Text -match 'СУММА БИЛЕТОВ' -and $trips.Range('W4').Text -match 'переезды при пересадке и ночёвки не оценены') 'unknown additional expenses are visibly labelled'
     # Editing an endpoint must invalidate any graph retained during calculation.
     $trips.Range('F4').Value2='Несуществующий тестовый город'
     $app.CalculateFull()
