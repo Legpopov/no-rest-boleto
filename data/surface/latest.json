@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "started_at": "2026-11-27T04:43:26.544818+00:00",
+  "started_at": "2026-11-28T04:27:53.107918+00:00",
   "scope": [
     "Москва",
     "Санкт-Петербург",
@@ -19,7 +19,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:26.544855+00:00",
+      "checked_at": "2026-11-28T04:27:53.107963+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2004000",
       "items": [
@@ -272,6 +272,7 @@
           "hours": 8.4,
           "departure": "00:46:00",
           "classes": {
+            "plazcard": 4961,
             "lux": 22613
           }
         },
@@ -786,11 +787,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2004000",
-          "retrieved_at": "2026-11-27T04:43:26.884571+00:00",
+          "retrieved_at": "2026-11-28T04:27:55.607220+00:00",
           "status": 200,
-          "sha256": "04eee00f0323d852079af3c035e3a787871124f9470e30f5af08900a9db8b0a4",
-          "bytes": 24657,
-          "server_date": "Fri, 27 Nov 2026 04:43:26 GMT",
+          "sha256": "98678add93bb245291114e4af0be20693c779b9d86f36a74e407891d8fa3065e",
+          "bytes": 24690,
+          "server_date": "Sat, 28 Nov 2026 04:27:55 GMT",
           "last_modified": null
         }
       ]
@@ -801,7 +802,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:26.885803+00:00",
+      "checked_at": "2026-11-28T04:27:55.609498+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Sankt-Peterburg/",
       "items": [
@@ -1011,11 +1012,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:43:28.386736+00:00",
+          "retrieved_at": "2026-11-28T04:27:57.072163+00:00",
           "status": 200,
           "sha256": "33b00645de875d3a6a8cde131a4aa1994319501d10f5be70af7a7883d324abeb",
           "bytes": 812524,
-          "server_date": "Fri, 27 Nov 2026 04:43:27 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:27:56 GMT",
           "last_modified": null
         }
       ]
@@ -1026,7 +1027,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:28.422068+00:00",
+      "checked_at": "2026-11-28T04:27:57.126933+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2030000",
       "items": [
@@ -1248,11 +1249,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2030000",
-          "retrieved_at": "2026-11-27T04:43:28.620316+00:00",
+          "retrieved_at": "2026-11-28T04:27:57.296222+00:00",
           "status": 200,
           "sha256": "3126646c679f9d70df072ce1be0eebf2ceb4eac965b2f6635fe4cda72ab705ea",
           "bytes": 6870,
-          "server_date": "Fri, 27 Nov 2026 04:43:28 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:27:57 GMT",
           "last_modified": null
         }
       ]
@@ -1263,7 +1264,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:28.621473+00:00",
+      "checked_at": "2026-11-28T04:27:57.297951+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Ekaterinburg/",
       "items": [],
@@ -1272,11 +1273,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:43:30.398235+00:00",
+          "retrieved_at": "2026-11-28T04:27:58.930546+00:00",
           "status": 200,
           "sha256": "d8861034051c2d91f8c131c3fa691ccb84b7c938e98727b28c8d7d7dbdb2ad3b",
           "bytes": 166449,
-          "server_date": "Fri, 27 Nov 2026 04:43:30 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:27:58 GMT",
           "last_modified": null
         }
       ]
@@ -1287,7 +1288,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:30.407000+00:00",
+      "checked_at": "2026-11-28T04:27:58.944679+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2060615",
       "items": [
@@ -1299,7 +1300,7 @@
           "departure": "20:40:00",
           "classes": {
             "coupe": 2616,
-            "lux": 20029,
+            "lux": 16297,
             "soft": 25768
           }
         },
@@ -1439,17 +1440,6 @@
           }
         },
         {
-          "train": "224Х",
-          "name": "",
-          "firm": false,
-          "hours": 12.6,
-          "departure": "01:20:00",
-          "classes": {
-            "coupe": 4759,
-            "lux": 17278
-          }
-        },
-        {
           "train": "256*В",
           "name": "",
           "firm": false,
@@ -1547,11 +1537,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2060615",
-          "retrieved_at": "2026-11-27T04:43:30.603686+00:00",
+          "retrieved_at": "2026-11-28T04:27:58.968553+00:00",
           "status": 200,
-          "sha256": "17191b3ff7df929f94eb69dd171ed03d7878ac4e7e095e043ebe30d0afeaa761",
-          "bytes": 8120,
-          "server_date": "Fri, 27 Nov 2026 04:43:30 GMT",
+          "sha256": "c374bc1163de273f805d55f8df704118edc02496d3bd68ba1f1df915b70c51bc",
+          "bytes": 7773,
+          "server_date": "Sat, 28 Nov 2026 04:27:58 GMT",
           "last_modified": null
         }
       ]
@@ -1562,7 +1552,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:30.605071+00:00",
+      "checked_at": "2026-11-28T04:27:58.970628+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Kazan/",
       "items": [
@@ -1636,11 +1626,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:43:32.270551+00:00",
+          "retrieved_at": "2026-11-28T04:28:00.790574+00:00",
           "status": 200,
           "sha256": "3d33cf9eaada1f9fdcb99daf57946109da69789f3db1c3b0e36a1f538302e7a3",
           "bytes": 418160,
-          "server_date": "Fri, 27 Nov 2026 04:43:31 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:00 GMT",
           "last_modified": null
         }
       ]
@@ -1651,7 +1641,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:32.287177+00:00",
+      "checked_at": "2026-11-28T04:28:00.816623+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2044000",
       "items": [
@@ -1738,11 +1728,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2044000",
-          "retrieved_at": "2026-11-27T04:43:32.481177+00:00",
+          "retrieved_at": "2026-11-28T04:28:00.838516+00:00",
           "status": 200,
           "sha256": "eedd2a52196ee3caab5668396931b01f95ffdf4ef903e0a116e2c7eea133805c",
           "bytes": 2550,
-          "server_date": "Fri, 27 Nov 2026 04:43:32 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:00 GMT",
           "last_modified": null
         }
       ]
@@ -1753,7 +1743,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:32.482688+00:00",
+      "checked_at": "2026-11-28T04:28:00.840469+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Novosibirsk/",
       "items": [],
@@ -1762,11 +1752,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:43:34.412380+00:00",
+          "retrieved_at": "2026-11-28T04:28:02.385547+00:00",
           "status": 200,
           "sha256": "f3f5af35eea5fbda46bd9b484ed9e199e945deba3d4c31bad8c5425e70aa9088",
           "bytes": 105085,
-          "server_date": "Fri, 27 Nov 2026 04:43:34 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:02 GMT",
           "last_modified": null
         }
       ]
@@ -1777,7 +1767,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:34.418947+00:00",
+      "checked_at": "2026-11-28T04:28:02.395849+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2064130",
       "items": [
@@ -1802,7 +1792,7 @@
           "classes": {
             "coupe": 3787,
             "lux": 17656,
-            "soft": 40331
+            "soft": 38136
           }
         },
         {
@@ -1859,7 +1849,7 @@
           "departure": "19:50:00",
           "classes": {
             "plazcard": 3163,
-            "coupe": 2686,
+            "coupe": 4250,
             "lux": 20781
           }
         },
@@ -1982,11 +1972,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2064130",
-          "retrieved_at": "2026-11-27T04:43:34.617129+00:00",
+          "retrieved_at": "2026-11-28T04:28:02.446620+00:00",
           "status": 200,
-          "sha256": "03055c79f4ca19da306d2041c658512b592b58f2d6c2dd74201a230c0166f08c",
+          "sha256": "ac85247e3d2aab4e046997c1a6c9f77d2072adcde4a4582e576f3cf8bbfa4634",
           "bytes": 6329,
-          "server_date": "Fri, 27 Nov 2026 04:43:34 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:02 GMT",
           "last_modified": null
         }
       ]
@@ -1997,7 +1987,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:34.618782+00:00",
+      "checked_at": "2026-11-28T04:28:02.449082+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Sochi/",
       "items": [
@@ -2039,11 +2029,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:43:36.085865+00:00",
+          "retrieved_at": "2026-11-28T04:28:04.189000+00:00",
           "status": 200,
           "sha256": "711796b9d3dd72af2d919d7dd41a67c11a930342b3bf7c53fd23579a2078cdd1",
           "bytes": 324862,
-          "server_date": "Fri, 27 Nov 2026 04:43:35 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:03 GMT",
           "last_modified": null
         }
       ]
@@ -2054,7 +2044,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:36.099842+00:00",
+      "checked_at": "2026-11-28T04:28:04.210774+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2064170",
       "items": [
@@ -2159,7 +2149,7 @@
           "classes": {
             "plazcard": 3377,
             "coupe": 3692,
-            "lux": 18492
+            "lux": 15968
           }
         },
         {
@@ -2215,11 +2205,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2064170",
-          "retrieved_at": "2026-11-27T04:43:36.374679+00:00",
+          "retrieved_at": "2026-11-28T04:28:04.265058+00:00",
           "status": 200,
-          "sha256": "f4f1480c6497b71425b4391b0d3786250f46035f294b61fc6a90c73e28df5efa",
+          "sha256": "3415eb7d8dac304e536fb316d50aa1d677f73936d4147630d3b334ccd1855ee3",
           "bytes": 4936,
-          "server_date": "Fri, 27 Nov 2026 04:43:36 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:04 GMT",
           "last_modified": null
         }
       ]
@@ -2230,7 +2220,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:36.376430+00:00",
+      "checked_at": "2026-11-28T04:28:04.267572+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Mineralnye-Vody/",
       "items": [],
@@ -2239,11 +2229,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:43:37.640563+00:00",
+          "retrieved_at": "2026-11-28T04:28:06.118746+00:00",
           "status": 200,
           "sha256": "e4ddefe162f93104d523105d46db351ad72a53c9d3de27fa8c72daf63dbaa9f6",
           "bytes": 307618,
-          "server_date": "Fri, 27 Nov 2026 04:43:37 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:05 GMT",
           "last_modified": null
         }
       ]
@@ -2254,7 +2244,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:37.653690+00:00",
+      "checked_at": "2026-11-28T04:28:06.139907+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2058000",
       "items": [],
@@ -2263,11 +2253,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2000000&term2=2058000",
-          "retrieved_at": "2026-11-27T04:43:38.102203+00:00",
+          "retrieved_at": "2026-11-28T04:28:06.162611+00:00",
           "status": 200,
           "sha256": "64ab24dc492ee063668345017fc24ccdae6494f188e03dfb281fac09c12a19dd",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:43:38 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:06 GMT",
           "last_modified": null
         }
       ]
@@ -2278,7 +2268,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:38.103976+00:00",
+      "checked_at": "2026-11-28T04:28:06.165172+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Kaliningrad/",
       "items": [],
@@ -2287,11 +2277,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Moskva/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:43:39.565970+00:00",
+          "retrieved_at": "2026-11-28T04:28:07.430332+00:00",
           "status": 200,
           "sha256": "49eb0fd04a347896c409a13470aeeeef0d61d56ddd3ca7da59f9e64babadd74f",
           "bytes": 116302,
-          "server_date": "Fri, 27 Nov 2026 04:43:39 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:07 GMT",
           "last_modified": null
         }
       ]
@@ -2302,7 +2292,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:39.573168+00:00",
+      "checked_at": "2026-11-28T04:28:07.441813+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2000000",
       "items": [
@@ -3079,11 +3069,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2000000",
-          "retrieved_at": "2026-11-27T04:43:39.856709+00:00",
+          "retrieved_at": "2026-11-28T04:28:10.163878+00:00",
           "status": 200,
           "sha256": "0240dca652f4785ef935cb268c65c64901715fc3186ec3983b8031aa3d452f7c",
           "bytes": 25020,
-          "server_date": "Fri, 27 Nov 2026 04:43:39 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:10 GMT",
           "last_modified": null
         }
       ]
@@ -3094,7 +3084,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:39.859264+00:00",
+      "checked_at": "2026-11-28T04:28:10.167449+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Moskva/",
       "items": [
@@ -3216,11 +3206,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:43:41.613580+00:00",
+          "retrieved_at": "2026-11-28T04:28:10.536006+00:00",
           "status": 200,
           "sha256": "a2dd0a32bb892f7cb863f5d04eb14752d3adf7f7c4aa133fa02a571db80a1fef",
           "bytes": 496479,
-          "server_date": "Fri, 27 Nov 2026 04:43:41 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:10 GMT",
           "last_modified": null
         }
       ]
@@ -3231,7 +3221,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:41.635385+00:00",
+      "checked_at": "2026-11-28T04:28:10.569926+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2030000",
       "items": [
@@ -3308,11 +3298,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2030000",
-          "retrieved_at": "2026-11-27T04:43:42.523081+00:00",
+          "retrieved_at": "2026-11-28T04:28:12.519460+00:00",
           "status": 200,
           "sha256": "f2242cdca46a89059b9117456977a4e3d4a84df11eaa5b2f45ab640d46ac2ebd",
           "bytes": 2275,
-          "server_date": "Fri, 27 Nov 2026 04:43:42 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:12 GMT",
           "last_modified": null
         }
       ]
@@ -3323,7 +3313,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:42.525577+00:00",
+      "checked_at": "2026-11-28T04:28:12.523182+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Ekaterinburg/",
       "items": [],
@@ -3332,11 +3322,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:43:43.204320+00:00",
+          "retrieved_at": "2026-11-28T04:28:12.770368+00:00",
           "status": 200,
           "sha256": "3461c6a408e32bf7196617d313022de34c5957442cd2b80f3c62a7b846f52d99",
           "bytes": 115166,
-          "server_date": "Fri, 27 Nov 2026 04:43:42 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:12 GMT",
           "last_modified": null
         }
       ]
@@ -3347,7 +3337,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:43.211960+00:00",
+      "checked_at": "2026-11-28T04:28:12.782124+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2060615",
       "items": [
@@ -3391,11 +3381,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2060615",
-          "retrieved_at": "2026-11-27T04:43:45.155712+00:00",
+          "retrieved_at": "2026-11-28T04:28:14.773994+00:00",
           "status": 200,
           "sha256": "83517c6985465cd75458cb168f5b1fb721c9524267dece30d4e7ec5802260494",
           "bytes": 1172,
-          "server_date": "Fri, 27 Nov 2026 04:43:45 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:14 GMT",
           "last_modified": null
         }
       ]
@@ -3406,7 +3396,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:45.158276+00:00",
+      "checked_at": "2026-11-28T04:28:14.777654+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Kazan/",
       "items": [],
@@ -3415,11 +3405,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:43:45.534742+00:00",
+          "retrieved_at": "2026-11-28T04:28:15.025751+00:00",
           "status": 200,
           "sha256": "ad91700f99ba36885ce8ea3ddc7c0e06e8c048d8109dd0c9808bdbea57b85789",
           "bytes": 197729,
-          "server_date": "Fri, 27 Nov 2026 04:43:45 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:14 GMT",
           "last_modified": null
         }
       ]
@@ -3430,7 +3420,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:45.545183+00:00",
+      "checked_at": "2026-11-28T04:28:15.042273+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2044000",
       "items": [
@@ -3451,11 +3441,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2044000",
-          "retrieved_at": "2026-11-27T04:43:47.262569+00:00",
+          "retrieved_at": "2026-11-28T04:28:16.707446+00:00",
           "status": 200,
           "sha256": "4e4568b3110fe999459790d085c0cdbcbbb8c9f4b67614315099a827ba369f8f",
           "bytes": 445,
-          "server_date": "Fri, 27 Nov 2026 04:43:47 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:16 GMT",
           "last_modified": null
         }
       ]
@@ -3466,7 +3456,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:47.265133+00:00",
+      "checked_at": "2026-11-28T04:28:16.711214+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Novosibirsk/",
       "status": "source_page_missing",
@@ -3475,11 +3465,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:43:47.956172+00:00",
+          "retrieved_at": "2026-11-28T04:28:17.338326+00:00",
           "status": 404,
-          "sha256": "af027cc375f8384ba8c8f640dd7aa6bae683bcf9ba82e7a47bcc58757d2a6db5",
+          "sha256": "6eb84223039f02039e07d8abc5850b77e00f826d67013d6f915c31d2ffa05e82",
           "bytes": 67651,
-          "server_date": "Fri, 27 Nov 2026 04:43:47 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:17 GMT",
           "last_modified": null
         }
       ]
@@ -3490,7 +3480,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:47.958737+00:00",
+      "checked_at": "2026-11-28T04:28:17.342008+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2064130",
       "items": [
@@ -3535,11 +3525,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2064130",
-          "retrieved_at": "2026-11-27T04:43:49.386267+00:00",
+          "retrieved_at": "2026-11-28T04:28:18.998026+00:00",
           "status": 200,
           "sha256": "2f9845727dc9ed07a1677e3774ccfa6063ef60f5494f0b61b4bb1dc4bbdde05c",
           "bytes": 1246,
-          "server_date": "Fri, 27 Nov 2026 04:43:49 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:18 GMT",
           "last_modified": null
         }
       ]
@@ -3550,7 +3540,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:49.388925+00:00",
+      "checked_at": "2026-11-28T04:28:19.001859+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Sochi/",
       "items": [],
@@ -3559,11 +3549,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:43:49.874243+00:00",
+          "retrieved_at": "2026-11-28T04:28:19.251804+00:00",
           "status": 200,
           "sha256": "5cbaf49080790ffb84bf7d01f2f8730e7b20b08781ae533edad6cf651724dcdf",
           "bytes": 140611,
-          "server_date": "Fri, 27 Nov 2026 04:43:49 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:19 GMT",
           "last_modified": null
         }
       ]
@@ -3574,7 +3564,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:49.883033+00:00",
+      "checked_at": "2026-11-28T04:28:19.266790+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2064170",
       "items": [
@@ -3618,11 +3608,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2064170",
-          "retrieved_at": "2026-11-27T04:43:52.379140+00:00",
+          "retrieved_at": "2026-11-28T04:28:21.212620+00:00",
           "status": 200,
           "sha256": "8e0040a714e9ab940ef1fc4e09490db8ebd1b36bce182e9465f4ed6a9e39bb48",
           "bytes": 1156,
-          "server_date": "Fri, 27 Nov 2026 04:43:52 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:21 GMT",
           "last_modified": null
         }
       ]
@@ -3633,7 +3623,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:52.381852+00:00",
+      "checked_at": "2026-11-28T04:28:21.216705+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Mineralnye-Vody/",
       "items": [
@@ -3667,11 +3657,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:43:52.767285+00:00",
+          "retrieved_at": "2026-11-28T04:28:21.466284+00:00",
           "status": 200,
           "sha256": "30a6d010bb24356977fd73a29f24a85b8e35c1e39e386e5e22f627d49415059a",
           "bytes": 206171,
-          "server_date": "Fri, 27 Nov 2026 04:43:52 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:21 GMT",
           "last_modified": null
         }
       ]
@@ -3682,7 +3672,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:52.777574+00:00",
+      "checked_at": "2026-11-28T04:28:21.482590+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2058000",
       "items": [],
@@ -3691,11 +3681,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2004000&term2=2058000",
-          "retrieved_at": "2026-11-27T04:43:54.261048+00:00",
+          "retrieved_at": "2026-11-28T04:28:23.131377+00:00",
           "status": 200,
           "sha256": "de13337a7cc61ba0702fe5a5bf6511343ffa55939c33395b92405063365b214f",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:43:54 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:23 GMT",
           "last_modified": null
         }
       ]
@@ -3706,7 +3696,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:54.263765+00:00",
+      "checked_at": "2026-11-28T04:28:23.135396+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Kaliningrad/",
       "items": [],
@@ -3715,11 +3705,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sankt-Peterburg/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:43:54.647516+00:00",
+          "retrieved_at": "2026-11-28T04:28:23.383629+00:00",
           "status": 200,
           "sha256": "b5e2e8819b105a3c2e50b49c2cf828ce2145c93f67ade07525a9ed5cbb3d5e7a",
           "bytes": 111160,
-          "server_date": "Fri, 27 Nov 2026 04:43:54 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:23 GMT",
           "last_modified": null
         }
       ]
@@ -3730,7 +3720,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:54.655076+00:00",
+      "checked_at": "2026-11-28T04:28:23.395337+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2000000",
       "items": [
@@ -3963,11 +3953,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2000000",
-          "retrieved_at": "2026-11-27T04:43:55.513257+00:00",
+          "retrieved_at": "2026-11-28T04:28:24.810436+00:00",
           "status": 200,
           "sha256": "e758abc56069a81f5c294ae03cfeb35bcacefddcf745319a7dcf70137855a0d2",
           "bytes": 7236,
-          "server_date": "Fri, 27 Nov 2026 04:43:55 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:24 GMT",
           "last_modified": null
         }
       ]
@@ -3978,7 +3968,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:55.516272+00:00",
+      "checked_at": "2026-11-28T04:28:24.814792+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Moskva/",
       "items": [],
@@ -3987,11 +3977,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:43:56.103948+00:00",
+          "retrieved_at": "2026-11-28T04:28:25.109125+00:00",
           "status": 200,
           "sha256": "52fe694c07b65e0b7754345dda2e7fde6987d5109d5af52a18a5007b34a74502",
           "bytes": 141368,
-          "server_date": "Fri, 27 Nov 2026 04:43:55 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:24 GMT",
           "last_modified": null
         }
       ]
@@ -4002,7 +3992,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:56.113200+00:00",
+      "checked_at": "2026-11-28T04:28:25.123677+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2004000",
       "items": [
@@ -4014,7 +4004,7 @@
           "departure": "21:35:00",
           "classes": {
             "plazcard": 5696,
-            "coupe": 5373,
+            "coupe": 4230,
             "lux": 22119
           }
         },
@@ -4069,11 +4059,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2004000",
-          "retrieved_at": "2026-11-27T04:43:58.171066+00:00",
+          "retrieved_at": "2026-11-28T04:28:26.625303+00:00",
           "status": 200,
-          "sha256": "a09d8ae5725f22fcf2371b3ff39d141d2fa23b70809c22ed2f8988483e2070bc",
+          "sha256": "10ca80d12dbb655a0507faccc6afa9ff988e289ad083ac43b87de8e0a546539c",
           "bytes": 1951,
-          "server_date": "Fri, 27 Nov 2026 04:43:58 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:26 GMT",
           "last_modified": null
         }
       ]
@@ -4084,7 +4074,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:58.174138+00:00",
+      "checked_at": "2026-11-28T04:28:26.629516+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Sankt-Peterburg/",
       "items": [],
@@ -4093,11 +4083,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:43:58.554518+00:00",
+          "retrieved_at": "2026-11-28T04:28:26.877889+00:00",
           "status": 200,
           "sha256": "372b7006a5b83bc03d0f1d694e150ef3990120638c22cb7bdd7d121996816796",
           "bytes": 108226,
-          "server_date": "Fri, 27 Nov 2026 04:43:58 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:26 GMT",
           "last_modified": null
         }
       ]
@@ -4108,7 +4098,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:43:58.562260+00:00",
+      "checked_at": "2026-11-28T04:28:26.889907+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2060615",
       "items": [
@@ -4277,11 +4267,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2060615",
-          "retrieved_at": "2026-11-27T04:44:00.799007+00:00",
+          "retrieved_at": "2026-11-28T04:28:29.268417+00:00",
           "status": 200,
           "sha256": "69f79bfa74fa83e87fc3f0cf4b00bddb3f8e46c914593c0b3daf797b03e17106",
           "bytes": 5152,
-          "server_date": "Fri, 27 Nov 2026 04:44:00 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:29 GMT",
           "last_modified": null
         }
       ]
@@ -4292,7 +4282,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:00.802202+00:00",
+      "checked_at": "2026-11-28T04:28:29.272928+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Kazan/",
       "items": [],
@@ -4301,11 +4291,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:44:01.181029+00:00",
+          "retrieved_at": "2026-11-28T04:28:29.521437+00:00",
           "status": 200,
           "sha256": "1c72e94eb5ec82b3fdb61569e1bc5a2e0e7bb39aa7556350723227b095d274ab",
           "bytes": 166164,
-          "server_date": "Fri, 27 Nov 2026 04:44:00 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:29 GMT",
           "last_modified": null
         }
       ]
@@ -4316,7 +4306,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:01.191565+00:00",
+      "checked_at": "2026-11-28T04:28:29.536471+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2044000",
       "items": [
@@ -4449,11 +4439,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2044000",
-          "retrieved_at": "2026-11-27T04:44:03.007837+00:00",
+          "retrieved_at": "2026-11-28T04:28:31.670950+00:00",
           "status": 200,
           "sha256": "1d4a736f037b0f52418c3e81d8aa98cb34b1a4f716834b48caa8ac5bf7a8eeb7",
           "bytes": 4027,
-          "server_date": "Fri, 27 Nov 2026 04:44:02 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:31 GMT",
           "last_modified": null
         }
       ]
@@ -4464,7 +4454,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:03.011094+00:00",
+      "checked_at": "2026-11-28T04:28:31.675523+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Novosibirsk/",
       "items": [],
@@ -4473,11 +4463,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:44:03.390147+00:00",
+          "retrieved_at": "2026-11-28T04:28:31.923529+00:00",
           "status": 200,
           "sha256": "2f1f9871b570b266242f1551c8c2c326116702234f38c1722ee5788408401d74",
           "bytes": 110838,
-          "server_date": "Fri, 27 Nov 2026 04:44:03 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:31 GMT",
           "last_modified": null
         }
       ]
@@ -4488,7 +4478,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:03.398543+00:00",
+      "checked_at": "2026-11-28T04:28:31.936137+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2064130",
       "items": [
@@ -4545,11 +4535,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2064130",
-          "retrieved_at": "2026-11-27T04:44:04.929377+00:00",
+          "retrieved_at": "2026-11-28T04:28:33.627434+00:00",
           "status": 200,
           "sha256": "26f9b418527b440320bd3539aeafa01ad6b8722ea5031158607d6a178e6eca03",
           "bytes": 1575,
-          "server_date": "Fri, 27 Nov 2026 04:44:04 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:33 GMT",
           "last_modified": null
         }
       ]
@@ -4560,7 +4550,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:04.932630+00:00",
+      "checked_at": "2026-11-28T04:28:33.632272+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Sochi/",
       "items": [],
@@ -4569,11 +4559,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:44:05.533090+00:00",
+          "retrieved_at": "2026-11-28T04:28:33.880037+00:00",
           "status": 200,
           "sha256": "5ee1f5a1f40034b99cc81b2cedd30c284466ba9f6e71ce9ac11ddc5f33910528",
           "bytes": 111242,
-          "server_date": "Fri, 27 Nov 2026 04:44:05 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:33 GMT",
           "last_modified": null
         }
       ]
@@ -4584,7 +4574,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:05.541504+00:00",
+      "checked_at": "2026-11-28T04:28:33.892902+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2064170",
       "items": [
@@ -4605,11 +4595,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2064170",
-          "retrieved_at": "2026-11-27T04:44:06.696938+00:00",
+          "retrieved_at": "2026-11-28T04:28:35.820323+00:00",
           "status": 200,
           "sha256": "0ab9b31d7bc74c846cd4454ef814ef937c537d5a2027630a661276c198c9af1a",
           "bytes": 426,
-          "server_date": "Fri, 27 Nov 2026 04:44:06 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:35 GMT",
           "last_modified": null
         }
       ]
@@ -4620,7 +4610,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:06.700295+00:00",
+      "checked_at": "2026-11-28T04:28:35.825247+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Mineralnye-Vody/",
       "items": [],
@@ -4629,11 +4619,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:44:07.595768+00:00",
+          "retrieved_at": "2026-11-28T04:28:36.072356+00:00",
           "status": 200,
           "sha256": "ed63e986cdb19ec945c6f07d897b9abd94cbf571a41a445e6b92f3d336208fdc",
           "bytes": 115497,
-          "server_date": "Fri, 27 Nov 2026 04:44:07 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:35 GMT",
           "last_modified": null
         }
       ]
@@ -4644,7 +4634,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:07.604132+00:00",
+      "checked_at": "2026-11-28T04:28:36.085327+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2058000",
       "items": [],
@@ -4653,11 +4643,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2030000&term2=2058000",
-          "retrieved_at": "2026-11-27T04:44:08.875360+00:00",
+          "retrieved_at": "2026-11-28T04:28:38.461423+00:00",
           "status": 200,
           "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
           "bytes": 2,
-          "server_date": "Fri, 27 Nov 2026 04:44:08 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:38 GMT",
           "last_modified": null
         }
       ]
@@ -4668,7 +4658,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:08.878719+00:00",
+      "checked_at": "2026-11-28T04:28:38.466132+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Kaliningrad/",
       "status": "source_page_missing",
@@ -4677,11 +4667,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Ekaterinburg/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:44:09.701468+00:00",
+          "retrieved_at": "2026-11-28T04:28:39.066613+00:00",
           "status": 404,
-          "sha256": "95f06106b8e78cabdc6ca62d16a92dbe6b7b0661f29d6057996b3385c12f6ffb",
+          "sha256": "14e39396fbef81dfbfd8c4f512c148f57aa90a0f3c6ce4cf9cbb7aec5378ea35",
           "bytes": 67884,
-          "server_date": "Fri, 27 Nov 2026 04:44:09 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:39 GMT",
           "last_modified": null
         }
       ]
@@ -4692,7 +4682,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:09.704756+00:00",
+      "checked_at": "2026-11-28T04:28:39.071276+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2000000",
       "items": [
@@ -4874,11 +4864,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2000000",
-          "retrieved_at": "2026-11-27T04:44:10.653550+00:00",
+          "retrieved_at": "2026-11-28T04:28:39.608783+00:00",
           "status": 200,
-          "sha256": "361cb8bb3eefd623d32d27b85012ccc41029a68572f3a184fb5507e127e7f7b8",
+          "sha256": "35d1525d5fdfed887cbca9811e0540ddb97af0381f88cea504ce6647142e9851",
           "bytes": 5625,
-          "server_date": "Fri, 27 Nov 2026 04:44:10 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:39 GMT",
           "last_modified": null
         }
       ]
@@ -4889,7 +4879,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:10.657109+00:00",
+      "checked_at": "2026-11-28T04:28:39.613610+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Moskva/",
       "items": [
@@ -4963,11 +4953,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:44:11.826519+00:00",
+          "retrieved_at": "2026-11-28T04:28:40.492780+00:00",
           "status": 200,
           "sha256": "9dd27b71167ec4432331155269b1537c088acd129e8fc47028a12abedba86544",
           "bytes": 357265,
-          "server_date": "Fri, 27 Nov 2026 04:44:11 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:40 GMT",
           "last_modified": null
         }
       ]
@@ -4978,7 +4968,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:11.843695+00:00",
+      "checked_at": "2026-11-28T04:28:40.518916+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2004000",
       "items": [
@@ -5022,11 +5012,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2004000",
-          "retrieved_at": "2026-11-27T04:44:12.813640+00:00",
+          "retrieved_at": "2026-11-28T04:28:41.941501+00:00",
           "status": 200,
           "sha256": "c9d02368650e88fc76bcb67c9f2ba50a2831097d28346d21eabdc06169ccbb84",
           "bytes": 1173,
-          "server_date": "Fri, 27 Nov 2026 04:44:12 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:41 GMT",
           "last_modified": null
         }
       ]
@@ -5037,7 +5027,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:12.817277+00:00",
+      "checked_at": "2026-11-28T04:28:41.946434+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Sankt-Peterburg/",
       "items": [],
@@ -5046,11 +5036,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:44:13.817054+00:00",
+          "retrieved_at": "2026-11-28T04:28:42.194149+00:00",
           "status": 200,
           "sha256": "0760aee9ab46824962b7f7466d2bc12f532e181d857da15f016db46994ccb426",
           "bytes": 141367,
-          "server_date": "Fri, 27 Nov 2026 04:44:13 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:42 GMT",
           "last_modified": null
         }
       ]
@@ -5061,7 +5051,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:13.826444+00:00",
+      "checked_at": "2026-11-28T04:28:42.208472+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2030000",
       "items": [
@@ -5231,7 +5221,7 @@
           "hours": 42.0,
           "departure": "14:37:00",
           "classes": {
-            "plazcard": 2037,
+            "plazcard": 2990,
             "coupe": 4517
           }
         }
@@ -5241,11 +5231,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2030000",
-          "retrieved_at": "2026-11-27T04:44:15.361277+00:00",
+          "retrieved_at": "2026-11-28T04:28:44.692220+00:00",
           "status": 200,
-          "sha256": "22fb6fa6384fd848626167b3dba28fd0f4f57f31a73c76a5aa5276cea8630f8a",
+          "sha256": "31d953599177fe610845577e23408f15f6015c6c1130e70d1ba2b6a71a5760ce",
           "bytes": 5525,
-          "server_date": "Fri, 27 Nov 2026 04:44:15 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:44 GMT",
           "last_modified": null
         }
       ]
@@ -5256,7 +5246,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:15.365117+00:00",
+      "checked_at": "2026-11-28T04:28:44.697638+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Ekaterinburg/",
       "items": [
@@ -5274,11 +5264,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:44:15.742907+00:00",
+          "retrieved_at": "2026-11-28T04:28:44.945215+00:00",
           "status": 200,
           "sha256": "522df6473de2c61f678c6eac38abdd7d90540f8c592213ebc64418c8599c3ed1",
           "bytes": 141041,
-          "server_date": "Fri, 27 Nov 2026 04:44:15 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:44 GMT",
           "last_modified": null
         }
       ]
@@ -5289,7 +5279,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:15.753115+00:00",
+      "checked_at": "2026-11-28T04:28:44.961119+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2044000",
       "items": [
@@ -5356,11 +5346,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2044000",
-          "retrieved_at": "2026-11-27T04:44:17.765471+00:00",
+          "retrieved_at": "2026-11-28T04:28:46.547970+00:00",
           "status": 200,
           "sha256": "c7152ddce325e68c0e0fbf80c8d321129395a9526e0be6b9d631cfd820b46337",
           "bytes": 1890,
-          "server_date": "Fri, 27 Nov 2026 04:44:17 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:46 GMT",
           "last_modified": null
         }
       ]
@@ -5371,7 +5361,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:17.769270+00:00",
+      "checked_at": "2026-11-28T04:28:46.553398+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Novosibirsk/",
       "status": "source_page_missing",
@@ -5380,11 +5370,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:44:18.453196+00:00",
+          "retrieved_at": "2026-11-28T04:28:47.278789+00:00",
           "status": 404,
-          "sha256": "e427702d0897ee0f82286888945d587fa8ed1980433a74c0994c2f85467b16c4",
-          "bytes": 67402,
-          "server_date": "Fri, 27 Nov 2026 04:44:18 GMT",
+          "sha256": "7f14ab0fb6bbea01cc7e3b75ae9eaf81579b788f9896cb39f9533233082115d3",
+          "bytes": 67400,
+          "server_date": "Sat, 28 Nov 2026 04:28:47 GMT",
           "last_modified": null
         }
       ]
@@ -5395,7 +5385,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:18.456926+00:00",
+      "checked_at": "2026-11-28T04:28:47.284042+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2064130",
       "items": [
@@ -5463,11 +5453,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2064130",
-          "retrieved_at": "2026-11-27T04:44:20.051921+00:00",
+          "retrieved_at": "2026-11-28T04:28:48.463205+00:00",
           "status": 200,
           "sha256": "16646e7a4e64fb85965e46f1db5408e9560c68357117f51655f906639212180d",
           "bytes": 1922,
-          "server_date": "Fri, 27 Nov 2026 04:44:20 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:48 GMT",
           "last_modified": null
         }
       ]
@@ -5478,7 +5468,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:20.055833+00:00",
+      "checked_at": "2026-11-28T04:28:48.468583+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Sochi/",
       "items": [],
@@ -5487,11 +5477,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:44:20.509585+00:00",
+          "retrieved_at": "2026-11-28T04:28:48.715977+00:00",
           "status": 200,
           "sha256": "6eef4457eb5640e8424129cd4a1c4c09b7b15038b446c1e0b68250870f4eea36",
           "bytes": 128687,
-          "server_date": "Fri, 27 Nov 2026 04:44:20 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:48 GMT",
           "last_modified": null
         }
       ]
@@ -5502,7 +5492,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:20.518857+00:00",
+      "checked_at": "2026-11-28T04:28:48.730238+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2064170",
       "items": [
@@ -5546,11 +5536,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2064170",
-          "retrieved_at": "2026-11-27T04:44:22.435138+00:00",
+          "retrieved_at": "2026-11-28T04:28:50.236565+00:00",
           "status": 200,
           "sha256": "b48dea1f0e9798f54202757fb289b42d39bc2be2466f775811b1288dc469df94",
           "bytes": 1161,
-          "server_date": "Fri, 27 Nov 2026 04:44:22 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:50 GMT",
           "last_modified": null
         }
       ]
@@ -5561,7 +5551,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:22.439159+00:00",
+      "checked_at": "2026-11-28T04:28:50.242249+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Mineralnye-Vody/",
       "items": [],
@@ -5570,11 +5560,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:44:22.817641+00:00",
+          "retrieved_at": "2026-11-28T04:28:50.577966+00:00",
           "status": 200,
           "sha256": "30cf6fbc63c9fc9321887ae1d93a23c21063647582bd91dbd2fe73852bd85b60",
           "bytes": 153666,
-          "server_date": "Fri, 27 Nov 2026 04:44:22 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:50 GMT",
           "last_modified": null
         }
       ]
@@ -5585,7 +5575,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:22.827803+00:00",
+      "checked_at": "2026-11-28T04:28:50.593363+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2058000",
       "items": [],
@@ -5594,11 +5584,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2060615&term2=2058000",
-          "retrieved_at": "2026-11-27T04:44:25.236503+00:00",
+          "retrieved_at": "2026-11-28T04:28:52.936322+00:00",
           "status": 200,
           "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
           "bytes": 2,
-          "server_date": "Fri, 27 Nov 2026 04:44:25 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:52 GMT",
           "last_modified": null
         }
       ]
@@ -5609,7 +5599,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:25.240567+00:00",
+      "checked_at": "2026-11-28T04:28:52.941809+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Kaliningrad/",
       "status": "source_page_missing",
@@ -5618,11 +5608,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kazan/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:44:26.166756+00:00",
+          "retrieved_at": "2026-11-28T04:28:53.661841+00:00",
           "status": 404,
-          "sha256": "ef0203025587afa85cc6987038eb726c984e156f94ffa59b1fcd534d4b2c7b8c",
+          "sha256": "a498ee81e459fabaeeb72d88eb37b07f6f146f8682e86f0be1aae2e932a3b9d3",
           "bytes": 67417,
-          "server_date": "Fri, 27 Nov 2026 04:44:26 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:53 GMT",
           "last_modified": null
         }
       ]
@@ -5633,7 +5623,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:26.170730+00:00",
+      "checked_at": "2026-11-28T04:28:53.667264+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2000000",
       "items": [
@@ -5720,11 +5710,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2000000",
-          "retrieved_at": "2026-11-27T04:44:26.675865+00:00",
+          "retrieved_at": "2026-11-28T04:28:54.286946+00:00",
           "status": 200,
           "sha256": "0efa3ca441a065bb6dd555ffd2cce501dd5af0da37598cc814e4f74b794c6c48",
           "bytes": 2550,
-          "server_date": "Fri, 27 Nov 2026 04:44:26 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:54 GMT",
           "last_modified": null
         }
       ]
@@ -5735,7 +5725,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:26.679961+00:00",
+      "checked_at": "2026-11-28T04:28:54.292735+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Moskva/",
       "status": "source_page_missing",
@@ -5744,11 +5734,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:44:28.404587+00:00",
+          "retrieved_at": "2026-11-28T04:28:55.437057+00:00",
           "status": 404,
-          "sha256": "9edd2f6ed9e81dffa66656136acc6975b543d83f3bdd237142743a03df2adedb",
+          "sha256": "f12bd6c173b7508ee308691355b389ec12345ddd0c4028acef6ab1bf0926a422",
           "bytes": 67099,
-          "server_date": "Fri, 27 Nov 2026 04:44:28 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:55 GMT",
           "last_modified": null
         }
       ]
@@ -5759,7 +5749,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:28.408552+00:00",
+      "checked_at": "2026-11-28T04:28:55.442774+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2004000",
       "items": [
@@ -5780,11 +5770,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2004000",
-          "retrieved_at": "2026-11-27T04:44:29.313144+00:00",
+          "retrieved_at": "2026-11-28T04:28:56.802938+00:00",
           "status": 200,
           "sha256": "1ea6a6f7b429d9cc39066aa321e32511fa8e7eac541d143b871b674c6276a69d",
           "bytes": 444,
-          "server_date": "Fri, 27 Nov 2026 04:44:29 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:56 GMT",
           "last_modified": null
         }
       ]
@@ -5795,7 +5785,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:29.317201+00:00",
+      "checked_at": "2026-11-28T04:28:56.808603+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Sankt-Peterburg/",
       "status": "source_page_missing",
@@ -5804,11 +5794,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:44:30.661187+00:00",
+          "retrieved_at": "2026-11-28T04:28:57.409070+00:00",
           "status": 404,
-          "sha256": "2793687a467e3d6e07dc76ccd5f547a7ff234c6ca7b6d3cfe9c717f1d0c075d5",
-          "bytes": 67661,
-          "server_date": "Fri, 27 Nov 2026 04:44:30 GMT",
+          "sha256": "008a8f741daf8ae9d27aa5ffc65858b5d45206abb40258cb6f389847306bd673",
+          "bytes": 68023,
+          "server_date": "Sat, 28 Nov 2026 04:28:57 GMT",
           "last_modified": null
         }
       ]
@@ -5819,7 +5809,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:30.665222+00:00",
+      "checked_at": "2026-11-28T04:28:57.414653+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2030000",
       "items": [
@@ -5952,11 +5942,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2030000",
-          "retrieved_at": "2026-11-27T04:44:32.261445+00:00",
+          "retrieved_at": "2026-11-28T04:28:59.094795+00:00",
           "status": 200,
           "sha256": "c292f3c417c55449310efd66d627bf0a23d62591ebf093c9c36ba3c14d8a2a7d",
           "bytes": 4029,
-          "server_date": "Fri, 27 Nov 2026 04:44:32 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:59 GMT",
           "last_modified": null
         }
       ]
@@ -5967,7 +5957,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:32.265665+00:00",
+      "checked_at": "2026-11-28T04:28:59.100630+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Ekaterinburg/",
       "items": [],
@@ -5976,11 +5966,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:44:32.743539+00:00",
+          "retrieved_at": "2026-11-28T04:28:59.347804+00:00",
           "status": 200,
           "sha256": "fe2712de509bca2c433a995c75417467c231977b4db3668e6e12b3b5a9e6d1ec",
           "bytes": 108546,
-          "server_date": "Fri, 27 Nov 2026 04:44:32 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:28:59 GMT",
           "last_modified": null
         }
       ]
@@ -5991,7 +5981,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:32.752636+00:00",
+      "checked_at": "2026-11-28T04:28:59.361378+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2060615",
       "items": [
@@ -6058,11 +6048,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2060615",
-          "retrieved_at": "2026-11-27T04:44:34.843090+00:00",
+          "retrieved_at": "2026-11-28T04:29:01.205144+00:00",
           "status": 200,
           "sha256": "95ba3816622d15d03fe18c796467b895eddca007e69e933d8136ce1c2c8584e3",
           "bytes": 1893,
-          "server_date": "Fri, 27 Nov 2026 04:44:34 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:01 GMT",
           "last_modified": null
         }
       ]
@@ -6073,7 +6063,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:34.847290+00:00",
+      "checked_at": "2026-11-28T04:29:01.211285+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Kazan/",
       "status": "source_page_missing",
@@ -6082,11 +6072,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:44:35.622459+00:00",
+          "retrieved_at": "2026-11-28T04:29:01.842640+00:00",
           "status": 404,
-          "sha256": "f3b601781e1b981a2b29b72c332a5a7f7ba0caaba7402676acde0c1ecba56ebe",
-          "bytes": 67390,
-          "server_date": "Fri, 27 Nov 2026 04:44:35 GMT",
+          "sha256": "ac4b5d2b0772a2dc0d6cb0d64bc6387788ebe06310ac7f483f459eff3197cb8e",
+          "bytes": 67392,
+          "server_date": "Sat, 28 Nov 2026 04:29:01 GMT",
           "last_modified": null
         }
       ]
@@ -6097,7 +6087,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:35.626659+00:00",
+      "checked_at": "2026-11-28T04:29:01.848556+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2064130",
       "items": [
@@ -6164,11 +6154,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2064130",
-          "retrieved_at": "2026-11-27T04:44:37.322747+00:00",
+          "retrieved_at": "2026-11-28T04:29:03.754060+00:00",
           "status": 200,
           "sha256": "acdd23f81c475a3966611943b6c43d5f40f94b869c82a6c3ff2015b002e9f2f9",
           "bytes": 1902,
-          "server_date": "Fri, 27 Nov 2026 04:44:37 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:03 GMT",
           "last_modified": null
         }
       ]
@@ -6179,7 +6169,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:37.327144+00:00",
+      "checked_at": "2026-11-28T04:29:03.760132+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Sochi/",
       "status": "source_page_missing",
@@ -6188,11 +6178,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:44:38.365713+00:00",
+          "retrieved_at": "2026-11-28T04:29:04.327714+00:00",
           "status": 404,
-          "sha256": "d4e3562132e4390e17b6d4687ad27d31ddd0b8fbe73715671ad579a2d9fe7c68",
-          "bytes": 67589,
-          "server_date": "Fri, 27 Nov 2026 04:44:38 GMT",
+          "sha256": "430f72663e3e69a70cfb9276c24a02c53200a00ca3d3cea54080c0c22937572d",
+          "bytes": 67249,
+          "server_date": "Sat, 28 Nov 2026 04:29:04 GMT",
           "last_modified": null
         }
       ]
@@ -6203,7 +6193,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:38.370045+00:00",
+      "checked_at": "2026-11-28T04:29:04.333684+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2064170",
       "items": [
@@ -6236,11 +6226,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2064170",
-          "retrieved_at": "2026-11-27T04:44:39.307294+00:00",
+          "retrieved_at": "2026-11-28T04:29:06.028484+00:00",
           "status": 200,
           "sha256": "a41ec1a0f228b9b843d17b33ea5f256af7306c419d0347e5dccd1e6a63f06ac9",
           "bytes": 808,
-          "server_date": "Fri, 27 Nov 2026 04:44:39 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:06 GMT",
           "last_modified": null
         }
       ]
@@ -6251,7 +6241,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:39.311700+00:00",
+      "checked_at": "2026-11-28T04:29:06.034608+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Mineralnye-Vody/",
       "status": "source_page_missing",
@@ -6260,11 +6250,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:44:40.849817+00:00",
+          "retrieved_at": "2026-11-28T04:29:06.706780+00:00",
           "status": 404,
-          "sha256": "7aa9719591a55277897c46eba7ec5b1ad7c8daa1429c7a30ff61e375fb0c9453",
-          "bytes": 68081,
-          "server_date": "Fri, 27 Nov 2026 04:44:40 GMT",
+          "sha256": "c1f14e2890abd454df2045ca24221faaf8f4341836a1c39ed0a7378b4ed3bbf7",
+          "bytes": 68441,
+          "server_date": "Sat, 28 Nov 2026 04:29:06 GMT",
           "last_modified": null
         }
       ]
@@ -6275,7 +6265,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:40.854273+00:00",
+      "checked_at": "2026-11-28T04:29:06.712803+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2058000",
       "items": [],
@@ -6284,11 +6274,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2044000&term2=2058000",
-          "retrieved_at": "2026-11-27T04:44:41.997547+00:00",
+          "retrieved_at": "2026-11-28T04:29:08.651994+00:00",
           "status": 200,
           "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
           "bytes": 2,
-          "server_date": "Fri, 27 Nov 2026 04:44:41 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:08 GMT",
           "last_modified": null
         }
       ]
@@ -6299,7 +6289,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:42.002084+00:00",
+      "checked_at": "2026-11-28T04:29:08.658001+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Kaliningrad/",
       "status": "source_page_missing",
@@ -6308,11 +6298,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Novosibirsk/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:44:43.036252+00:00",
+          "retrieved_at": "2026-11-28T04:29:09.312170+00:00",
           "status": 404,
-          "sha256": "18b397babf78700a554f073f35011b5f036742cae995879ac4fa06a148d4517a",
-          "bytes": 67886,
-          "server_date": "Fri, 27 Nov 2026 04:44:42 GMT",
+          "sha256": "ff896f7ff95ef4b1889f53b14b58b6d208f5111aad7582bc5ca0fbbd4e9e2f3c",
+          "bytes": 67884,
+          "server_date": "Sat, 28 Nov 2026 04:29:09 GMT",
           "last_modified": null
         }
       ]
@@ -6323,7 +6313,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:43.040608+00:00",
+      "checked_at": "2026-11-28T04:29:09.318143+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2000000",
       "items": [
@@ -6379,7 +6369,7 @@
           "hours": 32.2,
           "departure": "20:28:00",
           "classes": {
-            "coupe": 5097,
+            "coupe": 4601,
             "lux": 24255
           }
         },
@@ -6424,8 +6414,8 @@
           "departure": "15:29:00",
           "classes": {
             "plazcard": 5582,
-            "coupe": 5474,
-            "lux": 18263
+            "coupe": 5104,
+            "lux": 17138
           }
         },
         {
@@ -6527,11 +6517,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2000000",
-          "retrieved_at": "2026-11-27T04:44:43.816991+00:00",
+          "retrieved_at": "2026-11-28T04:29:10.002875+00:00",
           "status": 200,
-          "sha256": "4f2c8ee115f8b84d3754edc74425dd6e2fe09451db07c7073b8e2e3d0684e508",
+          "sha256": "f40863377a2753719611943cdcebca1e449198be947c39a672c16c73271a40dc",
           "bytes": 6326,
-          "server_date": "Fri, 27 Nov 2026 04:44:43 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:09 GMT",
           "last_modified": null
         }
       ]
@@ -6542,7 +6532,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:43.821772+00:00",
+      "checked_at": "2026-11-28T04:29:10.009321+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Moskva/",
       "items": [
@@ -6592,11 +6582,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:44:44.457331+00:00",
+          "retrieved_at": "2026-11-28T04:29:10.692696+00:00",
           "status": 200,
           "sha256": "7c678fb25521722f6d02a4cc28239851ec7d5f83360b31177e90ca2b62bb5ea7",
           "bytes": 272520,
-          "server_date": "Fri, 27 Nov 2026 04:44:44 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:10 GMT",
           "last_modified": null
         }
       ]
@@ -6607,7 +6597,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:44.472134+00:00",
+      "checked_at": "2026-11-28T04:29:10.715515+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2004000",
       "items": [
@@ -6619,7 +6609,7 @@
           "departure": "02:55:00",
           "classes": {
             "plazcard": 8406,
-            "coupe": 7208
+            "coupe": 8113
           }
         },
         {
@@ -6631,7 +6621,7 @@
           "classes": {
             "coupe": 4163,
             "lux": 26134,
-            "soft": 44104
+            "soft": 40045
           }
         },
         {
@@ -6652,11 +6642,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2004000",
-          "retrieved_at": "2026-11-27T04:44:46.414901+00:00",
+          "retrieved_at": "2026-11-28T04:29:11.844376+00:00",
           "status": 200,
-          "sha256": "6b1c464da3a199ae469033d3fb3942d8d441e8cbfbaf750a4b05bc2e73e9d3a7",
+          "sha256": "eea77329520bbce90baf5f760ec41176e58d0d5edbad22e6e18a2b63b228bb13",
           "bytes": 1244,
-          "server_date": "Fri, 27 Nov 2026 04:44:46 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:11 GMT",
           "last_modified": null
         }
       ]
@@ -6667,7 +6657,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:46.419775+00:00",
+      "checked_at": "2026-11-28T04:29:11.850989+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Sankt-Peterburg/",
       "items": [],
@@ -6676,11 +6666,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:44:46.798600+00:00",
+          "retrieved_at": "2026-11-28T04:29:12.398144+00:00",
           "status": 200,
           "sha256": "84f67df2a1044de951de7bfbbc1c6bf64065c8c94580411d0c43d33072ae5e35",
           "bytes": 143937,
-          "server_date": "Fri, 27 Nov 2026 04:44:46 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:12 GMT",
           "last_modified": null
         }
       ]
@@ -6691,7 +6681,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:46.809762+00:00",
+      "checked_at": "2026-11-28T04:29:12.415112+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2030000",
       "items": [
@@ -6703,8 +6693,8 @@
           "departure": "19:54:00",
           "classes": {
             "plazcard": 5474,
-            "coupe": 10380,
-            "lux": 35989
+            "coupe": 10217,
+            "lux": 32907
           }
         },
         {
@@ -6748,11 +6738,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2030000",
-          "retrieved_at": "2026-11-27T04:44:48.444414+00:00",
+          "retrieved_at": "2026-11-28T04:29:13.904938+00:00",
           "status": 200,
-          "sha256": "73a77594d887ea0126a1d23f9e663805bd80aa14c2a7efaf28e80442cb73de25",
+          "sha256": "d4d29e7c14cad11c9e07a2373306d52ea26cffe1e8bcfe9baf0df2b1fcb6b7cf",
           "bytes": 1571,
-          "server_date": "Fri, 27 Nov 2026 04:44:48 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:13 GMT",
           "last_modified": null
         }
       ]
@@ -6763,7 +6753,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:48.449193+00:00",
+      "checked_at": "2026-11-28T04:29:13.911557+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Ekaterinburg/",
       "items": [],
@@ -6772,11 +6762,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:44:48.898829+00:00",
+          "retrieved_at": "2026-11-28T04:29:14.160560+00:00",
           "status": 200,
           "sha256": "ea3719abb3d5813b5e26b29aaaf6e39a2ca4cca50e0eeb5bd9c4246bc0622eac",
           "bytes": 111812,
-          "server_date": "Fri, 27 Nov 2026 04:44:48 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:13 GMT",
           "last_modified": null
         }
       ]
@@ -6787,7 +6777,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:48.908651+00:00",
+      "checked_at": "2026-11-28T04:29:14.175275+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2060615",
       "items": [
@@ -6855,11 +6845,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2060615",
-          "retrieved_at": "2026-11-27T04:44:50.803400+00:00",
+          "retrieved_at": "2026-11-28T04:29:15.914068+00:00",
           "status": 200,
           "sha256": "a8c3e9ee142f2ab83040052a96fa54bc9671f6126378ced399aa550f79ae36fd",
           "bytes": 1915,
-          "server_date": "Fri, 27 Nov 2026 04:44:50 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:15 GMT",
           "last_modified": null
         }
       ]
@@ -6870,7 +6860,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:50.808374+00:00",
+      "checked_at": "2026-11-28T04:29:15.920761+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Kazan/",
       "items": [],
@@ -6879,11 +6869,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:44:51.190767+00:00",
+          "retrieved_at": "2026-11-28T04:29:16.168602+00:00",
           "status": 200,
           "sha256": "7984ced9c66c6678ba9c2124119c7d9b83244026bc2423fb9b1fd75b8a0ecd6c",
           "bytes": 134902,
-          "server_date": "Fri, 27 Nov 2026 04:44:50 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:15 GMT",
           "last_modified": null
         }
       ]
@@ -6894,7 +6884,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:51.202219+00:00",
+      "checked_at": "2026-11-28T04:29:16.184626+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2044000",
       "items": [
@@ -6902,7 +6892,7 @@
           "train": "128Ы",
           "name": "",
           "firm": false,
-          "hours": 102.5,
+          "hours": 78.5,
           "departure": "18:05:00",
           "classes": {
             "plazcard": 10287,
@@ -6950,11 +6940,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2044000",
-          "retrieved_at": "2026-11-27T04:44:53.566770+00:00",
+          "retrieved_at": "2026-11-28T04:29:18.217535+00:00",
           "status": 200,
-          "sha256": "c42955e7817712a1f8788367d66bade9c6faca203983e491f86c8460141de312",
+          "sha256": "2cf769691a24d8fd81289b28113f0703862f9eb0c0a7a04266d8b3e42cf92b7a",
           "bytes": 1545,
-          "server_date": "Fri, 27 Nov 2026 04:44:53 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:18 GMT",
           "last_modified": null
         }
       ]
@@ -6965,7 +6955,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:53.571737+00:00",
+      "checked_at": "2026-11-28T04:29:18.224255+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Novosibirsk/",
       "status": "source_page_missing",
@@ -6974,11 +6964,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:44:54.627922+00:00",
+          "retrieved_at": "2026-11-28T04:29:18.825161+00:00",
           "status": 404,
-          "sha256": "7177df001b3ef4b2df10b4d9c5b957e14c11e7b32476ac9da6ac6baf7673a642",
-          "bytes": 67263,
-          "server_date": "Fri, 27 Nov 2026 04:44:54 GMT",
+          "sha256": "45070eae13c3da25f0aa3f37eb86bdbd551446224bad22173eff8b32c0f665df",
+          "bytes": 67601,
+          "server_date": "Sat, 28 Nov 2026 04:29:18 GMT",
           "last_modified": null
         }
       ]
@@ -6989,7 +6979,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:54.632829+00:00",
+      "checked_at": "2026-11-28T04:29:18.831750+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2064170",
       "items": [
@@ -7024,11 +7014,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2064170",
-          "retrieved_at": "2026-11-27T04:44:55.861429+00:00",
+          "retrieved_at": "2026-11-28T04:29:20.171718+00:00",
           "status": 200,
           "sha256": "95dd9ee0a87731ca7e88f12ff3f5d812abc4c314381de1e4e63b38240e14ace6",
           "bytes": 866,
-          "server_date": "Fri, 27 Nov 2026 04:44:55 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:20 GMT",
           "last_modified": null
         }
       ]
@@ -7039,7 +7029,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:55.866484+00:00",
+      "checked_at": "2026-11-28T04:29:20.178420+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Mineralnye-Vody/",
       "items": [
@@ -7065,11 +7055,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:44:56.661979+00:00",
+          "retrieved_at": "2026-11-28T04:29:20.427959+00:00",
           "status": 200,
           "sha256": "3767944d06a347b87935277db719365df87f6e5cb6bbaf11bc6a2e91de397857",
           "bytes": 177997,
-          "server_date": "Fri, 27 Nov 2026 04:44:56 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:20 GMT",
           "last_modified": null
         }
       ]
@@ -7080,7 +7070,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:56.674248+00:00",
+      "checked_at": "2026-11-28T04:29:20.446568+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2058000",
       "items": [],
@@ -7089,11 +7079,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064130&term2=2058000",
-          "retrieved_at": "2026-11-27T04:44:57.996793+00:00",
+          "retrieved_at": "2026-11-28T04:29:22.458002+00:00",
           "status": 200,
           "sha256": "4c1f8d36529aa8b1a3953895aa48fda9c863aae385f5784845344b0e0f72c5a7",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:44:57 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:22 GMT",
           "last_modified": null
         }
       ]
@@ -7104,7 +7094,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:58.001740+00:00",
+      "checked_at": "2026-11-28T04:29:22.465125+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Kaliningrad/",
       "status": "source_page_missing",
@@ -7113,11 +7103,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Sochi/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:44:59.302538+00:00",
+          "retrieved_at": "2026-11-28T04:29:23.170201+00:00",
           "status": 404,
-          "sha256": "3ace0e83eafc7488463806013ca7c1f8304f08c21bd0fbeff962e332089bd362",
-          "bytes": 67276,
-          "server_date": "Fri, 27 Nov 2026 04:44:59 GMT",
+          "sha256": "24e7e3f70d8f387ee3e825371d556e70da8e0e182e8a49e5345ad632c9f2fd3a",
+          "bytes": 67616,
+          "server_date": "Sat, 28 Nov 2026 04:29:23 GMT",
           "last_modified": null
         }
       ]
@@ -7128,7 +7118,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:59.307453+00:00",
+      "checked_at": "2026-11-28T04:29:23.177038+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2000000",
       "items": [
@@ -7177,7 +7167,7 @@
           "classes": {
             "plazcard": 3377,
             "coupe": 3692,
-            "lux": 13651
+            "lux": 17890
           }
         },
         {
@@ -7268,7 +7258,7 @@
           "departure": "15:51:00",
           "classes": {
             "plazcard": 3120,
-            "coupe": 5371
+            "coupe": 5064
           }
         },
         {
@@ -7289,11 +7279,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2000000",
-          "retrieved_at": "2026-11-27T04:44:59.653247+00:00",
+          "retrieved_at": "2026-11-28T04:29:23.509803+00:00",
           "status": 200,
-          "sha256": "1e8a4cdd330426bd3620024a436cce9749e05d1a9bf2750d93a610dc1f50d0f0",
+          "sha256": "8aeae53de767feede448a405c75208a759575d6c165936663a1f808882f8cfa4",
           "bytes": 4948,
-          "server_date": "Fri, 27 Nov 2026 04:44:59 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:23 GMT",
           "last_modified": null
         }
       ]
@@ -7304,7 +7294,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:44:59.658548+00:00",
+      "checked_at": "2026-11-28T04:29:23.516809+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Moskva/",
       "items": [],
@@ -7313,11 +7303,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:45:00.879114+00:00",
+          "retrieved_at": "2026-11-28T04:29:25.278256+00:00",
           "status": 200,
           "sha256": "269db590a88c5279d7ab8f36c5c438d4b9f213e4f1c9c41fb557a5d076c26953",
           "bytes": 423664,
-          "server_date": "Fri, 27 Nov 2026 04:45:00 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:24 GMT",
           "last_modified": null
         }
       ]
@@ -7328,7 +7318,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:00.898732+00:00",
+      "checked_at": "2026-11-28T04:29:25.307042+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2004000",
       "items": [
@@ -7363,7 +7353,7 @@
           "departure": "15:51:00",
           "classes": {
             "plazcard": 6366,
-            "coupe": 6703
+            "coupe": 6206
           }
         }
       ],
@@ -7372,11 +7362,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2004000",
-          "retrieved_at": "2026-11-27T04:45:01.851241+00:00",
+          "retrieved_at": "2026-11-28T04:29:25.998145+00:00",
           "status": 200,
-          "sha256": "664f0e56cea198cb50036e5a3516074bbcb4062dc39ffe7e1081eb9ddeb12b4f",
+          "sha256": "a7bd946a524c0648bf8cc6495f122aa3b79c1d9f3ba0de3cffac0598d1a96d62",
           "bytes": 1158,
-          "server_date": "Fri, 27 Nov 2026 04:45:01 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:25 GMT",
           "last_modified": null
         }
       ]
@@ -7387,7 +7377,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:01.856287+00:00",
+      "checked_at": "2026-11-28T04:29:26.005918+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Sankt-Peterburg/",
       "items": [],
@@ -7396,11 +7386,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:45:02.729026+00:00",
+          "retrieved_at": "2026-11-28T04:29:26.661958+00:00",
           "status": 200,
           "sha256": "9078887ad97701b048425339eae3f6b12aab789eadb97eee551567f30545a34d",
           "bytes": 183153,
-          "server_date": "Fri, 27 Nov 2026 04:45:02 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:26 GMT",
           "last_modified": null
         }
       ]
@@ -7411,7 +7401,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:02.740957+00:00",
+      "checked_at": "2026-11-28T04:29:26.680235+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2030000",
       "items": [
@@ -7432,11 +7422,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2030000",
-          "retrieved_at": "2026-11-27T04:45:03.936770+00:00",
+          "retrieved_at": "2026-11-28T04:29:28.008414+00:00",
           "status": 200,
           "sha256": "c9e7519083df1c799c73e243cd8236419f0f3ef65893219cabd1364ef911d7f6",
           "bytes": 426,
-          "server_date": "Fri, 27 Nov 2026 04:45:03 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:28 GMT",
           "last_modified": null
         }
       ]
@@ -7447,7 +7437,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:03.941900+00:00",
+      "checked_at": "2026-11-28T04:29:28.015426+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Ekaterinburg/",
       "items": [],
@@ -7456,11 +7446,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:45:04.592560+00:00",
+          "retrieved_at": "2026-11-28T04:29:28.265001+00:00",
           "status": 200,
           "sha256": "b445b4c5b140775a2a945aa1085eca59d9db8d6678e8369b314806622c5800f8",
           "bytes": 117964,
-          "server_date": "Fri, 27 Nov 2026 04:45:04 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:28 GMT",
           "last_modified": null
         }
       ]
@@ -7471,7 +7461,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:04.602894+00:00",
+      "checked_at": "2026-11-28T04:29:28.280417+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2060615",
       "items": [
@@ -7515,11 +7505,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2060615",
-          "retrieved_at": "2026-11-27T04:45:05.962093+00:00",
+          "retrieved_at": "2026-11-28T04:29:30.258711+00:00",
           "status": 200,
           "sha256": "ef561e790243b10dd4e11b763e8a22d70f37b8ab6073bb18dfb4d76aa301d1a2",
           "bytes": 1160,
-          "server_date": "Fri, 27 Nov 2026 04:45:05 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:30 GMT",
           "last_modified": null
         }
       ]
@@ -7530,7 +7520,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:05.967354+00:00",
+      "checked_at": "2026-11-28T04:29:30.265964+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Kazan/",
       "items": [],
@@ -7539,11 +7529,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:45:06.493143+00:00",
+          "retrieved_at": "2026-11-28T04:29:30.514550+00:00",
           "status": 200,
           "sha256": "629dc4ffc8b4eb46a1ea2c393e3c36e4cc46aba1413d92204e1d40f8feef3ea2",
           "bytes": 158112,
-          "server_date": "Fri, 27 Nov 2026 04:45:06 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:30 GMT",
           "last_modified": null
         }
       ]
@@ -7554,7 +7544,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:06.504921+00:00",
+      "checked_at": "2026-11-28T04:29:30.536583+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2044000",
       "items": [
@@ -7587,11 +7577,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2044000",
-          "retrieved_at": "2026-11-27T04:45:07.930967+00:00",
+          "retrieved_at": "2026-11-28T04:29:32.148112+00:00",
           "status": 200,
           "sha256": "00e84d4f3d3e786566f89c3a96bab381b90767b0bebafc65c30d1fe30aeacaae",
           "bytes": 807,
-          "server_date": "Fri, 27 Nov 2026 04:45:07 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:32 GMT",
           "last_modified": null
         }
       ]
@@ -7602,7 +7592,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:07.936318+00:00",
+      "checked_at": "2026-11-28T04:29:32.155317+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Novosibirsk/",
       "status": "source_page_missing",
@@ -7611,11 +7601,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:45:08.636430+00:00",
+          "retrieved_at": "2026-11-28T04:29:32.766932+00:00",
           "status": 404,
-          "sha256": "f980c7408486daccd0b62e1870c6cbcc2c30b67c34abc1e1b55f79d379653614",
+          "sha256": "f322f6f93c6c61167ff1c62f7e33b8bdee5bc4536909227b9049cb894dbab11c",
           "bytes": 68073,
-          "server_date": "Fri, 27 Nov 2026 04:45:08 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:32 GMT",
           "last_modified": null
         }
       ]
@@ -7626,7 +7616,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:08.641742+00:00",
+      "checked_at": "2026-11-28T04:29:32.774141+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2064130",
       "items": [
@@ -7661,11 +7651,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2064130",
-          "retrieved_at": "2026-11-27T04:45:10.354960+00:00",
+          "retrieved_at": "2026-11-28T04:29:34.382949+00:00",
           "status": 200,
           "sha256": "938881dfcf0b82d6464c86937b2aa1e073eac41c784212da5adc9394db1e4265",
           "bytes": 868,
-          "server_date": "Fri, 27 Nov 2026 04:45:10 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:34 GMT",
           "last_modified": null
         }
       ]
@@ -7676,7 +7666,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:10.360372+00:00",
+      "checked_at": "2026-11-28T04:29:34.390437+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Sochi/",
       "items": [
@@ -7694,11 +7684,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:45:10.738240+00:00",
+          "retrieved_at": "2026-11-28T04:29:34.762327+00:00",
           "status": 200,
           "sha256": "be64d0c369bcfb1ac96c0e9a33c4e2e969a5dfbb9896a64250dd6d93f9790b5e",
           "bytes": 134521,
-          "server_date": "Fri, 27 Nov 2026 04:45:10 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:34 GMT",
           "last_modified": null
         }
       ]
@@ -7709,7 +7699,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:10.749752+00:00",
+      "checked_at": "2026-11-28T04:29:34.779959+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2058000",
       "items": [],
@@ -7718,11 +7708,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2064170&term2=2058000",
-          "retrieved_at": "2026-11-27T04:45:12.612627+00:00",
+          "retrieved_at": "2026-11-28T04:29:36.152756+00:00",
           "status": 200,
           "sha256": "76956b3481e5c89b61682a3ced350e1e60825aa0d97067fb760db59854f97bfa",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:45:12 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:36 GMT",
           "last_modified": null
         }
       ]
@@ -7733,7 +7723,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:12.617950+00:00",
+      "checked_at": "2026-11-28T04:29:36.160039+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Kaliningrad/",
       "status": "source_page_missing",
@@ -7742,11 +7732,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Mineralnye-Vody/gorod_Kaliningrad/",
-          "retrieved_at": "2026-11-27T04:45:13.341806+00:00",
+          "retrieved_at": "2026-11-28T04:29:36.941047+00:00",
           "status": 404,
-          "sha256": "66ca114cd6cd810e45b679aa09ec93cbf2ddab468e287385011506607508257c",
-          "bytes": 68088,
-          "server_date": "Fri, 27 Nov 2026 04:45:13 GMT",
+          "sha256": "29eaa79389916a50a4f1474695495e16b3eb1c8e5581be90a84f2220cdd08fb9",
+          "bytes": 68448,
+          "server_date": "Sat, 28 Nov 2026 04:29:36 GMT",
           "last_modified": null
         }
       ]
@@ -7757,7 +7747,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:13.347001+00:00",
+      "checked_at": "2026-11-28T04:29:36.948270+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2000000",
       "items": [],
@@ -7766,11 +7756,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2000000",
-          "retrieved_at": "2026-11-27T04:45:14.484573+00:00",
+          "retrieved_at": "2026-11-28T04:29:37.910740+00:00",
           "status": 200,
           "sha256": "a598952425d64192b03a8049c0bdc03fb260c3148689a57a95d9dca4891dcae4",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:45:14 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:37 GMT",
           "last_modified": null
         }
       ]
@@ -7781,7 +7771,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:14.489994+00:00",
+      "checked_at": "2026-11-28T04:29:37.918077+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Moskva/",
       "items": [],
@@ -7790,11 +7780,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Moskva/",
-          "retrieved_at": "2026-11-27T04:45:15.364846+00:00",
+          "retrieved_at": "2026-11-28T04:29:38.907699+00:00",
           "status": 200,
           "sha256": "90c8c35728bb30ab6b63d7faf5809d7aaef25837fb15377a36168169df4e7f46",
           "bytes": 111953,
-          "server_date": "Fri, 27 Nov 2026 04:45:15 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:38 GMT",
           "last_modified": null
         }
       ]
@@ -7805,7 +7795,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:15.375634+00:00",
+      "checked_at": "2026-11-28T04:29:38.923180+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2004000",
       "items": [],
@@ -7814,11 +7804,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2004000",
-          "retrieved_at": "2026-11-27T04:45:16.525673+00:00",
+          "retrieved_at": "2026-11-28T04:29:40.278858+00:00",
           "status": 200,
           "sha256": "c6759a67abdf5a042507c202546725216c9c384fc9afc1e4891663a4ec23a48a",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:45:16 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:40 GMT",
           "last_modified": null
         }
       ]
@@ -7829,7 +7819,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:16.531225+00:00",
+      "checked_at": "2026-11-28T04:29:40.286347+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Sankt-Peterburg/",
       "items": [],
@@ -7838,11 +7828,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Sankt-Peterburg/",
-          "retrieved_at": "2026-11-27T04:45:17.069840+00:00",
+          "retrieved_at": "2026-11-28T04:29:40.635562+00:00",
           "status": 200,
           "sha256": "c7d8f54f70e4794a2d4c3ae9cca5f148c7c2acb884c1ec361ee224bfec423fe4",
           "bytes": 105874,
-          "server_date": "Fri, 27 Nov 2026 04:45:16 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:40 GMT",
           "last_modified": null
         }
       ]
@@ -7853,7 +7843,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:17.080227+00:00",
+      "checked_at": "2026-11-28T04:29:40.650787+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2030000",
       "items": [],
@@ -7862,11 +7852,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2030000",
-          "retrieved_at": "2026-11-27T04:45:18.767184+00:00",
+          "retrieved_at": "2026-11-28T04:29:42.231335+00:00",
           "status": 200,
           "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
           "bytes": 2,
-          "server_date": "Fri, 27 Nov 2026 04:45:18 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:42 GMT",
           "last_modified": null
         }
       ]
@@ -7877,7 +7867,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:18.772876+00:00",
+      "checked_at": "2026-11-28T04:29:42.238617+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Ekaterinburg/",
       "status": "source_page_missing",
@@ -7886,11 +7876,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Ekaterinburg/",
-          "retrieved_at": "2026-11-27T04:45:19.638551+00:00",
+          "retrieved_at": "2026-11-28T04:29:42.915410+00:00",
           "status": 404,
-          "sha256": "1893e33fa9b5a63562ecf18efa21225c0d705de1afe961a0c5bc9eb17bf20bff",
+          "sha256": "100e4c7736c41e409a1baeb010b6f04f5d7bd2b0ef7e0503215783c363e60ed2",
           "bytes": 67886,
-          "server_date": "Fri, 27 Nov 2026 04:45:19 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:42 GMT",
           "last_modified": null
         }
       ]
@@ -7901,7 +7891,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:19.644218+00:00",
+      "checked_at": "2026-11-28T04:29:42.922816+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2060615",
       "items": [],
@@ -7910,11 +7900,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2060615",
-          "retrieved_at": "2026-11-27T04:45:20.560152+00:00",
+          "retrieved_at": "2026-11-28T04:29:44.585396+00:00",
           "status": 200,
           "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
           "bytes": 2,
-          "server_date": "Fri, 27 Nov 2026 04:45:20 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:44 GMT",
           "last_modified": null
         }
       ]
@@ -7925,7 +7915,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:20.565781+00:00",
+      "checked_at": "2026-11-28T04:29:44.592804+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Kazan/",
       "status": "source_page_missing",
@@ -7934,11 +7924,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Kazan/",
-          "retrieved_at": "2026-11-27T04:45:21.770831+00:00",
+          "retrieved_at": "2026-11-28T04:29:45.221108+00:00",
           "status": 404,
-          "sha256": "3f38feec8c8c140e153c1b33efea2f627d7d4b9b28d4a86882057e8f246dce5d",
-          "bytes": 67745,
-          "server_date": "Fri, 27 Nov 2026 04:45:21 GMT",
+          "sha256": "cebfb843bc15439ab0ecea3d8ff73690d8f4f5f051b3bf89478a4222b37bf8a3",
+          "bytes": 67405,
+          "server_date": "Sat, 28 Nov 2026 04:29:45 GMT",
           "last_modified": null
         }
       ]
@@ -7949,7 +7939,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:21.776487+00:00",
+      "checked_at": "2026-11-28T04:29:45.228602+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2044000",
       "items": [],
@@ -7958,11 +7948,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2044000",
-          "retrieved_at": "2026-11-27T04:45:22.462996+00:00",
+          "retrieved_at": "2026-11-28T04:29:47.075814+00:00",
           "status": 200,
           "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
           "bytes": 2,
-          "server_date": "Fri, 27 Nov 2026 04:45:22 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:47 GMT",
           "last_modified": null
         }
       ]
@@ -7973,7 +7963,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:22.468697+00:00",
+      "checked_at": "2026-11-28T04:29:47.083284+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Novosibirsk/",
       "status": "source_page_missing",
@@ -7982,11 +7972,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Novosibirsk/",
-          "retrieved_at": "2026-11-27T04:45:24.265872+00:00",
+          "retrieved_at": "2026-11-28T04:29:47.692254+00:00",
           "status": 404,
-          "sha256": "461e3edecedf1d1cf09b81c884f5a2210f15478052ecaa25c3706e20ad02a836",
-          "bytes": 68242,
-          "server_date": "Fri, 27 Nov 2026 04:45:24 GMT",
+          "sha256": "477249f6360f05f3c80d960a1cc7d38d9f8eb3b0264427ab8e3a76da45718960",
+          "bytes": 67890,
+          "server_date": "Sat, 28 Nov 2026 04:29:47 GMT",
           "last_modified": null
         }
       ]
@@ -7997,7 +7987,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:24.271528+00:00",
+      "checked_at": "2026-11-28T04:29:47.699719+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2064130",
       "items": [],
@@ -8006,11 +7996,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2064130",
-          "retrieved_at": "2026-11-27T04:45:25.128802+00:00",
+          "retrieved_at": "2026-11-28T04:29:49.429043+00:00",
           "status": 200,
           "sha256": "51ee9b3e00783db40ed9e76535186f1011c79246d0be0c6b01a3ad556b8181f5",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:45:25 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:49 GMT",
           "last_modified": null
         }
       ]
@@ -8021,7 +8011,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:25.134482+00:00",
+      "checked_at": "2026-11-28T04:29:49.436612+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Sochi/",
       "status": "source_page_missing",
@@ -8030,11 +8020,11 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Sochi/",
-          "retrieved_at": "2026-11-27T04:45:26.935697+00:00",
+          "retrieved_at": "2026-11-28T04:29:50.104051+00:00",
           "status": 404,
-          "sha256": "88d0f6f48e1636998e822bcbece56fedbfd8a6b14a163805640cca43be0627d5",
-          "bytes": 67606,
-          "server_date": "Fri, 27 Nov 2026 04:45:26 GMT",
+          "sha256": "6110edfa20cfd70a2f559c31793fc461542b77d4a9f6732d7c1515636d478be8",
+          "bytes": 67604,
+          "server_date": "Sat, 28 Nov 2026 04:29:50 GMT",
           "last_modified": null
         }
       ]
@@ -8045,7 +8035,7 @@
       "mode": "rail",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:26.941440+00:00",
+      "checked_at": "2026-11-28T04:29:50.111554+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2064170",
       "items": [],
@@ -8054,11 +8044,11 @@
       "receipts": [
         {
           "url": "https://suggest.travelpayouts.com/search?service=tutu_trains&term=2058000&term2=2064170",
-          "retrieved_at": "2026-11-27T04:45:27.739660+00:00",
+          "retrieved_at": "2026-11-28T04:29:51.305005+00:00",
           "status": 200,
           "sha256": "6db1e98d8706fb9c0efe1610a5233a8f4ab9e545379d92253dff7702aae7b245",
           "bytes": 61,
-          "server_date": "Fri, 27 Nov 2026 04:45:27 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:51 GMT",
           "last_modified": null
         }
       ]
@@ -8069,7 +8059,7 @@
       "mode": "bus",
       "currency": "RUB",
       "basis": "one_way",
-      "checked_at": "2026-11-27T04:45:27.745397+00:00",
+      "checked_at": "2026-11-28T04:29:51.312693+00:00",
       "price_period": "undated_reference_not_monthly_history",
       "source": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Mineralnye-Vody/",
       "status": "source_page_missing",
@@ -8078,15 +8068,15 @@
       "receipts": [
         {
           "url": "https://bus.tutu.ru/raspisanie/gorod_Kaliningrad/gorod_Mineralnye-Vody/",
-          "retrieved_at": "2026-11-27T04:45:29.092976+00:00",
+          "retrieved_at": "2026-11-28T04:29:52.464655+00:00",
           "status": 404,
-          "sha256": "ebe30e9cb9fbde06a505f2e66300bf4d6c75db80ca983913021e01c1284cf697",
+          "sha256": "78f974da9f5f49ac4b63108fb8a9e617343d98cff6262e98b358ce7cee4edac4",
           "bytes": 68458,
-          "server_date": "Fri, 27 Nov 2026 04:45:28 GMT",
+          "server_date": "Sat, 28 Nov 2026 04:29:52 GMT",
           "last_modified": null
         }
       ]
     }
   ],
-  "updated_at": "2026-11-27T04:45:29.093021+00:00"
+  "updated_at": "2026-11-28T04:29:52.464716+00:00"
 }
